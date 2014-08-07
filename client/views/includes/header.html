@@ -1,0 +1,29 @@
+<template name="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand"
+            href="{{pathFor 'postsList'}}">
+            Petition SG
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          {{#if loggedIn}}
+            <a id="logout-button"
+               href="#">
+               Logout
+            </a>
+          {{else}}
+            <a href="#loginModal"
+               class="dropdown-toggle"
+               data-toggle="modal">
+               Login
+            </a>
+          {{/if}}
+          {{> login}}
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>

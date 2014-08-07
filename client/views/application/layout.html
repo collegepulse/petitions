@@ -1,12 +1,6 @@
 <template name="layout">
   <div class="container">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'postsList'}}">Petition SG</a>
-        </div>
-      </div>
-    </nav>
+    {{> header}}
     <div id="main" class="row-fluid">
       {{> yield}}
     </div>
