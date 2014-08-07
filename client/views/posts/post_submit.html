@@ -1,0 +1,26 @@
+<template name="postSubmit">
+  <form class="main">
+    <div class="form-horizontal">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="text-center">
+          <h2>Create a New Petition</h2>
+        </div>
+        <input name="title"
+               class="form-group form-control input-lg"
+               maxlength="80"
+               placeholder="My Petition's Name"
+               type="text">
+        <textarea name="description"
+                  class="form-group form-control input-lg"
+                  maxlength="4000"
+                  placeholder="My Petition's Description"
+                  type="text"
+                  rows="10"></textarea>
+        <input type="submit"
+               class="form-group btn btn-lg btn-primary"
+               value="Submit"
+               style="width: 100%;">
+      </div>
+    </div>
+  </form>
+</template>

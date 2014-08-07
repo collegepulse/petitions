@@ -3,6 +3,7 @@
     "bootstrap-3": {},
     "iron-router": {},
     "spin": {},
-    "npm": {}
+    "npm": {},
+    "iron-router-active": {}
   }
 }

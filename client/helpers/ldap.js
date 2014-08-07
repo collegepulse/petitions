@@ -11,7 +11,7 @@ Meteor.ldapLogin = function (username, password, callback) {
 };
 
 Template.login.events({
-  'click #login-button': function(event, template) {
+  'submit form': function(event, template) {
     Session.set('loginError', null);
     event.preventDefault();
     return Meteor.ldapLogin(template.find('#username').value, template.find('#password').value, function (err, user) {
@@ -29,6 +29,7 @@ Template.header.events({
   'click #logout-button': function(event, template) {
     event.preventDefault();
     return Meteor.logout(function (err) {
+      Router.go("/");
     });
   }
 });

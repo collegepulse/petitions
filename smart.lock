@@ -5,7 +5,8 @@
       "bootstrap-3": {},
       "iron-router": {},
       "spin": {},
-      "npm": {}
+      "npm": {},
+      "iron-router-active": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/arunoda/meteor-npm.git",
         "tag": "v0.2.6",
         "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
+      },
+      "iron-router-active": {
+        "git": "https://github.com/XpressiveCode/iron-router-active.git",
+        "tag": "v0.2.0",
+        "commit": "1b05aad5325c3dfdb5186b9c288aa53013d767b8"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
