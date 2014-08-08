@@ -16,7 +16,7 @@ Template.login.events({
     event.preventDefault();
     return Meteor.ldapLogin(template.find('#username').value, template.find('#password').value, function (err, user) {
       if (err) {
-        Session.set('loginError', 'Check your username or password.');
+        $(template.find('.modal-content')).shake(3,7,800);
       } else {
         $(template.find('#loginModal')).modal("hide");
       }

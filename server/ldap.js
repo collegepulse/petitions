@@ -5,7 +5,6 @@ assert = Npm.require('assert');
 Future = Npm.require('fibers/future');
 
 LDAP = {};
-LDAP.url = 'ldap://ldap.rit.edu';
 LDAP.searchOu = 'ou=People,dc=rit,dc=edu';
 LDAP.searchQuery = function(user){
   return {
@@ -17,7 +16,10 @@ LDAP.searchQuery = function(user){
 LDAP.checkAccount = function(options) {
   var dn, future;
   LDAP.client = ldap.createClient({
-    url: LDAP.url
+    url: process.env.LDAP_URL,
+    maxConnections: 2,
+    bindDN:          'uid=' + process.env.LDAP_USERNAME + ',ou=People,dc=rit,dc=edu',
+    bindCredentials: process.env.LDAP_PASSWORD  
   });
   options = options || {};
   dn = [];

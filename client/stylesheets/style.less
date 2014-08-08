@@ -1,0 +1,114 @@
+@import "overrides.less";
+
+body {
+  background: #eee;
+}
+
+.navbar-default {
+  .navbar-nav > li > .active {
+    font-weight: bold;
+  }
+  background: transparent;
+  border: none;
+  margin-bottom: 10px;
+  @media (min-width: @screen-sm-min) { 
+    margin: 0;
+  }
+}
+
+#header {
+  #header-background {
+    background-image: url("gradient.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 1px !important;
+    background-position: center bottom !important;
+    margin-bottom: 0;
+  }
+}
+
+#application-content {
+  margin: 30px 0;
+}
+
+.square {
+  padding-bottom: 25px;
+}
+
+.square-content {
+  background: #fff;
+  padding: 15px;
+  @media (max-width: @screen-sm-min) {
+    min-height: 100px;
+  }
+  @media (min-width: @screen-sm-min) { 
+    min-height: 275px;
+  }
+  @media (min-width: @screen-md-min) { 
+    min-height: 275px;
+  }
+  @media (min-width: @screen-lg-min) { 
+    min-height: 250px;
+  }
+}
+
+.petition-title {
+  letter-spacing: 0px;
+}
+
+.footer {
+  color: @light-gray;
+  a {
+    color: @light-gray;
+    font-weight: 800;
+    font-size: 16px;
+  }
+}
+
+.footer-left, .footer-right {
+  padding: 15px 0;
+  @media (min-width: @screen-sm-min) { 
+    min-height: 220px;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer-left {
+  background: @dark-gray;
+}
+
+.footer-right {
+  background: lighten(@dark-gray, 20%);
+}
+
+.footer-subtitle {
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.carousel {
+  background-image: url('bikeshare.jpg');
+  background-position: center;
+  color: #fff;
+}
+
+.carousel-title {
+  font-size: 400%;
+  font-weight: 900;
+  color: #fff;
+  background-color: @brand-primary;
+  padding: 5px;
+  line-height: 60px;
+}
+
+.carousel-description {
+  margin: 40px 0;
+  font-size: 200%;
+}
+
+.carousel-sign-up {
+  margin: 30px 0;
+  color: #000;
+}

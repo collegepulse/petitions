@@ -1,9 +1,10 @@
 {
   "packages": {
-    "bootstrap-3": {},
     "iron-router": {},
     "spin": {},
     "npm": {},
-    "iron-router-active": {}
+    "iron-router-active": {},
+    "bootstrap3-less": {},
+    "dotenv": {}
   }
 }

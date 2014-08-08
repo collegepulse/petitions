@@ -2,18 +2,14 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "bootstrap-3": {},
       "iron-router": {},
       "spin": {},
       "npm": {},
-      "iron-router-active": {}
+      "iron-router-active": {},
+      "bootstrap3-less": {},
+      "dotenv": {}
     },
     "packages": {
-      "bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v3.2.0-1",
-        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
-      },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.8.2",
@@ -33,6 +29,16 @@
         "git": "https://github.com/XpressiveCode/iron-router-active.git",
         "tag": "v0.2.0",
         "commit": "1b05aad5325c3dfdb5186b9c288aa53013d767b8"
+      },
+      "bootstrap3-less": {
+        "git": "https://github.com/simison/bootstrap3-less",
+        "tag": "v0.2.1",
+        "commit": "dc94a51ed00d7de6d6f2b6d65107a876d849ad61"
+      },
+      "dotenv": {
+        "git": "https://github.com/okgrow/meteor-dotenv.git",
+        "tag": "v0.1.1",
+        "commit": "5205300e55fe051f3a4b23dce81295571bd85e89"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

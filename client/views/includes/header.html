@@ -1,6 +1,6 @@
 <template name="header">
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+  <nav class="header-background navbar navbar-default" role="navigation">
+    <div class="container">
       <div class="navbar-header">
         <button type="button"
                 class="navbar-toggle"
@@ -11,12 +11,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand"
-            href="{{pathFor 'postsList'}}">
-            Petition SG
-        </a>
       </div>
-      <div class="collapse navbar-collapse" id="nav-collapse">
+      <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
         <ul class="nav navbar-nav">
           {{#if currentUser}}
             <li class="{{ isActiveRoute 'postSubmit' }}">
@@ -25,6 +21,16 @@
           {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li class="{{ isActiveRoute 'postsList' }}">
+            <a href="{{pathFor 'postsList'}}">
+              Petitions
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Responses
+            </a>
+          </li>
           {{#if currentUser}}
             <li class="dropdown">
               <a href="#"
