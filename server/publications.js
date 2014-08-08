@@ -1,5 +1,5 @@
-Meteor.publish('posts', function() {
-  return Posts.find({});
+Meteor.publish('posts', function(options) {
+  return Posts.find({}, options);
 });
 
 Posts.allow({
