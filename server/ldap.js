@@ -32,6 +32,10 @@ LDAP.checkAccount = function(options) {
     assert.ifError(err);
     search.on('searchEntry', function(entry) {
       dn.push(entry.objectName);
+      LDAP.displayName = entry.object.displayName;
+      LDAP.givenName = entry.object.givenName;
+      LDAP.initials = entry.object.initials;
+      LDAP.sn = entry.object.sn;
       return LDAP.displayName = entry.object.displayName;
     });
     search.on('error', function(err){
@@ -69,7 +73,10 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
       userId = Meteor.users.insert({
         username: loginRequest.username,
         profile: {
-          name: LDAP.displayName
+          displayName: LDAP.displayName,
+          givenName: LDAP.givenName,
+          initials: LDAP.initials,
+          sn: LDAP.sn
         }
       });
     }

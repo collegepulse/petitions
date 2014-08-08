@@ -36,7 +36,7 @@
               <a href="#"
                  class="dropdown-toggle"
                  data-toggle="dropdown">
-                 {{currentUser.username}}
+                 {{currentUser.profile.givenName}}
                  <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
@@ -58,7 +58,6 @@
               
             </li>
           {{/if}}
-          {{> login}}
         </ul>
       </div>
     </div>
