@@ -1,7 +1,13 @@
 <template name="postsList">
-  <div class="posts">
-    {{#each posts}}
-      {{> postItem}}
-    {{/each}}
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="container">
+        <div class="posts">
+          {{#each posts}}
+            {{> postCard}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
   </div>
 </template>

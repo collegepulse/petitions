@@ -10,6 +10,10 @@ body {
           border-radius: 0 !important;
 }
 
+.application-content {
+  padding: 15px 0;
+}
+
 .navbar-default {
   .navbar-nav > li > .active {
     font-weight: bold;
@@ -32,12 +36,9 @@ body {
   }
 }
 
-#application-content {
-  margin: 30px 0;
-}
-
 .square {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 .square-content {
@@ -47,19 +48,28 @@ body {
     min-height: 100px;
   }
   @media (min-width: @screen-sm-min) { 
-    min-height: 275px;
+    height: 275px;
   }
   @media (min-width: @screen-md-min) { 
-    min-height: 275px;
+    height: 275px;
   }
   @media (min-width: @screen-lg-min) { 
-    min-height: 250px;
+    height: 250px;
   }
+}
+
+.social-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.posts {
+  margin: 15px 0;
 }
 
 .petition-sign {
   position: absolute;
-  top: 15px;
+  top: 30px;
   right: 30px;
 }
 
@@ -102,6 +112,21 @@ body {
 
 .footer-right {
   background: lighten(@dark-gray, 20%);
+}
+
+.title {
+  font-size: 300%;
+  line-height: 40px;
+}
+
+.count {
+  font-size: 250%;
+  font-weight: 900;
+}
+
+.author {
+  font-size: 125%;
+  font-weight: 900;
 }
 
 .footer-subtitle {

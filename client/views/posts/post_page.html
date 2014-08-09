@@ -1,3 +1,29 @@
 <template name="postPage">
-  {{> postItem}}
+  <div class="application-content">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="col-sm-6 col-sm-offset-2">
+          <p><a class="title" href="{{pathFor 'postPage'}}">{{title}}</a></p>
+          <p><h4>{{{breaklines description}}}</h4></p>
+          <p>
+            <img class="social-icon" src="../facebook.svg">
+            <img class="social-icon" src="../twitter.svg">
+            <img class="social-icon" src="../reddit.svg">
+            <img class="social-icon" src="../plus.svg">
+            <img class="social-icon" src="../linkedin.svg">
+          </p>
+          <p><a href="#" style="color: #000;">Report this petition</a></p>
+        </div>
+        <div class="col-sm-2">
+          <p><button class="btn btn-lg btn-primary">Sign Petition</button></p>
+          <p>
+            <div class="footer-subtitle">SIGNATURES</div>
+            <div class="count">0</div>
+          </p>
+          <div class="footer-subtitle">AUTHOR</div>
+          <div class="author">{{author}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

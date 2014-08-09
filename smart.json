@@ -5,6 +5,7 @@
     "npm": {},
     "iron-router-active": {},
     "bootstrap3-less": {},
-    "dotenv": {}
+    "dotenv": {},
+    "collection-api": {}
   }
 }

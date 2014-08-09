@@ -2,6 +2,7 @@
   <nav class="header-background navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
+        <a class="navbar-brand {{isActiveRoute 'index'}}" href="{{pathFor 'index'}}">Petition SG</a>
         <button type="button"
                 class="navbar-toggle"
                 data-toggle="collapse"
@@ -13,14 +14,12 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
             <li class="{{ isActiveRoute 'postSubmit' }}">
               <a href="{{pathFor 'postSubmit'}}">New Petition</a>
             </li>
           {{/if}}
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
           <li class="{{ isActiveRoute 'postsList' }}">
             <a href="{{pathFor 'postsList'}}">
               Petitions

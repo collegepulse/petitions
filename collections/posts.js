@@ -1,12 +1,5 @@
 Posts = new Meteor.Collection('posts');
 
-Posts.allow({
-  insert: function(userId, doc) {
-    // only allow posting if you are logged in
-    return !! userId;
-  }
-});
-
 Meteor.methods({
   post: function(postAttributes) {
     var user = Meteor.user();
@@ -17,7 +10,11 @@ Meteor.methods({
 
     // ensure the post has a title
     if (!postAttributes.title)
-      throw new Meteor.Error(422, 'Please fill in a title.');
+      throw new Meteor.Error(422, 'Please fill in a \n title.');
+
+    // ensure the post has a description
+    if (!postAttributes.description)
+      throw new Meteor.Error(422, 'Please fill in a description.');
 
     // pick out the whitelisted keys
     var post = _.extend(_.pick(postAttributes, 'title', 'description'), {
@@ -30,3 +27,18 @@ Meteor.methods({
     return postId;
   }
 });
+
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+
+    collectionApi = new CollectionAPI({
+      apiPath: 'api'
+    });
+
+    collectionApi.addCollection(Posts, 'posts', {
+      methods: ['GET']
+    });
+
+    collectionApi.start();
+  });
+}
