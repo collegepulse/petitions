@@ -6,6 +6,7 @@
     "iron-router-active": {},
     "bootstrap3-less": {},
     "dotenv": {},
-    "http-methods": {}
+    "http-methods": {},
+    "ms-seo": {}
   }
 }

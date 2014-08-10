@@ -8,7 +8,8 @@
       "iron-router-active": {},
       "bootstrap3-less": {},
       "dotenv": {},
-      "http-methods": {}
+      "http-methods": {},
+      "ms-seo": {}
     },
     "packages": {
       "iron-router": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/CollectionFS/Meteor-http-methods.git",
         "tag": "v0.0.22",
         "commit": "5b0f7723f49436b8a0a930f284ed05f0b26021fe"
+      },
+      "ms-seo": {
+        "git": "https://github.com/DerMambo/ms-seo",
+        "tag": "v0.2.6",
+        "commit": "1a4ba31a1f6f29009d3941e9dd883829ff4e4b8b"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
