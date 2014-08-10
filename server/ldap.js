@@ -18,8 +18,8 @@ LDAP.checkAccount = function(options) {
   LDAP.client = ldap.createClient({
     url: process.env.LDAP_URL,
     maxConnections: 2,
-    bindDN:          'uid=' + process.env.LDAP_USERNAME + ',ou=People,dc=rit,dc=edu',
-    bindCredentials: process.env.LDAP_PASSWORD  
+    bindDN:          'uid=' + options.username + ',ou=People,dc=rit,dc=edu',
+    bindCredentials: options.password
   });
   options = options || {};
   dn = [];
@@ -29,34 +29,39 @@ LDAP.checkAccount = function(options) {
     return;
   }
   LDAP.client.search(LDAP.searchOu, LDAP.searchQuery(options.username), function(err, search) {
-    assert.ifError(err);
-    search.on('searchEntry', function(entry) {
-      dn.push(entry.objectName);
-      LDAP.displayName = entry.object.displayName;
-      LDAP.givenName = entry.object.givenName;
-      LDAP.initials = entry.object.initials;
-      LDAP.sn = entry.object.sn;
-      return LDAP.displayName = entry.object.displayName;
-    });
-    search.on('error', function(err){
-      throw new Meteor.Error(500, "LDAP server error");
-    });
-    return search.on('end', function() {
-      if (dn.length === 0) {
-        future['return'](false);
-        return false;
-      }
-      return LDAP.client.bind(dn[0], options.password, function(err) {
-        if (err) {
+    if (err) {
+      future['return'](false);
+      return false;
+    } else {
+      search.on('searchEntry', function(entry) {
+        dn.push(entry.objectName);
+        LDAP.displayName = entry.object.displayName;
+        LDAP.givenName = entry.object.givenName;
+        LDAP.initials = entry.object.initials;
+        LDAP.sn = entry.object.sn;
+        LDAP.ou = entry.object.ou;
+        return LDAP.displayName = entry.object.displayName;
+      });
+      search.on('error', function(err){
+        throw new Meteor.Error(500, "LDAP server error");
+      });
+      return search.on('end', function() {
+        if (dn.length === 0) {
           future['return'](false);
           return false;
         }
-        return LDAP.client.unbind(function(err) {
-          assert.ifError(err);
-          return future['return'](!err);
+        return LDAP.client.bind(dn[0], options.password, function(err) {
+          if (err) {
+            future['return'](false);
+            return false;
+          }
+          return LDAP.client.unbind(function(err) {
+            assert.ifError(err);
+            return future['return'](!err);
+          });
         });
       });
-    });
+    }
   });
   return future.wait();
 };
