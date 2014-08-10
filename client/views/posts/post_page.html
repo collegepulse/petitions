@@ -12,7 +12,11 @@
             <img class="social-icon" src="../plus.svg">
             <img class="social-icon" src="../linkedin.svg">
           </p>
-          <p><a href="#" style="color: #000;">Report this petition</a></p>
+          <p><a href="#postReportModal"
+                class="dropdown-toggle"
+                data-toggle="modal"
+                style="color: #000;">
+                Report this petition</a></p>
         </div>
         <div class="col-sm-2">
           <p><button class="btn btn-lg btn-primary">Sign Petition</button></p>
@@ -23,6 +27,59 @@
           <div class="footer-subtitle">AUTHOR</div>
           <div class="author">{{author}}</div>
         </div>
+      </div>
+    </div>
+  </div>
+  {{> postReport}}
+</template>
+
+<template name="postReport">
+  <div class="modal fade"
+       id="postReportModal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="myModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="main">
+          <div class="modal-header">
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h2 class="modal-title">Why are you reporting this petition?</h2>
+          </div>
+          <div class="modal-body" style="font-size: 16px;">
+
+            <div class="radio">
+              <label>
+                <input type="radio"
+                       name="report-reason"
+                       value="inappropriate">
+                The petition contains inappropriate language.
+              </label>
+            </div>
+
+            <div class="radio">
+              <label>
+                <input type="radio"
+                       name="report-reason"
+                       value="spam">
+                The petition is spam.
+              </label>
+            </div>
+
+            <p>All reports are subject to the <a href="#">Moderation Policy.</a></p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Report</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

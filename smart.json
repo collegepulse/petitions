@@ -6,6 +6,6 @@
     "iron-router-active": {},
     "bootstrap3-less": {},
     "dotenv": {},
-    "collection-api": {}
+    "http-methods": {}
   }
 }

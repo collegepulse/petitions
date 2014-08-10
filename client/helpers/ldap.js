@@ -17,8 +17,11 @@ Template.login.events({
     return Meteor.ldapLogin(template.find('#username').value, template.find('#password').value, function (err, user) {
       if (err) {
         $(template.find('.modal-content')).shake(3,7,800);
+        template.find('#password').value = "";
       } else {
         $(template.find('#loginModal')).modal("hide");
+        template.find('#username').value = "";
+        template.find('#password').value = "";
       }
       return;
     });

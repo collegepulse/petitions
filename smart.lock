@@ -8,7 +8,7 @@
       "iron-router-active": {},
       "bootstrap3-less": {},
       "dotenv": {},
-      "collection-api": {}
+      "http-methods": {}
     },
     "packages": {
       "iron-router": {
@@ -41,10 +41,10 @@
         "tag": "v0.1.1",
         "commit": "5205300e55fe051f3a4b23dce81295571bd85e89"
       },
-      "collection-api": {
-        "git": "https://github.com/crazytoad/meteor-collectionapi.git",
-        "tag": "v0.1.15",
-        "commit": "b62c51f387287726cf3b64077f7bc69604ec2f5e"
+      "http-methods": {
+        "git": "https://github.com/CollectionFS/Meteor-http-methods.git",
+        "tag": "v0.0.22",
+        "commit": "5b0f7723f49436b8a0a930f284ed05f0b26021fe"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

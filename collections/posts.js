@@ -21,8 +21,8 @@ Meteor.methods({
       userId: user._id,
       author: user.profile.displayName,
       submitted: new Date().getTime(),
-      upvoters: [],
-      votes: 0
+      upvoters: [user._id],
+      votes: 1
     });
 
     var postId = Posts.insert(post);
@@ -47,16 +47,26 @@ Meteor.methods({
 });
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-
-    collectionApi = new CollectionAPI({
-      apiPath: 'api'
-    });
-
-    collectionApi.addCollection(Posts, 'posts', {
-      methods: ['GET']
-    });
-
-    collectionApi.start();
+  HTTP.methods({
+    '/v1/petitions': {
+      get: function(data) {
+        var limit = Math.min(parseInt(this.query.limit) || 500, 500);
+        var posts = [];
+        Posts.find({}, {fields: {title: 1, votes: 1}, limit: limit}).forEach(function(post) {
+          posts.push(post);
+        });
+        return JSON.stringify(posts);
+      }
+    },
+    '/v1/petitions/:petitionId': {
+      get: function(data) {
+        var id = this.params.petitionId;
+        var post = Posts.findOne(id);
+        if (post)
+          return JSON.stringify(post);
+        else
+          this.setStatusCode(404);
+      }
+    }
   });
 }
