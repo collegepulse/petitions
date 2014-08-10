@@ -20,11 +20,29 @@ Meteor.methods({
     var post = _.extend(_.pick(postAttributes, 'title', 'description'), {
       userId: user._id,
       author: user.profile.displayName,
-      submitted: new Date().getTime()
+      submitted: new Date().getTime(),
+      upvoters: [],
+      votes: 0
     });
 
     var postId = Posts.insert(post);
     return postId;
+  },
+
+  sign: function(postId) {
+    var user = Meteor.user();
+
+    if (!user)
+      throw new Meteor.Error(401, "You need to login to sign a petition.");
+
+    Posts.update({
+      _id: postId,
+      upvoters: {$ne: user._id}
+    }, {
+      $addToSet: {upvoters: user._id},
+      $inc: {votes: 1}
+    });
+
   }
 });
 
