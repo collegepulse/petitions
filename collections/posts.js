@@ -26,6 +26,9 @@ Meteor.methods({
     });
 
     var postId = Posts.insert(post);
+
+    PostsCount.update({}, {$inc: {count: 1}});
+
     return postId;
   },
 

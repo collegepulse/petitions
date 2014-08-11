@@ -13,6 +13,8 @@
           <p>Contact the <u><a href="https://sg.rit.edu/aboutus" style="color: inherit;">Director of Services</a></u> for an API key.</p>
         </div>
 
+        <br>
+
         <h3>List Petitions</h3>
         <pre>GET /v1/petitions?limit={limit}&key={key}</pre>
         <p>Provides summary information for petitions, including the title, description, and number of petition signers. There is a limit of 500 petitions.</p>
@@ -43,7 +45,7 @@
         <br>
 
         <h3>Petiton details</h3>
-        <pre>GET /v1/petitions/{petition_id}?key={key}</pre>
+        <pre>GET /v1/petitions/{id}?key={key}</pre>
         <p>Provides summary information for petitions, and petitioner's names and petition tags.</p>
         
         <h3>Path Parameters</h3>
@@ -57,7 +59,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>petition_id</code></td>
+              <td><code>id</code></td>
               <td><code>string</code></td>
               <td>The petition's id.</td>
             </tr>

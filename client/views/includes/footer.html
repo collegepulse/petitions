@@ -2,7 +2,7 @@
   <div class="footer">
 
     <div class="footer-left col-lg-6 col-md-6 col-sm-6">
-      <div class="col-lg-6 col-lg-offset-4">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-4">
         <p class="footer-subtitle">
           About
         </p>
@@ -16,17 +16,36 @@
     </div>
 
     <div class="footer-right col-lg-6 col-md-6 col-sm-6">
-      <div class="col-lg-6 col-lg-offset-2">
+      <div class="col-sm-6 col-sm-offset-1 col-md-4 col-md-offset-1">
         <p class="footer-subtitle">
           Learn More
         </p>
-        <p style="font-size: 20px;">
-          <a href="#">The Petition Process</a>
+        <p>
+          <a href="#">Petition Process</a>
           <br>
-          <a href="#">Moderation Policy</a>
+          <a href="#">Moderation</a>
           <br>
           <a href="{{pathFor 'api'}}">API Access</a>
         </p>
+        <p class="footer-subtitle">
+          Join the Mailing List
+        </p>
+        <p>
+          <form>
+            <input type="text"
+                   class="inverse"
+                   placeholder="Add your email"
+                   style="width: 100%; max-width: 220px;">
+          </form>
+        </p>
+      </div>
+      <div class="col-sm-2 hidden-xs">
+        <div class="footer-subtitle text-right">
+          Petitions
+        </div>
+        <h2 class="count text-right">
+          {{postsCount.count}}
+        </h2>
       </div>
     </div>
 

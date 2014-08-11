@@ -1,0 +1,70 @@
+@import "_variables.less";
+
+.petitions {
+  overflow: auto;
+  @media (max-width: @screen-sm-min) {
+    padding: 0 initial;
+  }
+}
+
+.square-content {
+  background: #fff;
+  padding: 15px;
+  @media (max-width: @screen-sm-min) {
+    min-height: 100px;
+  }
+  @media (min-width: @screen-sm-min) { 
+    height: 275px;
+  }
+  @media (min-width: @screen-md-min) { 
+    height: 275px;
+  }
+  @media (min-width: @screen-lg-min) { 
+    height: 250px;
+  }
+}
+
+.petition-sign {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.petition-sign-count {
+  font-size: 18px;
+}
+
+.petition-title {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.square {
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.title {
+  font-size: 300%;
+  line-height: 40px;
+}
+
+.count {
+  font-weight: 600;
+  margin: 0;
+}
+
+.author {
+  font-weight: 300;
+  margin: 0;
+}
+
+.social-icon {
+  height: 40px;
+  width: 40px;
+}

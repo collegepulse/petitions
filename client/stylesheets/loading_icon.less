@@ -1,0 +1,42 @@
+@import "_variables.less";
+
+.input-symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.icon-loading {
+  position: absolute;
+  top: 50%;
+  height: 3em;
+  width: 3em;
+}
+
+.icon-loading::after {
+  content: '';
+  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+  border-left: 3px solid rgba(255, 255, 255, 0.7);
+  border-right: 3px solid @brand-primary;
+  border-top: 3px solid @brand-primary;
+  border-radius: 100% !important;
+  display: inline-block;
+  position: absolute;
+  top: 12.5%;
+  right: auto;
+  bottom: auto;
+  left: 12.5%;
+  width: 75%;
+  height: 75%;
+  -webkit-animation: spin 0.8s infinite linear;
+  -moz-animation: spin 0.8s infinite linear;
+  -o-animation: spin 0.8s infinite linear;
+  animation: spin 0.8s infinite linear;
+}
+
+@-webkit-keyframes spin {
+    0%   {-webkit-transform: rotate(0deg)}
+    100% {-webkit-transform: rotate(360deg)}
+}

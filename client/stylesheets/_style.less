@@ -1,0 +1,37 @@
+@import "/packages/bootstrap3-less/bootstrap.import.less";
+@import "_variables.less";
+
+body {
+  background: @main-background;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
+  background-color: @dark-gray;
+  border: none;
+  color: #fff;
+  padding: 10px;
+}
+
+.application-content {  
+  @media (max-width: @screen-sm-min) { 
+    padding: 15px inherit;
+  }
+  @media (min-width: @screen-sm-min) {
+    padding: 30px inherit;
+  } 
+}
+
+.modal-login {
+  margin: auto;
+  position: absolute;
+  left: 0;
+  bottom: 37%;
+  right: 0;
+  max-width: 300px;
+}
