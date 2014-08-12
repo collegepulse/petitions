@@ -5,3 +5,7 @@ throwError = function(message) {
   Errors.remove({});
   Errors.insert({message: message})
 }
+
+clearError = function() {
+  Errors.remove({});
+}

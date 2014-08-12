@@ -3,10 +3,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+          <h2><strong>Create a New Petition</strong></h2>
+          <p>We recommend reading our <a href="{{pathFor 'petitionProcess'}}">one-minute guide</a> on the Petition Process prior to making a submission.</p>
           {{> errors}}
-          <div class="text-center">
-            <h2>Create a New Petition</h2>
-          </div>
           <form class="main">
             <input name="title"
                    class="form-group form-control input-lg"
@@ -18,7 +17,7 @@
                       maxlength="4000"
                       placeholder="My Petition's Description"
                       type="text"
-                      rows="10"></textarea>
+                      rows="15"></textarea>
             <input type="submit"
                    class="form-group btn btn-lg btn-primary"
                    value="Submit"
