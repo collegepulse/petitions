@@ -9,7 +9,9 @@
       "bootstrap3-less": {},
       "dotenv": {},
       "http-methods": {},
-      "ms-seo": {}
+      "ms-seo": {},
+      "crypto-md5": {},
+      "moment": {}
     },
     "packages": {
       "iron-router": {
@@ -52,10 +54,25 @@
         "tag": "v0.2.6",
         "commit": "1a4ba31a1f6f29009d3941e9dd883829ff4e4b8b"
       },
+      "crypto-md5": {
+        "git": "https://github.com/oortcloud/meteor-crypto-md5.git",
+        "tag": "v3.1.2.2",
+        "commit": "75bbb3eeace302122d3554a6212a6fe92553fa18"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
+      },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
         "tag": "v0.2.0",
         "commit": "4a2d53e35ba036b0c189c7ceca34be494d4c6c97"
+      },
+      "crypto-base": {
+        "git": "https://github.com/oortcloud/meteor-crypto-base.git",
+        "tag": "v3.1.2.1",
+        "commit": "5df8d82a0595553415bbfae2930c6ecbeece5794"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

@@ -4,7 +4,7 @@
       <div class="col-md-6 col-md-offset-3">
         <h1><strong>Profile</strong></h1>
         <p>Update the way your name is displayed on Petition SG.</p>
-        <p>Name changes can <u>only</u> be used to correct capitalization only.</p>
+        <p>Name changes can <u>only</u> be used to correct capitalization only on future petitions and signatures.</p>
         <p>For all other changes, visit <a href="https://start.rit.edu/NamePreference">https://start.rit.edu/NamePreference</a>.</p>
         {{> errors}}
         <form class="form-horizontal">
@@ -48,11 +48,48 @@
             <div class="col-sm-12">
               <input type="submit"
                      class="btn btn-lg btn-primary"
-                     value="Update Name Preferences">
+                     value="Update Name Preferences"
+                     style="width: 100%;">
             </div>
           </div>
         </form>
+        {{> apiKeys}}
       </div>
     </div>
   </div>
+</template>
+
+
+<template name="apiKeys">
+  <h1><strong>API Keys</strong></h1>
+  
+  {{#if hasOldKey}}
+    <div class="alert alert-warning">
+      <p>You already generated an API Key on {{formatDate apiKeys.created "MM/DD/YYYY"}}.</p>
+      <p>Generating a new one will delete the old one.</p>
+      <p><input type="submit"
+           class="btn btn-danger get-key"
+           value="Make a new one anyways."></p>
+    </div>
+  {{/if}}
+
+  {{#if hasNoKey}}
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="submit"
+                 class="btn btn-lg btn-primary get-key"
+                 value="Get API Key"
+                 style="width: 100%;">
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if sessionKeyExists}}
+    <div class="alert alert-success">
+      <p>Your API Key is: <strong>{{key}}</strong></p>
+      <p>Store it in a safe place. Keys are encrypted when stored; your key will not be available after you refresh your browser.</p>
+    </div>
+  {{/if}}
 </template>

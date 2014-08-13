@@ -18,5 +18,26 @@ Template.userEdit.events({
         throwError("Name preferences saved.");
       }
     });
+  },
+  'click .get-key': function (e) {
+    e.preventDefault();
+    Meteor.call('createApiKey', function(error, key) {
+      Session.set('apiKey', key);
+    });
+  }
+});
+
+Template.apiKeys.helpers({
+  'hasOldKey': function() {
+    return ApiKeys.find().fetch().length >= 1 && typeof Session.get('apiKey') === 'undefined';
+  },
+  'hasNoKey': function() {
+    return ApiKeys.find().fetch().length == 0;
+  },
+  sessionKeyExists: function() {
+    return typeof Session.get('apiKey') != 'undefined';
+  },
+  key: function() {
+    return Session.get('apiKey');
   }
 });

@@ -1,7 +1,7 @@
 <template name="api">
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-6 col-md-offset-3">
 
         <h1><strong>API Access</strong></h1>
 
@@ -10,12 +10,10 @@
         <p>Developers utilizing the API should keep the stability of the API's infrastructure and their own applications in mind. We may impose usage limits at any time or degrade performance for developers who perform requests in excess of 1 per second.</p>
 
         <div class="alert alert-warning">
-          <p>Contact the <u><a href="https://sg.rit.edu/aboutus" style="color: inherit;">Director of Services</a></u> for an API key.</p>
+          <p>Claim an API Key by going to your <u><a href="{{pathFor 'userEdit'}}" style="color: inherit;">profile</a></u>.</p>
         </div>
 
-        <br>
-
-        <h3>List Petitions</h3>
+        <h3><strong>List Petitions</strong></h3>
         <pre>GET /v1/petitions?limit={limit}&key={key}</pre>
         <p>Provides summary information for petitions, including the title, description, and number of petition signers. There is a limit of 500 petitions.</p>
         
@@ -42,9 +40,7 @@
           </tbody>
         </table>
 
-        <br>
-
-        <h3>Petiton details</h3>
+        <h3><strong>Petiton details</strong></h3>
         <pre>GET /v1/petitions/{id}?key={key}</pre>
         <p>Provides summary information for petitions, and petitioner's names and petition tags.</p>
         
