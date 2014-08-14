@@ -9,20 +9,26 @@
           <form class="main">
             <input name="title"
                    class="form-group form-control input-lg"
-                   maxlength="80"
+                   maxlength="70"
                    placeholder="My Petition's Name"
-                   type="text">
+                   type="text"
+                   value="{{ session 'post.title' }}">
             <textarea name="description"
                       class="form-group form-control input-lg"
                       maxlength="4000"
                       placeholder="My Petition's Description"
                       type="text"
-                      rows="15"></textarea>
+                      rows="15"
+                      value="{{ session 'post.description' }}"></textarea>
             <input type="submit"
                    class="form-group btn btn-lg btn-primary"
                    value="Submit"
                    style="width: 100%;">
           </form>
+          <h2><strong>Preview Your Petition Card</strong></h2>
+        </div>
+        <div class="petitions col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-3">
+          {{> postCard title=title votes=1 author=author }}
         </div>
       </div>
     </div>

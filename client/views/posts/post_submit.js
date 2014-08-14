@@ -1,3 +1,12 @@
+Template.postSubmit.helpers({
+  'title': function() {
+    return Session.get('post.title');
+  },
+  'author': function() {
+    return Meteor.user().profile.displayName;
+  }
+});
+
 Template.postSubmit.events({
   'submit form': function(e) {
     e.preventDefault();
@@ -17,5 +26,8 @@ Template.postSubmit.events({
         Router.go('postPage', {_id: id});
       }
     });
+  },
+  'keyup *[name=title]': function (e) {
+    Session.set('post.title', $('*[name=title]').val());
   }
 });
