@@ -12,8 +12,8 @@ Template.postSubmit.events({
     e.preventDefault();
 
     var post = {
-      title: $(e.target).find('[name=title]').val(),
-      description: $(e.target).find('[name=description]').val()
+      title: Session.get('post.title'),
+      description: Session.get('post.description')
     }
 
     Meteor.call('post', post, function(error, id) {

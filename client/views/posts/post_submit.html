@@ -2,34 +2,37 @@
   <div class="application-content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-          <h2><strong>Create a New Petition</strong></h2>
-          <p>We recommend reading our <a href="{{pathFor 'petitionProcess'}}">one-minute guide</a> on the Petition Process prior to making a submission.</p>
-          {{> errors}}
-          <form class="main">
-            <input name="title"
-                   class="form-group form-control input-lg"
-                   maxlength="70"
-                   placeholder="My Petition's Name"
-                   type="text"
-                   value="{{ session 'post.title' }}">
-            <textarea name="description"
-                      class="form-group form-control input-lg"
-                      maxlength="4000"
-                      placeholder="My Petition's Description"
-                      type="text"
-                      rows="15"
-                      value="{{ session 'post.description' }}"></textarea>
+        <form class="main">
+          <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <h2><strong>Create a New Petition</strong></h2>
+            <p>We recommend reading our <a href="{{pathFor 'petitionProcess'}}">one-minute guide</a> on the Petition Process prior to making a submission.</p>
+            {{> errors}}
+            
+              <input name="title"
+                     class="form-group form-control input-lg"
+                     maxlength="70"
+                     placeholder="My Petition's Name"
+                     type="text"
+                     value="{{ session 'post.title' }}">
+              <textarea name="description"
+                        class="form-group form-control input-lg"
+                        maxlength="4000"
+                        placeholder="My Petition's Description"
+                        type="text"
+                        rows="15"
+                        value="{{ session 'post.description' }}"></textarea>
+            <h2><strong>Preview Your Petition Card</strong></h2>
+          </div>
+          <div class="petitions col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-3">
+            {{> postCard title=title votes=1 author=author }}
+          </div>
+          <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
             <input type="submit"
-                   class="form-group btn btn-lg btn-primary"
-                   value="Submit"
-                   style="width: 100%;">
-          </form>
-          <h2><strong>Preview Your Petition Card</strong></h2>
-        </div>
-        <div class="petitions col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-3">
-          {{> postCard title=title votes=1 author=author }}
-        </div>
+                     class="form-group btn btn-lg btn-primary"
+                     value="Submit"
+                     style="width: 100%;">
+          </div>
+        </form>
       </div>
     </div>
   </div>
