@@ -23,11 +23,16 @@ Template.postSubmit.events({
         if (error.error === 302)
           Router.go('postPage', {_id: error.details})
       } else {
+        Session.set('post.title', '');
+        Session.set('post.description', '');
         Router.go('postPage', {_id: id});
       }
     });
   },
   'keyup *[name=title]': function (e) {
     Session.set('post.title', $('*[name=title]').val());
+  },
+  'keyup *[name=description]': function (e) {
+    Session.set('post.description', $('textarea[name=description]').val());
   }
 });
