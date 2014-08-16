@@ -12,4 +12,13 @@ Meteor.publish('postsCount', function () {
 
 Meteor.publish('apiKeys', function () {
   return ApiKeys.find({userId: this.userId}, {fields: {created: 1, userId: 1}});
-})
+});
+
+Meteor.publish('privilegedUsers', function () {
+  if (Roles.userIsInRole(this.userId, ['admin'])) {
+    return Meteor.users.find({roles: {$in: ['admin', 'moderator']}});
+  } else {
+    this.stop();
+    return;
+  }
+});

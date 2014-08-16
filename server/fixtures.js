@@ -10,6 +10,7 @@ if (Posts.find().count() === 0) {
     }
   });
   var pete = Meteor.users.findOne(peteId);
+  Roles.addUsersToRoles(peteId, ['admin']);
 
   Posts.insert({
     userId: pete._id,

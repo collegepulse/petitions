@@ -1,0 +1,64 @@
+<template name="admin">
+  <div class="container-fluid application-content">
+    <div class="row-fluid">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <h1><strong>Admin</strong></h1>
+        <div class="col-sm-6">
+          <h2>Admins</h2>
+          <p>Administrators can manage user roles and petitions.</p>
+          {{> userList users=admins role="admin" }}
+        </div>
+        <div class="col-sm-6">
+          <h2>Moderators</h2>
+          <p>Moderators can edit, delete, or respond to petitions.</p>
+          {{> userList users=moderators role="moderator" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="userList">
+  {{#each users}}
+    <form>
+      <div class="input-group input-group-lg">
+        <input name="action"
+               value="remove"
+               type="hidden">
+        <input name="role"
+               value="{{../role}}"
+               type="hidden">
+        <input name="username"
+               value="{{username}}"
+               type="text"
+               class="form-control"
+               disabled>
+        <span class="input-group-btn">
+          <button class="btn btn-primary"
+                  type="submit">&times;
+                  </button>
+        </span>
+      </div>
+    </form>
+  {{/each}}
+  <form>
+    <div class="input-group input-group-lg">
+      <input name="action"
+             value="add"
+             type="hidden">
+      <input name="role"
+             value="{{role}}"
+             type="hidden">
+      <input name="username"
+             value=""
+             type="text"
+             class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-primary"
+                type="submit">+
+                </button>
+      </span>
+    </div>
+  </form>
+</template>

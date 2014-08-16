@@ -9,6 +9,7 @@
     "http-methods": {},
     "ms-seo": {},
     "crypto-md5": {},
-    "moment": {}
+    "moment": {},
+    "roles": {}
   }
 }
