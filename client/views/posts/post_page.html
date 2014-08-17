@@ -1,31 +1,46 @@
 <template name="postPage">
-  <div class="application-content">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="col-sm-6 col-sm-offset-2">
+  <div class="container-fluid" style="background: white;">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="module module-sm">
+        <p class="petition-title-wrapper">
           <p><a class="title" href="{{pathFor 'postPage'}}">{{post.title}}</a></p>
+          <div class="footer-subtitle">{{post.author}}</div>
+        </p>
+        <p class="petition-social-wrapper">
+          <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
+          <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
+          <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
+          <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
+          <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid application-content">
+    <div class="row-fluid">
+      <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-2 module-container">
+        <div class="module module-white">
+
+          <div class="petition-subtitle">
+            PETITION DESCRIPTION
+          </div>
           <p><h4>{{{breaklines post.description}}}</h4></p>
-          <p>
-            <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
-            <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
-            <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
-            <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
-            <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
-          </p>
-          <p><a href="#postReportModal"
-                class="dropdown-toggle"
-                data-toggle="modal"
-                style="color: #000;">
-                Report this petition</a></p>
+          
+          <a href="#postReportModal"
+                class="dropdown-toggle petition-report"
+                data-toggle="modal">
+                Report this petition</a>
         </div>
-        <div class="col-sm-2">
-          <p><button class="btn btn-lg btn-primary">Sign Petition</button></p>
-          <p>
-            <div class="footer-subtitle">SIGNATURES</div>
-            <h3 class="count">{{post.votes}}</h3>
-          </p>
-          <div class="footer-subtitle">AUTHOR</div>
-          <h3 class="author">{{post.author}}</h3>
+      </div>
+      <div class="col-sm-3 col-md-2">
+        <div class="module module-white">
+
+          <div class="petition-subtitle">SIGNATURES</div>
+          <p><h3 class="count">{{post.votes}}</h3></p>
+
+          <div class="petition-subtitle">TAKE ACTION</div>
+          <div><button class="btn btn-sm btn-petition btn-primary">Sign</button></div>
+          
         </div>
       </div>
     </div>
@@ -72,7 +87,7 @@
               </label>
             </div>
 
-            <p>All reports are subject to the <a href="#">Moderation Policy.</a></p>
+            <p>All reports are subject to the Moderation Policy.</p>
 
           </div>
           <div class="modal-footer">
