@@ -12,7 +12,8 @@
       "ms-seo": {},
       "crypto-md5": {},
       "moment": {},
-      "roles": {}
+      "roles": {},
+      "cron-tick": {}
     },
     "packages": {
       "iron-router": {
@@ -69,6 +70,11 @@
         "git": "https://github.com/alanning/meteor-roles.git",
         "tag": "v1.2.11",
         "commit": "2d7dc91848ec874d3a0852c77f462d0fae749de5"
+      },
+      "cron-tick": {
+        "git": "https://github.com/tmeasday/meteor-cron.git",
+        "tag": "v0.0.4",
+        "commit": "44cff9116af510fe53704fdeeff57c444ceb75ba"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
