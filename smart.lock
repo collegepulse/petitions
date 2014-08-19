@@ -13,7 +13,8 @@
       "crypto-md5": {},
       "moment": {},
       "roles": {},
-      "cron-tick": {}
+      "cron-tick": {},
+      "rickshaw": {}
     },
     "packages": {
       "iron-router": {
@@ -76,6 +77,11 @@
         "tag": "v0.0.4",
         "commit": "44cff9116af510fe53704fdeeff57c444ceb75ba"
       },
+      "rickshaw": {
+        "git": "https://github.com/bitIO/meteor-rickshaw.git",
+        "tag": "v0.0.2",
+        "commit": "3387214eb34482979d65ddde99bad0cf59e5cade"
+      },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
         "tag": "v0.2.0",
@@ -85,6 +91,11 @@
         "git": "https://github.com/oortcloud/meteor-crypto-base.git",
         "tag": "v3.1.2.1",
         "commit": "5df8d82a0595553415bbfae2930c6ecbeece5794"
+      },
+      "d3js-package": {
+        "git": "https://github.com/acidsound/d3js-package.git",
+        "tag": "v0.5.1",
+        "commit": "7d3eda4fca00782624ef8e99db84488711ba17e3"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
