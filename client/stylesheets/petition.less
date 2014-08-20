@@ -82,6 +82,37 @@
   }
 }
 
+.post-title-graph {
+  svg {
+    @media (max-width: @screen-sm-min) {
+      left: 90%;
+    }
+    text-align: center;
+    position: absolute;
+    overflow: visible;
+    width: 10%;
+    height: 10%;
+    top: -10%;
+    left: 75%;
+    right: 0px;
+    bottom: 0px;
+  }
+  position: relative;
+}
+
+.graph-path {
+  stroke: @brand-primary;
+  stroke-width: 0.25px;
+  fill: none;
+}
+
+.graph-circle {
+  r: 0.25;
+  stroke: @brand-primary;
+  stroke-width: 0.25;
+  fill: #fff;
+}
+
 .square {
   padding-bottom: 15px;
   padding-top: 15px;
