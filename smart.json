@@ -1,6 +1,8 @@
 {
   "packages": {
-    "iron-router": {},
+    "iron-router": {
+        "version": "0.8.2"
+    },
     "spin": {},
     "npm": {},
     "iron-router-active": {},
