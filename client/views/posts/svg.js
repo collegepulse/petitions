@@ -6,7 +6,7 @@ Template.postPage.rendered = function () {
 
     var map = {
       x: "created_at",
-      y: "score"
+      y: "votes"
     };
 
     var maxX = Math.max.apply(Math,scores.map(function(o){return o[map.x];})),

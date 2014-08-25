@@ -29,6 +29,6 @@ Meteor.publish('singleScore', function (postId) {
     created_at: { $gte: moment().subtract(1, 'week').valueOf() }
   }, {
     limit: 7,
-    sort: {created_at: -1}
+    sort: {created_at: 1}
   });
 });
