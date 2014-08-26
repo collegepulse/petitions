@@ -1,18 +1,23 @@
 <template name="postPage">
   <div class="container-fluid" style="background: white;">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="module module-sm">
-        <p class="petition-title-wrapper">
-          <p><a class="title" href="{{pathFor 'postPage'}}">{{post.title}}</a></p>
-          <div class="footer-subtitle">{{post.author}}</div>
-        </p>
-        <p class="petition-social-wrapper">
-          <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
-          <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
-          <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
-          <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
-          <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
-        </p>
+    <div class="row row-eq-height">
+      <div class="col-sm-6 col-sm-offset-2">
+        <div class="module module-sm">
+          <p class="petition-title-wrapper">
+            <p><a class="title" href="{{pathFor 'postPage'}}">{{post.title}}</a></p>
+            <div class="footer-subtitle">{{post.author}}</div>
+          </p>
+          <p class="petition-social-wrapper">
+            <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
+            <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
+            <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
+            <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
+            <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-2 row-eq-height">
+        <div class="petition-svg"></div>
       </div>
     </div>
   </div>

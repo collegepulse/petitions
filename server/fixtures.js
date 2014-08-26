@@ -12,27 +12,131 @@ if (Posts.find().count() === 0) {
   var pete = Meteor.users.findOne(peteId);
   Roles.addUsersToRoles(peteId, ['admin']);
 
-  Posts.insert({
+  // Post with 7-day "history"
+
+  var postId_seven_day = Posts.insert({
     userId: pete._id,
     author: pete.profile.displayName,
-    submitted: new Date().getTime(),
+    submitted: moment().subtract(7, 'days').valueOf(),
     title: "Build more affordable, on-campus housing.",
     description: "As there is only enough housing for half the student population, it creates a challenge to find affordably priced off-campus housing.",
     upvoters: [pete._id],
+    votes: 7
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(7, 'days').valueOf(),
+    score: 1,
     votes: 1
   });
 
-  Posts.insert({
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(6, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(5, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(4, 'days').valueOf(),
+    score: 2,
+    votes: 2
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(3, 'days').valueOf(),
+    score: 4,
+    votes: 4
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(2, 'days').valueOf(),
+    score: 5,
+    votes: 5
+  });
+
+  Scores.insert({
+    postId: postId_seven_day,
+    created_at: moment().subtract(1, 'day').valueOf(),
+    score: 7,
+    votes: 7
+  });
+
+  // Post with 3-day history
+
+  var postId_three_day = Posts.insert({
     userId: pete._id,
     author: pete.profile.displayName,
-    submitted: new Date().getTime(),
+    submitted: moment().subtract(3, 'days').valueOf(),
     title: "Extend hours for RIT Computer Labs at peak times.",
     description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
     upvoters: [pete._id],
+    votes: 4
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(7, 'days').valueOf(),
+    score: 1,
     votes: 1
   });
 
-  Posts.insert({
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(6, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(5, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(4, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(3, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(2, 'days').valueOf(),
+    score: 2,
+    votes: 2
+  });
+
+  Scores.insert({
+    postId: postId_three_day,
+    created_at: moment().subtract(1, 'day').valueOf(),
+    score: 4,
+    votes: 4
+  });
+
+
+
+  var postId_no_history = Posts.insert({
     userId: pete._id,
     author: pete.profile.displayName,
     submitted: new Date().getTime(),
@@ -41,6 +145,56 @@ if (Posts.find().count() === 0) {
     upvoters: [pete._id],
     votes: 1
   });
+
+   Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(7, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+  
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(6, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(5, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(4, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(3, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(2, 'days').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
+  Scores.insert({
+    postId: postId_no_history,
+    created_at: moment().subtract(1, 'day').valueOf(),
+    score: 1,
+    votes: 1
+  });
+
 
   PostsCount.insert({
     count: Posts.find().count()

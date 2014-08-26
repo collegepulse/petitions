@@ -26,7 +26,7 @@ Meteor.publish('privilegedUsers', function () {
 Meteor.publish('singleScore', function (postId) {
   return Scores.find({
     postId: postId, 
-    created_at: { $gte: moment().subtract(1, 'week').valueOf() }
+    created_at: { $gte: moment().startOf('day').subtract(1, 'week').valueOf() }
   }, {
     limit: 7,
     sort: {created_at: 1}
