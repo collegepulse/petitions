@@ -8,7 +8,7 @@
   <div class="petitions col-sm-10 col-sm-offset-1">
     <h2 class="text-center">{{type}} Petitions</h2>
     {{#each posts}}
-      {{> postCard}}
+      {{> postCard post=this }}
     {{/each}}
   </div>
 </template>

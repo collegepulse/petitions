@@ -1,8 +1,8 @@
-Template.postCard.events({
+Template.postSign.events({
   'submit form': function(e) {
     e.preventDefault();
 
-    var _id = $(e.target).find('[name=_id]').val();
+    var _id = this.post._id;
 
     Meteor.call('sign', _id, function(error) {
       if (error) {
@@ -11,16 +11,16 @@ Template.postCard.events({
         if (error.error === 302)
           Router.go('postPage', {_id: error.details})
       } else {
-        Router.go('postPage', {_id: id});
+        Router.go('postPage', {_id: _id});
       }
     });
   }
 });
 
-Template.postCard.helpers({
+Template.postSign.helpers({
   signedClass: function() {
     var userId = Meteor.userId();
-    if (userId && !_.include(this.upvoters, userId)) {
+    if (userId && !_.include(this.post.upvoters, userId)) {
        return '';
     } else {
        return 'disabled';
