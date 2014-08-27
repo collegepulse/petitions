@@ -1,4 +1,13 @@
+
+
 Template.postSubmit.helpers({
+  'emptyPost': function() {
+    return {
+      votes: 1,
+      author: Meteor.user().profile.displayName,
+      title: Session.get('post.title')
+    }
+  },
   'title': function() {
     return Session.get('post.title');
   },

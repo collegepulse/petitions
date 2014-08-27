@@ -123,4 +123,18 @@ if (Posts.find().count() === 0) {
     count: Posts.find().count()
   });
 
+  // Extra posts for testing scalability and pagination
+
+  for (var i = 0; i < 30; i++) {
+    Posts.insert({
+      userId: pete._id,
+      author: pete.profile.displayName,
+      submitted: new Date().getTime(),
+      title: 'Test post #' + i,
+      description: "Foo",
+      upvoters: [pete._id],
+      votes: 1
+    });
+  }
+
 }

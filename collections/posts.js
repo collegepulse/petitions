@@ -1,5 +1,10 @@
 Posts = new Meteor.Collection('posts');
 
+Posts.initEasySearch(
+  [ 'title', 'description' ],
+  { 'limit' : 20 }
+);
+
 Meteor.methods({
   post: function(postAttributes) {
     var user = Meteor.user();
