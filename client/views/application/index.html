@@ -1,4 +1,7 @@
 <template name="index">
   {{> carousel}}
   {{> postsList}}
+  {{#if session 'waiting'}}
+    {{> loading}}
+  {{/if}}
 </template>

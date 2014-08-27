@@ -25,7 +25,7 @@ Template.postPage.rendered = function () {
                          .attr("preserveAspectRatio", "xMinYMid")
                          .attr("data-toggle", "tooltip")
                          .attr("data-placement", "right")
-                         .attr("title", "This graph shows the number of signatures in the past week.");
+                         .attr("title", "Number of signatures in the past week.");
 
     $(".petition-graph").tooltip();
 

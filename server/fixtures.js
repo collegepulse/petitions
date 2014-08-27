@@ -118,11 +118,6 @@ if (Posts.find().count() === 0) {
     votes: 1
   });
 
-
-  PostsCount.insert({
-    count: Posts.find().count()
-  });
-
   // Extra posts for testing scalability and pagination
 
   for (var i = 0; i < 30; i++) {
@@ -136,5 +131,12 @@ if (Posts.find().count() === 0) {
       votes: 1
     });
   }
+
+  // Initialize Post Count singleton
+
+  PostsCount.insert({
+    count: Posts.find().count()
+  });
+
 
 }
