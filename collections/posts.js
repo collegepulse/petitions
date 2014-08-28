@@ -1,7 +1,7 @@
 Posts = new Meteor.Collection('posts');
 
 Posts.initEasySearch(
-  [ 'title', 'description' ],
+  [ 'title', 'description', 'author' ],
   { 'limit' : 20 }
 );
 

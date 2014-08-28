@@ -1,6 +1,4 @@
 <template name="login">
-
-  <!-- Modal -->
   <div class="modal fade"
        id="loginModal"
        tabindex="-1"
@@ -10,11 +8,17 @@
     <div class="modal-dialog modal-login">
       <div class="modal-content">
         <form class="main">
+          {{#if session 'loginMsg'}}
+            <input type="text"
+                   class="form-control input-lg text-center"
+                   value="{{session 'loginMsg'}}"
+                   disabled
+                   style="cursor: default;">
+          {{/if}}
           <input id="username"
                  type="text"
                  class="form-control input-lg"
-                 placeholder="User"
-                 style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                 placeholder="User">
           <input id="password"
                  type="password"
                  class="form-control input-lg"
@@ -22,11 +26,10 @@
                  style="border-radius: 0;">
           <input id="login-button"
                   type="submit"
-                  class="btn btn-primary btn-lg"
-                  style="border-top-left-radius: 0; border-top-right-radius: 0; width: 100%;"
-                  value="Sign in">
+                  class="btn btn-primary btn-lg full-width"
+                  value="Login">
         </form>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      </div>
+    </div>
+  </div>
 </template>

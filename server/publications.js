@@ -1,5 +1,5 @@
 Meteor.publish('posts', function (limit) {
-  return Posts.find({}, { limit: limit });
+  return Posts.find({}, { limit: limit, sort: {submitted: -1}});
 });
 
 Meteor.publish('singlePost', function (id) {

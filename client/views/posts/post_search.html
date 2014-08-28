@@ -12,15 +12,18 @@
             <button type="button"
                     class="btn-lg close"
                     data-dismiss="modal">
-              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+              <span aria-hidden="true">
+                <div>×</div>
+              </span>
+              <span class="sr-only">Close</span>
             </button>
             <p class="footer-subtitle text-center">
-              Find a Petition
+              Search Petitions by name, description, or author
             </p>
             
-            <div class="carousel-search">
-              <span class="glyphicon glyphicon-search carousel-search-icon" style="top: 58%;"></span>
-              {{> esInput index="posts" classes="form-control input-lg carousel-search-input" placeholder="Search petitions..." }}
+            <div class="input-group input-search">
+              <span class="input-group-addon input-clear glyphicon glyphicon-search"></span>
+              {{> esInput id="search" index="posts" classes="form-control input-lg input-clear" placeholder="Search" }}
             </div>
 
             {{#if session 'waiting'}}
@@ -30,6 +33,12 @@
             {{#each session 'results'}}
               {{> postCard post=this }}
             {{/each}}
+
+            {{#if noResults}}
+              <p class="footer-subtitle text-center" style="margin: 50px 0;">
+                No Results. <a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+              </p>
+            {{/if}}
           </div>
         </form>
       </div>

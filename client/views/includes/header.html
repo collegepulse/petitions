@@ -15,11 +15,9 @@
       </div>
       <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
         <ul class="nav navbar-nav navbar-right">
-          {{#if currentUser}}
-            <li class="{{ isActiveRoute 'postSubmit' }}">
-              <a href="{{pathFor 'postSubmit'}}">New Petition</a>
-            </li>
-          {{/if}}
+          <li class="{{ isActiveRoute 'postSubmit' }}">
+            <a href="{{pathFor 'postSubmit'}}">New Petition</a>
+          </li>
           <li class="{{ isActiveRoute 'postsList' }}">
             <a href="{{pathFor 'postsList'}}">
               Petitions

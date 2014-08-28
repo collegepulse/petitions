@@ -1,5 +1,3 @@
-
-
 Template.postSubmit.helpers({
   'emptyPost': function() {
     return {

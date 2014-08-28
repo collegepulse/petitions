@@ -1,6 +1,8 @@
 Template.carousel.events = {
   'click .carousel-search' : function () {
     $('#modal-search').modal();
-    $('.carousel-search-input:last').focus();
+    setTimeout( function() {
+      $('#search').focus();
+    }, 500);
   }
 }

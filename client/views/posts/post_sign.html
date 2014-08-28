@@ -1,18 +1,10 @@
 <template name="postSign">
-  {{#if currentUser}}
-    <form>
-      <input name="_id"
-             value="{{_id}}"
-             type="hidden">
-      <input type="submit"
-             class="btn btn-primary {{btnclass}} {{signedClass}}"
-             value="Sign">
-    </form>
-  {{else}}
-    <a href="#loginModal"
-       data-toggle="modal"
-       class="btn btn-primary {{btnclass}}">
-       Sign
-    </a>
-  {{/if}}
+  <form>
+    <input name="_id"
+           value="{{_id}}"
+           type="hidden">
+    <input type="submit"
+           class="btn btn-sign btn-primary {{btnclass}} {{signedClass}}"
+           value="Sign">
+  </form>
 </template>
