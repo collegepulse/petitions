@@ -1,25 +1,46 @@
 Posts = new Meteor.Collection('posts');
 
+if (Meteor.isServer)
+  Posts._ensureIndex({title: 1}, {unique: 1});
+
 Posts.initEasySearch(
   [ 'title', 'description', 'author' ],
-  { 'limit' : 20 }
+  { 'limit' : 50 }
 );
+
+var validatePost = function validatePost (postAttributes) {
+
+  // ensure the user is logged in
+  if (!Meteor.user())
+    throw new Meteor.Error(401, "You need to login to do that.");
+
+  // ensure the post has a title
+  if (!postAttributes.title)
+    throw new Meteor.Error(422, 'Please fill in a \n title.');
+
+  // ensure title is unique
+  if (Posts.findOne({title: postAttributes.title}))
+    throw new Meteor.Error(422, 'This title has already been used. Write a different one.');
+
+  var titleLength = postAttributes.title.length;
+  if (postAttributes.title.length > 70)
+    throw new Meteor.Error(422, 'Title must not exceed 70 characters. Currently: ' + titleLength );
+
+  // ensure the post has a description
+  if (!postAttributes.description)
+    throw new Meteor.Error(422, 'Please fill in a description.');
+
+  var descriptionLength = postAttributes.title.length;
+  if (postAttributes.title.length > 4000)
+    throw new Meteor.Error(422, 'Description must not exceed 4000 characters. Currently: ' + descriptionLength );
+};
 
 Meteor.methods({
   post: function(postAttributes) {
+
+    validatePost(postAttributes);
+
     var user = Meteor.user();
-
-    // ensure the user is logged in
-    if (!user)
-      throw new Meteor.Error(401, "You need to login to post a petition.");
-
-    // ensure the post has a title
-    if (!postAttributes.title)
-      throw new Meteor.Error(422, 'Please fill in a \n title.');
-
-    // ensure the post has a description
-    if (!postAttributes.description)
-      throw new Meteor.Error(422, 'Please fill in a description.');
 
     // pick out the whitelisted keys
     var post = _.extend(_.pick(postAttributes, 'title', 'description'), {
@@ -51,5 +72,22 @@ Meteor.methods({
       $inc: {votes: 1}
     });
 
+  },
+
+  edit: function (postId, postAttributes) {
+
+    validatePost(postAttributes);
+
+    var user = Meteor.user();
+
+    if (!Roles.userIsInRole(user, ['admin', 'moderator']))
+      throw new Meteor.Error(403, "You are not authorized to edit petitions.");
+
+    // pick out the whitelisted keys
+    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response'), {
+      responded_at: new Date().getTime()
+    });
+
+    Posts.update(postId, {$set: post });
   }
 });

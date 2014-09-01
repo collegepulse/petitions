@@ -2,6 +2,10 @@ Meteor.publish('posts', function (limit) {
   return Posts.find({}, { limit: limit, sort: {submitted: -1}});
 });
 
+Meteor.publish('postsWithResponses', function (limit) {
+  return Posts.find({ response: { $exists: true, $ne : "" } }, { limit: limit, sort: {responded_at: -1}});
+});
+
 Meteor.publish('singlePost', function (id) {
   return id && Posts.find(id);
 });

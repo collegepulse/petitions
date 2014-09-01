@@ -6,6 +6,24 @@ var social_links = {
   'linkedin': 'https://www.linkedin.com/cws/share?url='
 };
 
+var timeTick = new Deps.Dependency();
+
+Meteor.setInterval(function () {
+  timeTick.changed();
+}, 1000);
+
+
+Template.postPage.helpers({
+  'responded_at': function () {
+    timeTick.depend();
+    return new moment(this.post.responded_at).fromNow().toUpperCase();
+  },
+  'submitted_at': function () {
+    timeTick.depend();
+    return new moment(this.post.submitted).fromNow().toUpperCase();
+  }
+});
+
 Template.postPage.events({
   'click *[social]': function (e) {
     var url = social_links[$(e.currentTarget).attr("social")] + this.url;
