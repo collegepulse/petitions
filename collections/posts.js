@@ -8,6 +8,14 @@ Posts.initEasySearch(
   { 'limit' : 50 }
 );
 
+var validatePostOnCreate = function validatePostOnCreate (postAttributes) {
+
+  // ensure title is unique
+  if (Posts.findOne({title: postAttributes.title}))
+    throw new Meteor.Error(422, 'This title has already been used. Write a different one.');
+
+};
+
 var validatePost = function validatePost (postAttributes) {
 
   // ensure the user is logged in
@@ -17,10 +25,6 @@ var validatePost = function validatePost (postAttributes) {
   // ensure the post has a title
   if (!postAttributes.title)
     throw new Meteor.Error(422, 'Please fill in a \n title.');
-
-  // ensure title is unique
-  if (Posts.findOne({title: postAttributes.title}))
-    throw new Meteor.Error(422, 'This title has already been used. Write a different one.');
 
   var titleLength = postAttributes.title.length;
   if (postAttributes.title.length > 70)
@@ -39,6 +43,7 @@ Meteor.methods({
   post: function(postAttributes) {
 
     validatePost(postAttributes);
+    validatePostOnCreate(postAttributes);
 
     var user = Meteor.user();
 
@@ -89,5 +94,15 @@ Meteor.methods({
     });
 
     Posts.update(postId, {$set: post });
+  },
+  delete: function (postId) {
+
+    var user = Meteor.user();
+
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to delete petitions.");
+
+    Posts.remove(postId);
+
   }
 });

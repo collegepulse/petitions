@@ -17,10 +17,15 @@ Template.postEdit.events({
   },
   'click .delete': function(e) {
     e.preventDefault();
-    if (confirm("Delete this post?")) {
-      var currentPostId = this._id;
-      Posts.remove(currentPostId);
-      Router.go('postsList');
+    var currentPostId = this.post._id;
+    if (confirm("Delete this petition?")) {
+      Meteor.call('delete', currentPostId, function (err) {
+        if (err) {
+          throwError(err.reason);
+        } else{
+          Router.go('postsList');
+        }
+      });
     }
   }
 });
