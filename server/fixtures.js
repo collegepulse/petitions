@@ -1,4 +1,4 @@
-if (Posts.find().count() === 0) {
+if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
 
   var peteId = Meteor.users.insert({
     username: 'pam3961',
