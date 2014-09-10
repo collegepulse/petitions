@@ -1,7 +1,7 @@
 <template name="admin">
   <div class="container-fluid application-content">
     <div class="row-fluid">
-      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
         <h1><strong>Admin</strong></h1>
         <div class="col-sm-6">
           <h2>Admins</h2>
@@ -30,7 +30,7 @@
                value="{{../role}}"
                type="hidden">
         <input name="username"
-               value="{{username}}"
+               value="{{profile.displayName}} - {{username}}"
                type="text"
                class="form-control"
                disabled>
@@ -53,6 +53,7 @@
       <input name="username"
              value=""
              type="text"
+             placeholder="abc1234"
              class="form-control">
       <span class="input-group-btn">
         <button class="btn btn-primary"

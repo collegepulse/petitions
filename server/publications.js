@@ -1,13 +1,38 @@
 Meteor.publish('posts', function (limit) {
-  return Posts.find({}, { limit: limit, sort: {submitted: -1}});
+  return Posts.find({}, {
+    limit: limit,
+    sort: {submitted: -1},
+    fields: {
+      author: 1,
+      title: 1,
+      votes: 1
+    }
+  });
 });
 
 Meteor.publish('postsWithResponses', function (limit) {
-  return Posts.find({ response: { $exists: true, $ne : "" } }, { limit: limit, sort: {responded_at: -1}});
+  return Posts.find(
+    { response: { $exists: true, $ne : "" } }, {
+      limit: limit,
+      sort: {responded_at: -1},
+      fields: {
+        author: 1,
+        title: 1,
+        votes: 1
+      }
+    });
 });
 
 Meteor.publish('singlePost', function (id) {
-  return id && Posts.find(id);
+  return id && Posts.find(id, {
+    fields: {
+      author: 1,
+      title: 1,
+      description: 1,
+      votes: 1,
+      submitted: 1
+    }
+  });
 });
 
 Meteor.publish('postsCount', function () {
@@ -20,7 +45,13 @@ Meteor.publish('apiKeys', function () {
 
 Meteor.publish('privilegedUsers', function () {
   if (Roles.userIsInRole(this.userId, ['admin'])) {
-    return Meteor.users.find({roles: {$in: ['admin', 'moderator']}});
+    return Meteor.users.find({roles: {$in: ['admin', 'moderator']}}, {
+      fields: {
+        username: 1,
+        roles: 1,
+        "profile.displayName": 1
+      }
+    });
   } else {
     this.stop();
     return;
@@ -40,5 +71,9 @@ Meteor.publish('singleScore', function (postId) {
 
 Meteor.publish('signers', function (postId) {
   var post = Posts.findOne(postId);
-  return Meteor.users.find({_id: {$in: post.upvoters}});
+  return Meteor.users.find({_id: {$in: post.upvoters}}, {
+    fields: {
+      "profile.initials": 1
+    }
+  });
 });

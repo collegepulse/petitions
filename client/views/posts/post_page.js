@@ -26,7 +26,9 @@ Template.postPage.helpers({
 
 Template.postPage.events({
   'click *[social]': function (e) {
-    var url = social_links[$(e.currentTarget).attr("social")] + this.url;
+    var network = $(e.currentTarget).attr("social");
+    var url = social_links[network] + this.url;
+    GAnalytics.event("post", "share", network);
     window.open(url);
   }
 });

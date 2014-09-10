@@ -10,8 +10,12 @@ Template.admin.events({
     Meteor.call('editUserRole', username, role, action, function (error) {
       if (action === "add")
           usernameDOM.val("");
-      if (error) 
+      if (error) {
+        GAnalytics.event("account", "edit", error.reason);
         throwError(error.reason);
+      } else {
+        GAnalytics.event("account", "edit");
+      }
     });
   }
 });

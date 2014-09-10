@@ -13,9 +13,11 @@ Template.postReport.events({
 
       if (error) {
         throwError(error.reason);
+        GAnalytics.event("post", "report", error.reason);
       } else {
         throwError("Petition reported.");
         setTimeout( function() { $('#postReportModal').modal("hide") }, 1000); 
+        GAnalytics.event("post", "report", _id);
       }
     });
   }

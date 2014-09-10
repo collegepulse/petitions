@@ -8,13 +8,14 @@ Template.postSearch.rendered = function () {
 Template.postSearch.events({
   'keyup #search': function (e) {
     var query = $(e.target).val();
-    if (query.length) {
+    if (query.length >= 3) {
       setTimeout( function() {
         Session.set("waiting", true);
         EasySearch.search('posts', query, function (err, data) {
           Session.set("waiting", false);
           Session.set("results", data.results);
         });
+        GAnalytics.event("post", "search", query);
       }, 100);
     }
   },

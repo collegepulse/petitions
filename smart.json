@@ -14,6 +14,7 @@
     "moment": {},
     "roles": {},
     "cron-tick": {},
-    "easy-search": {}
+    "easy-search": {},
+    "GAnalytics": {}
   }
 }

@@ -16,7 +16,8 @@
       "moment": {},
       "roles": {},
       "cron-tick": {},
-      "easy-search": {}
+      "easy-search": {},
+      "GAnalytics": {}
     },
     "packages": {
       "iron-router": {
@@ -83,6 +84,11 @@
         "git": "https://github.com/matteodem/meteor-easy-search.git",
         "tag": "v1.0.4",
         "commit": "97893a0e6b79132af3397cb39a59aa8836ec3ccd"
+      },
+      "GAnalytics": {
+        "git": "https://github.com/datariot/meteor-ganalytics.git",
+        "tag": "v0.2.0",
+        "commit": "2d5e48d5cc4c2f88edd40c0b2341d378bd4a702b"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

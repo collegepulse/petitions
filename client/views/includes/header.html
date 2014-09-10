@@ -2,7 +2,7 @@
   <nav class="header-background navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand {{isActiveRoute 'index'}}" href="{{pathFor 'index'}}">Pawprints</a>
+        <a class="navbar-brand" href="{{pathFor 'index'}}">Pawprints</a>
         <button type="button"
                 class="navbar-toggle"
                 data-toggle="collapse"
@@ -29,7 +29,7 @@
             </a>
           </li>
           {{#if currentUser}}
-            <li class="dropdown">
+            <li class="dropdown {{isActiveRoute 'admin'}} {{isActiveRoute 'userEdit'}}">
               <a href="#"
                  class="dropdown-toggle"
                  data-toggle="dropdown">

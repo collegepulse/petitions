@@ -9,8 +9,10 @@ Template.postEdit.events({
     }
     Meteor.call('edit', currentPostId, postProperties, function (err) {
       if (err) {
+        GAnalytics.event("post", "edit", err.reason);
         throwError(err.reason);
       } else {
+        GAnalytics.event("post", "edit");
         Router.go('postPage', {_id: currentPostId});
       }
     });
@@ -21,8 +23,10 @@ Template.postEdit.events({
     if (confirm("Delete this petition?")) {
       Meteor.call('delete', currentPostId, function (err) {
         if (err) {
+          GAnalytics.event("post", "delete", err.reason);
           throwError(err.reason);
-        } else{
+        } else {
+          GAnalytics.event("post", "delete");
           Router.go('postsList');
         }
       });
