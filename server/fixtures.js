@@ -1,3 +1,5 @@
+// Add test posts to non-production instances
+
 if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
 
   var peteId = Meteor.users.insert({
@@ -10,8 +12,7 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     }
   });
   var pete = Meteor.users.findOne(peteId);
-  Roles.addUsersToRoles(peteId, ['admin']);
-
+  
   // Post with 7-day history
 
   var postId_seven_day = Posts.insert({
@@ -132,11 +133,28 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     });
   }
 
-  // Initialize Post Count singleton
+}
 
+// Initialize Post Count singleton
+
+if (PostsCount.find().count() === 0) {
   PostsCount.insert({
     count: Posts.find().count()
   });
-
-
 }
+
+// Configure initial admin user
+
+if (Meteor.users.find({username: "sgweb"}).count() === 0) {
+  var sgwebId = Meteor.users.insert({
+    username: 'sgweb',
+    profile: {
+      displayName: 'Pete Mikitsh (Student Employee)',
+      givenName: 'Pete',
+      initials: 'PAM',
+      sn: 'Mikitsh'
+    }
+  });
+  var sgweb = Meteor.users.findOne(sgwebId);
+}
+Roles.addUsersToRoles(sgweb, ['admin']);
