@@ -27,7 +27,7 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(422, 'Please fill in a \n title.');
 
   var titleLength = postAttributes.title.length;
-  if (postAttributes.title.length > 70)
+  if (titleLength > 70)
     throw new Meteor.Error(422, 'Title must not exceed 70 characters. Currently: ' + titleLength );
 
   // ensure the post has a description
@@ -35,7 +35,7 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(422, 'Please fill in a description.');
 
   var descriptionLength = postAttributes.title.length;
-  if (postAttributes.title.length > 4000)
+  if (descriptionLength > 4000)
     throw new Meteor.Error(422, 'Description must not exceed 4000 characters. Currently: ' + descriptionLength );
 };
 
@@ -58,7 +58,7 @@ Meteor.methods({
 
     var postId = Posts.insert(post);
 
-    PostsCount.update({}, {$inc: {count: 1}});
+    Singleton.update({}, {$inc: {postsCount: 1}});
 
     return postId;
   },
@@ -89,9 +89,13 @@ Meteor.methods({
       throw new Meteor.Error(403, "You are not authorized to edit petitions.");
 
     // pick out the whitelisted keys
-    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response'), {
-      responded_at: new Date().getTime()
-    });
+    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response'));
+
+    if (_.isEmpty(post.response)) {
+      delete post.response;
+    } else {
+      post.responded_at = new Date().getTime();
+    }
 
     Posts.update(postId, {$set: post });
   },

@@ -33,13 +33,14 @@ Meteor.publish('singlePost', function (id) {
       submitted: 1,
       response: 1,
       responded_at: 1,
-      upvoters: 1
+      upvoters: 1,
+      minimumVotes: 1
     }
   });
 });
 
-Meteor.publish('postsCount', function () {
-  return PostsCount.find();
+Meteor.publish('singleton', function () {
+  return Singleton.find();
 });
 
 Meteor.publish('apiKeys', function () {

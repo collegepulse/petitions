@@ -7,7 +7,10 @@ Template.api.helpers({
         title: "Build more affordable, on-campus housing.",
         description: "As there is only enough housing for half the student population, it creates a challenge to find affordably priced off-campus housing.",
         votes: 50,
-        _id: "PYwoRCiAQsWa365af"
+        _id: "PYwoRCiAQsWa365af",
+        response: "Hi Pete, thank you for your response. I have reached out to the Director of Housing Operations with your concerns. We will be posting the official response shortly. Thank you. -- Peter Mikitsh, RIT Student Government Webmaster",
+        responded_at: 1411139919817,
+        minimumVotes: 25
       },
       {
         author: "Pete Mikitsh",
@@ -15,7 +18,8 @@ Template.api.helpers({
         title: "Extend hours for RIT Computer Labs at peak times.",
         description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
         votes: 4,
-        _id: "bDA8ynBMErm9NLaqj"
+        _id: "bDA8ynBMErm9NLaqj",
+        minimumVotes: 25
       }
     ];
     return JSON.stringify(response, undefined, 2);
@@ -28,8 +32,12 @@ Template.api.helpers({
        description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
        votes: 4,
        _id: "bDA8ynBMErm9NLaqj",
+       minimumVotes: 25,
        signers:[  
-          "PAM"
+          "PAM",
+          "ALC",
+          "TSP",
+          "NXC"
        ],
        history:[  
           {  

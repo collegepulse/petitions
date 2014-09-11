@@ -1,12 +1,19 @@
 <template name="postsList">
   <div class="application-content container-fluid">
-    {{> petitionGroup type="Recent" posts=posts}}
+    {{> petitionGroup type="Recent Petitions" posts=posts}}
   </div>
 </template>
 
+<template name="postsWithResponsesList">
+  <div class="application-content container-fluid">
+    {{> petitionGroup type="Petitions with Responses" posts=posts}}
+  </div>
+</template>
+
+
 <template name="petitionGroup">
   <div class="petitions col-sm-10 col-sm-offset-1">
-    <h2 class="text-center">{{type}} Petitions</h2>
+    <h2 class="text-center">{{type}}</h2>
     {{#each posts}}
       {{> postCard post=this }}
     {{/each}}

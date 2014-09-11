@@ -24,7 +24,8 @@ if (Meteor.isServer) {
                                                 description: 1,
                                                 submitted: 1,
                                                 response: 1,
-                                                responded_at: 1}, limit: limit}).fetch();
+                                                responded_at: 1,
+                                                minimumVotes: 1}, limit: limit}).fetch();
           return JSON.stringify(posts);
         } else {
           this.setStatusCode(401);
@@ -43,7 +44,8 @@ if (Meteor.isServer) {
                                                   submitted: 1,
                                                   upvoters: 1,
                                                   response: 1,
-                                                  responded_at: 1}});
+                                                  responded_at: 1,
+                                                  minimumVotes: 1}});
           if (post) {
             post.signers = Meteor.users.find({'_id': {$in: post.upvoters}}).map(function (signer) { return signer.profile.initials });
             post.history = Scores.find({

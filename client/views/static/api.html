@@ -1,22 +1,35 @@
 <template name="api">
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 
         <h1><strong>API Access</strong></h1>
 
-        <p>Student Government provides a read-only JSON REST API for retreiving SG Petition information.</p>
-
-        <p>Developers utilizing the API should keep the stability of the API's infrastructure and their own applications in mind. We may impose usage limits at any time or degrade performance for developers who create an unreasonable number of requests.</p>
-
-        <div class="alert alert-warning">
-
-          <p><strong>Note:</strong> While we strive to maintain a highly available API, there may be times where it is unavailable for unanticipated causes. We encourage developers to write code that can handle these situations.</p>
-
-          <p><strong>Developers:</strong> Claim an API Key by going to your <u><a href="{{pathFor 'userEdit'}}" style="color: inherit;">profile</a></u>.</p>
-        </div>
-
         <div class="panel-group" id="accordion">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <strong><a data-toggle="collapse" data-parent="#accordion" href="#about">About</a></strong>
+              </h3>
+            </div>
+            <div id="about" class="panel-collapse collapse in">
+              <div class="panel-body">
+
+                <p>Student Government provides a read-only JSON REST API for retreiving SG Petition information.</p>
+
+                <p>Developers utilizing the API should keep the stability of the API's infrastructure and their own applications in mind. We may impose usage limits at any time or degrade performance for developers who create an unreasonable number of requests.</p>
+
+                <div class="alert alert-warning">
+
+                  <p><strong>Note:</strong> While we strive to maintain a highly available API, there may be times where it is unavailable for unanticipated causes. We encourage developers to write code that can handle these situations.</p>
+
+                  <p><strong>Developers:</strong> Claim an API Key by going to your <u><a href="{{pathFor 'userEdit'}}" style="color: inherit;">profile</a></u>.</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -38,13 +51,13 @@
                   <tbody>
                     <tr>
                       <td><code>GET</code></td>
-                      <td><samp>/v1/petitions?limit={limit}&key={key}</samp></td>
+                      <td><samp>/v1/petitions?key={key}&limit={limit}</samp></td>
                     </tr>
                   </tbody>
                 </table>
 
 
-                <p>Includes the petition's name, submission time, title, description, and signature count. The petition's response and responded at time are also included, if a response has been made. There is a limit of 500 petitions.</p>
+                <p>Includes the petition's name, submission time, title, description, minimum signature threshold, and signature count. The petition's response and responded at time are also included, if a response has been made. There is a limit of 500 petitions.</p>
                 
                 <h3>Path Parameters</h3>
                 <table class="table table-striped">
@@ -102,7 +115,7 @@
                   </tbody>
                 </table>
 
-                <p>Provides identical information as the Petition List, but also includes the initials of petition signers and a 7-day historical reading of the petition count.</p>
+                <p>Provides identical information as the Petition List, but also includes the initials of petition signers and up to a 7-day historical reading of the petition count (smaller for petitions less than one week in age).</p>
                 
                 <h3>Path Parameters</h3>
                 <table class="table table-striped">

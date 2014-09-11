@@ -1,3 +1,12 @@
+// Initialize Post Count singleton
+
+if (Singleton.find().count() === 0) {
+  Singleton.insert({
+    minimumThreshold: 25,
+    threshold_updated_at: new Date().getTime()
+  });
+}
+
 // Add test posts to non-production instances
 
 if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
@@ -22,7 +31,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     title: "Build more affordable, on-campus housing.",
     description: "As there is only enough housing for half the student population, it creates a challenge to find affordably priced off-campus housing.",
     upvoters: [pete._id],
-    votes: 50
+    votes: 50,
+    minimumVotes: Singleton.findOne().minimumThreshold
   });
 
   Scores.insert({
@@ -83,7 +93,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     title: "Extend hours for RIT Computer Labs at peak times.",
     description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
     upvoters: [pete._id],
-    votes: 4
+    votes: 4,
+    minimumVotes: Singleton.findOne().minimumThreshold
   });
 
   Scores.insert({
@@ -116,12 +127,13 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     title: "Offer more options for students with unique dietary needs.",
     description: "Increase the number of options for vegan students at on-campus Dining Service locations.",
     upvoters: [pete._id],
-    votes: 1
+    votes: 1,
+    minimumVotes: Singleton.findOne().minimumThreshold
   });
 
   // Extra posts for testing scalability and pagination
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 10; i++) {
     Posts.insert({
       userId: pete._id,
       author: pete.profile.displayName,
@@ -129,18 +141,11 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
       title: 'Test post #' + i,
       description: "Foo",
       upvoters: [pete._id],
-      votes: 1
+      votes: 1,
+      minimumVotes: Singleton.findOne().minimumThreshold
     });
   }
 
-}
-
-// Initialize Post Count singleton
-
-if (PostsCount.find().count() === 0) {
-  PostsCount.insert({
-    count: Posts.find().count()
-  });
 }
 
 // Configure initial admin user
@@ -158,3 +163,7 @@ if (Meteor.users.find({username: "sgweb"}).count() === 0) {
   var sgweb = Meteor.users.findOne(sgwebId);
   Roles.addUsersToRoles(sgweb, ['admin']);
 }
+
+// Update post count
+
+Singleton.update({}, {$set: {postsCount: Posts.find().count()}});

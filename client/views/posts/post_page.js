@@ -30,6 +30,13 @@ Template.postPage.helpers({
     }).fetch().map(function (user) {
       return user.profile.initials
     });
+  },
+  'progress': function () {
+    if (this.post.votes > this.post.minimumVotes) {
+      return 100;
+    } else {
+      return (this.post.votes / this.post.minimumVotes) * 100;
+    }
   }
 });
 
