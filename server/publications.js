@@ -30,7 +30,9 @@ Meteor.publish('singlePost', function (id) {
       title: 1,
       description: 1,
       votes: 1,
-      submitted: 1
+      submitted: 1,
+      response: 1,
+      responded_at: 1
     }
   });
 });

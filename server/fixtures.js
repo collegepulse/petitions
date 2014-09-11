@@ -156,5 +156,5 @@ if (Meteor.users.find({username: "sgweb"}).count() === 0) {
     }
   });
   var sgweb = Meteor.users.findOne(sgwebId);
+  Roles.addUsersToRoles(sgweb, ['admin']);
 }
-Roles.addUsersToRoles(sgweb, ['admin']);

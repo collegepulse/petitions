@@ -7,66 +7,132 @@
 
         <p>Student Government provides a read-only JSON REST API for retreiving SG Petition information.</p>
 
-        <p>Developers utilizing the API should keep the stability of the API's infrastructure and their own applications in mind. We may impose usage limits at any time or degrade performance for developers who perform requests in excess of 1 per second.</p>
+        <p>Developers utilizing the API should keep the stability of the API's infrastructure and their own applications in mind. We may impose usage limits at any time or degrade performance for developers who create an unreasonable number of requests.</p>
 
         <div class="alert alert-warning">
-          <p>Claim an API Key by going to your <u><a href="{{pathFor 'userEdit'}}" style="color: inherit;">profile</a></u>.</p>
+
+          <p><strong>Note:</strong> While we strive to maintain a highly available API, there may be times where it is unavailable for unanticipated causes. We encourage developers to write code that can handle these situations.</p>
+
+          <p><strong>Developers:</strong> Claim an API Key by going to your <u><a href="{{pathFor 'userEdit'}}" style="color: inherit;">profile</a></u>.</p>
         </div>
 
-        <h3><strong>List Petitions</strong></h3>
-        <pre>GET /v1/petitions?limit={limit}&key={key}</pre>
-        <p>Provides summary information for petitions, including the title, description, and number of petition signers. There is a limit of 500 petitions.</p>
-        
-        <h3>Path Parameters</h3>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>key</code></td>
-              <td><code>string</code></td>
-              <td>Your API Key, provisioned by Student Government.</td>
-            </tr>
-            <tr>
-              <td><code>limit</code></td>
-              <td><code>integer</code></td>
-              <td>Optional. Number of petitions to return. Limit 500 per request.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="panel-group" id="accordion">
 
-        <h3><strong>Petiton details</strong></h3>
-        <pre>GET /v1/petitions/{id}?key={key}</pre>
-        <p>Provides summary information for petitions, and petitioner's names and petition tags.</p>
-        
-        <h3>Path Parameters</h3>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>id</code></td>
-              <td><code>string</code></td>
-              <td>The petition's id.</td>
-            </tr>
-            <tr>
-              <td><code>key</code></td>
-              <td><code>string</code></td>
-              <td>Your API Key, provisioned by Student Government.</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <strong><a data-toggle="collapse" data-parent="#accordion" href="#listPetitions">List Petitions (v1)</a></strong>
+              </h3>
+            </div>
+            <div id="listPetitions" class="panel-collapse collapse">
+              <div class="panel-body">
 
+                <h3 class="no-margin-top">Summary</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>HTTP Method</th>
+                      <th>URL Format</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>GET</code></td>
+                      <td><samp>/v1/petitions?limit={limit}&key={key}</samp></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                <p>Includes the petition's name, submission time, title, description, and signature count. The petition's response and responded at time are also included, if a response has been made. There is a limit of 500 petitions.</p>
+                
+                <h3>Path Parameters</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>key</code></td>
+                      <td><code>string</code></td>
+                      <td>Your API Key, provisioned by Student Government.</td>
+                    </tr>
+                    <tr>
+                      <td><code>limit</code></td>
+                      <td><code>integer</code></td>
+                      <td>Optional. Number of petitions to return. Limit 500 per request.</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3>Example Response Object</h3>
+                <pre>{{ example_list }}</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <strong><a data-toggle="collapse" data-parent="#accordion" href="#petitionDetail">Petition Detail (v1)</a></strong>
+              </h3>
+            </div>
+
+            <div id="petitionDetail" class="panel-collapse collapse">
+              <div class="panel-body">
+
+                <h3 class="no-margin-top">Summary</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>HTTP Method</th>
+                      <th>URL Format</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>GET</code></td>
+                      <td><samp>/v1/petitions/{id}?key={key}</samp></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p>Provides identical information as the Petition List, but also includes the initials of petition signers and a 7-day historical reading of the petition count.</p>
+                
+                <h3>Path Parameters</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>id</code></td>
+                      <td><code>string</code></td>
+                      <td>The petition's id.</td>
+                    </tr>
+                    <tr>
+                      <td><code>key</code></td>
+                      <td><code>string</code></td>
+                      <td>Your API Key, provisioned by Student Government.</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3>Example Response Object</h3>
+                <pre>{{ example_individual }}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
