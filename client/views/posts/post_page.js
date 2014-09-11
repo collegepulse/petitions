@@ -21,6 +21,15 @@ Template.postPage.helpers({
   'submitted_at': function () {
     timeTick.depend();
     return new moment(this.post.submitted).fromNow().toUpperCase();
+  },
+  'initials': function () {
+    return Meteor.users.find({
+      '_id': {
+        $in: Posts.findOne(this.post._id).upvoters
+      }
+    }).fetch().map(function (user) {
+      return user.profile.initials
+    });
   }
 });
 
