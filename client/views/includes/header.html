@@ -16,15 +16,20 @@
       <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
         <ul class="nav navbar-nav navbar-right">
           <li class="{{ isActiveRoute 'postSubmit' }}">
-            <a href="{{pathFor 'postSubmit'}}">New Petition</a>
+            <a href="{{pathFor 'postSubmit'}}">
+              <span class="glyphicon glyphicon-plus"></span>
+              New Petition
+            </a>
           </li>
           <li class="{{ isActiveRoute 'postsList' }}">
             <a href="{{pathFor 'postsList'}}">
+              <span class="glyphicon glyphicon-list-alt"></span>
               Petitions
             </a>
           </li>
           <li class="{{ isActiveRoute 'postsResponses' }}">
             <a href="{{pathFor 'postsResponses'}}">
+              <span class="glyphicon glyphicon-comment"></span>
               Responses
             </a>
           </li>
@@ -33,6 +38,7 @@
               <a href="#"
                  class="dropdown-toggle"
                  data-toggle="dropdown">
+                 <span class="glyphicon glyphicon-user"></span>
                  {{currentUser.profile.givenName}}
                  <span class="caret"></span>
               </a>
