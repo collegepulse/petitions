@@ -81,3 +81,12 @@ Meteor.publish('signers', function (postId) {
     }
   });
 });
+
+Meteor.publish('emailList', function () {
+  if (Roles.userIsInRole(this.userId, ['admin'])) {
+    return Emails.find({}, {limit: 1000});
+  } else {
+    this.stop();
+    return;
+  }
+})

@@ -1,4 +1,17 @@
 Template.admin.events({
+  'submit #thresholdForm': function (e) {
+    e.preventDefault();
+
+    var threshold = $(e.target).find('[name=minimumThreshold]').val();
+
+    Meteor.call('changeMinimumThreshold', threshold, function (error) {
+      if (error) {
+        throwError(error.reason);
+      } else {
+        throwError("Minimum threshold changed.");
+      }
+    });
+  },
   'submit form': function(e) {
     e.preventDefault();
 
@@ -17,5 +30,12 @@ Template.admin.events({
         GAnalytics.event("account", "edit");
       }
     });
+  }
+});
+
+
+Template.admin.helpers({
+  email_list: function() {
+    return Emails.find().fetch().map(function (email) { return email.email; });
   }
 });
