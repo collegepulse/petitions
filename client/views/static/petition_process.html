@@ -2,19 +2,50 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <h1><strong>The Petition Process</strong></h1>
-        <h2>Have an idea.</h2>
-        <p>Search for petitions and if a petition similar to yours already exists, sign that petition.</p>
-        <p>This will help raise support for issue and help you better reach the minimum threshold of <strong>{{singleton.minimumThreshold}} signatures</strong> (last updated: {{ threshold_last_updated }}) for recieving an official Student Government response.</p>
-        <h2>Write your petition.</h2>
-        <p>Use proper spelling and grammar when writing your petition. This will help other users find the petition more easily.</p>
-        <div class="alert alert-warning">
-          Be careful! You can't edit or delete a petition once it is submitted.
+
+        <h2><strong>The Petition Process</strong></h2>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="no-margin">
+              <span class="glyphicon glyphicon-exclamation-sign pull-right"></span>
+              Have an idea.
+            </h3>
+          </div>
+          <div class="panel-body">
+            <p>Search for petitions and if a petition similar to yours already exists, sign that petition.</p>
+            <p>This will help raise support for issue and help you better reach the minimum threshold of <strong>{{singleton.minimumThreshold}} signatures</strong> (as of {{ threshold_last_updated }}) for recieving an official Student Government response.</p>
+          </div>
         </div>
-        <h2>Share your petition.</h2>
-        <p>Use social media to spread awareness of your issue.</p>
-        <p>There are no time limits for reaching the minimum signature threshold. Student Government may elect to respond to a petition prior to reaching its threshold.</p>
-        <p><a href="{{pathFor 'postSubmit'}}" class="btn btn-lg btn-primary text-center full-width">Submit a petition.</a></p>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="no-margin">
+              <span class="glyphicon glyphicon-pencil pull-right"></span>
+              Write your petition.
+            </h3>
+          </div>
+          <div class="panel-body">
+            <p>Use proper spelling and grammar when writing your petition. This will help other users find the petition more easily. Be sure to review our <a href="{{pathFor 'moderation'}}">Moderation Policy</a> before posting.</p>
+            <div class="alert alert-warning no-margin">
+              Be careful! You can't edit or delete a petition once it is submitted.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="no-margin">
+              <span class="glyphicon glyphicon-pushpin pull-right"></span>
+              Share your petition.
+            </h3>
+          </div>
+          <div class="panel-body">
+            <p>Use social media to spread awareness of your issue.</p>
+            <p>There are no time limits for reaching the minimum signature threshold. Student Government may elect to respond to a petition prior to reaching its threshold.</p>
+            <p><a href="{{pathFor 'postSubmit'}}" class="btn btn-lg btn-primary text-center no-margin full-width">Submit a petition.</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
