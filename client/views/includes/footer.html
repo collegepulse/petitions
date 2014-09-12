@@ -27,28 +27,13 @@
           <br>
           <a href="{{pathFor 'api'}}">API Access</a>
         </p>
-        <p class="footer-subtitle">
-          Join the Mailing List
-        </p>
-        <p>
-          <form>
-            <div class="input-group">
-              <input type="email"
-                     name="email"
-                     class="form-control inverse"
-                     placeholder="Add your email"
-                     style="width: 100%; max-width: 220px; box-shadow: none;">
-              <span class="input-group-addon glyphicon glyphicon-arrow-right email-arrow"></span>
-            </div>
-          </form>
-        </p>
       </div>
       <div class="col-sm-3 hidden-xs">
         <div class="footer-subtitle text-right">
           Petitions
         </div>
         <h2 class="count text-right">
-          {{singleton.postsCount}}
+          {{ singleton.postsCount }}
         </h2>
       </div>
     </div>

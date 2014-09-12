@@ -9,14 +9,12 @@
        <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li class="active"><a href="#users" role="tab" data-toggle="tab">Users</a></li>
-          <li><a href="#emails" role="tab" data-toggle="tab">E-mail List</a></li>
           <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane active" id="users">
-            <h1><strong>User Roles</strong></h1>
             <div class="col-sm-6">
               <h2>Admins</h2>
               <p>Administrators can manage user roles and petitions.</p>
@@ -28,14 +26,10 @@
               {{> userList users=moderators role="moderator" }}
             </div>
           </div>
-          <div class="tab-pane" id="emails">
-            <h1><strong>Email List</strong></h1>
-            <pre>{{ email_list }}</pre>
-          </div>
           <div class="tab-pane" id="settings">
-            <h1><strong>Settings</strong></h1>
+            <h2>Settings</h2>
             <div class="col-sm-6">
-              <p>Minimum Signature Threshold</p>
+              <p>Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
               <form id="thresholdForm">
                 <div class="input-group input-group-lg">
                   <input name="minimumThreshold"

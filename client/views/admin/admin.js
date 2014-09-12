@@ -32,10 +32,3 @@ Template.admin.events({
     });
   }
 });
-
-
-Template.admin.helpers({
-  email_list: function() {
-    return Emails.find().fetch().map(function (email) { return email.email; });
-  }
-});

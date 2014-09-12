@@ -30,7 +30,7 @@
     </div>
     <div class="panel-body">
       {{#if hasOldKey}}
-        <div class="alert alert-warning" style="margin: 0;">
+        <div class="alert alert-warning no-margin">
           <p>You already generated an API Key on {{formatDate apiKeys.created "MM/DD/YYYY"}}.</p>
           <p>Generating a new one will delete the old one.</p>
           <p><input type="submit"
@@ -42,13 +42,10 @@
       {{#if hasNoKey}}
         <p>You currently have no API Key.</p>
         <div class="form-horizontal">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input type="submit"
-                     class="btn btn-lg btn-primary get-key"
-                     value="Get API Key"
-                     style="width: 100%; margin: 0;">
-            </div>
+          <div class="col-sm-12">
+            <input type="submit"
+                   class="btn btn-lg btn-primary get-key no-margin full-width"
+                   value="Get API Key">
           </div>
         </div>
       {{/if}}
