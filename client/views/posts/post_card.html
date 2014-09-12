@@ -1,8 +1,7 @@
 <template name="postCard">
   <div class="square col-xs-12 col-sm-6 col-md-4 col-lg-3">
     <div class="square-content">
-      <div class="petition-sign-count">{{pluralize post.votes "Signature"}}</div>
-      {{> postSign btnclass="petition-sign" post=post }}
+      <h4 class="petition-sign-count">{{pluralize post.votes "Signature"}}</h4>
       <h3 class="petition-title">
         <a href="{{pathFor 'postPage' _id=post._id }}">
           {{post.title}}
