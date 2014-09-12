@@ -33,6 +33,34 @@
               Responses
             </a>
           </li>
+          <li class="dropdown {{isActiveRoute 'petitionProcess'}} {{isActiveRoute 'moderation'}} {{isActiveRoute 'api'}}">
+            <a href="#"
+               class="dropdown-toggle"
+               data-toggle="dropdown">
+               <span class="glyphicon glyphicon-info-sign"></span>
+               About
+               <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              {{#if isInRole 'admin'}}
+                <li class="{{ isActiveRoute 'petitionProcess' }}">
+                  <a href="{{ pathFor 'petitionProcess' }}">
+                     Petition Process
+                  </a>
+                </li>
+              {{/if}}
+              <li class="{{ isActiveRoute 'moderation' }}">
+                <a href="{{ pathFor 'moderation'}}">
+                   Moderation
+                </a>
+              </li>
+              <li class="{{ isActiveRoute 'api' }}">
+                <a href="{{ pathFor 'api'}}">
+                   API Access
+                </a> 
+              </li>
+            </ul>
+          </li>
           {{#if currentUser}}
             <li class="dropdown {{isActiveRoute 'admin'}} {{isActiveRoute 'userEdit'}}">
               <a href="#"
