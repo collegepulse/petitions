@@ -23,7 +23,7 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(401, "You need to login to do that.");
 
   // ensure the post has a title
-  if (!postAttributes.title)
+  if (!postAttributes.title || !postAttributes.title.trim())
     throw new Meteor.Error(422, 'Please fill in a \n title.');
 
   var titleLength = postAttributes.title.length;
@@ -31,7 +31,7 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(422, 'Title must not exceed 70 characters. Currently: ' + titleLength );
 
   // ensure the post has a description
-  if (!postAttributes.description)
+  if (!postAttributes.description || !postAttributes.description.trim())
     throw new Meteor.Error(422, 'Please fill in a description.');
 
   var descriptionLength = postAttributes.title.length;

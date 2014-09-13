@@ -47,7 +47,7 @@
 
 .module-white {
   background: #ffffff;
-  border: 0.25em solid #eeeeee;  
+  border: 0.25em solid transparent;  
 }
 
 .petition-graph {
@@ -173,4 +173,18 @@
     font-size: 250%;
     line-height: 40px;
   }
+}
+
+.goal-reached {
+  -webkit-animation: target-fade 2s 1;
+  -moz-animation: target-fade 2s 1;
+}
+
+@-webkit-keyframes target-fade {
+  0% { background-color: rgba(243,110,33,0.5); }
+  100% { background-color: rgba(238,238,238,1); }
+}
+@-moz-keyframes target-fade {
+  0% { background-color: rgba(243,110,33,0.5); }
+  100% { background-color: rgba(238,238,238,1); }
 }

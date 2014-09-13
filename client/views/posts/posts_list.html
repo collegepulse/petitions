@@ -17,5 +17,12 @@
     {{#each posts}}
       {{> postCard post=this }}
     {{/each}}
+    {{#if empty posts}}
+      <div class="panel">
+        <p class="footer-subtitle text-center" style="margin: 50px 0;">
+          <p>No Petitions Found.</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+        </p>
+      </div>
+    {{/if}}
   </div>
 </template>

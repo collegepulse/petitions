@@ -11,6 +11,13 @@ body {
           border-radius: 0 !important;
 }
 
+blockquote {
+  @media(max-width: @screen-xs-min) {
+    padding: 0;
+    border-left: 0;
+  }
+}
+
 input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
   background-color: @dark-gray;
   border: none;
@@ -20,7 +27,7 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
 
 .application-content {  
   @media (max-width: @screen-sm-min) { 
-    padding: 15px inherit;
+    margin: 15px inherit;
   }
   @media (min-width: @screen-sm-min) {
     padding: 30px inherit;
@@ -29,6 +36,12 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
 
 .btn-secondary {
   .button-variant(@btn-primary-color; @brand-secondary; @brand-secondary);
+}
+
+.container-fluid {
+  @media(max-width: @screen-xs-min) {
+    padding: 0;
+  }
 }
 
 .full-width {

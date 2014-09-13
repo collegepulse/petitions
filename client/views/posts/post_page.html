@@ -1,6 +1,6 @@
 <template name="postPage">
   <div class="container-fluid" style="background: white;">
-    <div class="row row-eq-height">
+    <div class="row-fluid row-eq-height">
       <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <div class="module module-sm">
           <p class="petition-title-wrapper">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid application-content post-title-graph">
+  <div class="container-fluid application-content post-title-graph {{ goalReachedClass }}">
     {{#if post.response}}
       <div class="row-fluid module-row">
         <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">

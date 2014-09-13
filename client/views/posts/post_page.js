@@ -37,6 +37,13 @@ Template.postPage.helpers({
     } else {
       return (this.post.votes / this.post.minimumVotes) * 100;
     }
+  },
+  'goalReachedClass': function () {
+    if (this.post.votes > this.post.minimumVotes) {
+      return 'goal-reached';
+    } else {
+      return '';
+    }
   }
 });
 

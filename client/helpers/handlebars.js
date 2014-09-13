@@ -27,3 +27,11 @@ Handlebars.registerHelper('pluralize', function(n, thing) {
     return n + ' ' + thing + 's';
   }
 });
+
+Handlebars.registerHelper('empty', function (entity) {
+  if (typeof entity === "string" || typeof entity === "object") {
+    return entity.length == 0;
+  } else {
+    return null;
+  }
+});
