@@ -109,5 +109,7 @@ Meteor.methods({
 
     Posts.remove(postId);
 
+    Singleton.update({}, {$inc: {postsCount: -1}});
+
   }
 });
