@@ -75,9 +75,14 @@ Meteor.publish('singleScore', function (postId) {
 
 Meteor.publish('signers', function (postId) {
   var post = Posts.findOne(postId);
-  return Meteor.users.find({_id: {$in: post.upvoters}}, {
-    fields: {
-      "profile.initials": 1
-    }
-  });
+  if (post) {
+    return Meteor.users.find({_id: {$in: post.upvoters}}, {
+      fields: {
+        "profile.initials": 1
+      }
+    });
+  } else {
+    this.stop();
+    return;
+  }
 });
