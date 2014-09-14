@@ -16,13 +16,7 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="{{ isActiveRoute 'postSubmit' }}">
-            <a href="{{pathFor 'postSubmit'}}">
-              <span class="glyphicon glyphicon-plus"></span>
-              New Petition
-            </a>
-          </li>
+        <ul class="nav navbar-nav navbar-left">
           <li class="{{ isActiveRoute 'postsList' }}">
             <a href="{{pathFor 'postsList'}}">
               <span class="glyphicon glyphicon-th"></span>
@@ -41,6 +35,14 @@
               About
             </a>
           </li>
+          <li class="{{ isActiveRoute 'postSubmit' }}">
+            <a href="{{pathFor 'postSubmit'}}">
+              <span class="glyphicon glyphicon-plus"></span>
+              Create
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right"> 
           {{#if currentUser}}
             <li class="dropdown {{isActiveRoute 'admin'}} {{isActiveRoute 'userEdit'}}">
               <a href="#"
