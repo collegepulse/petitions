@@ -2,7 +2,9 @@
   <nav class="header-background navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{{pathFor 'index'}}">Pawprints</a>
+        <a class="navbar-brand" href="{{pathFor 'index'}}" style="margin-top: -3px;">
+          <img src="pawprints.svg"/>
+        </a>
         <button type="button"
                 class="navbar-toggle"
                 data-toggle="collapse"
@@ -23,7 +25,7 @@
           </li>
           <li class="{{ isActiveRoute 'postsList' }}">
             <a href="{{pathFor 'postsList'}}">
-              <span class="glyphicon glyphicon-list-alt"></span>
+              <span class="glyphicon glyphicon-th"></span>
               Petitions
             </a>
           </li>
