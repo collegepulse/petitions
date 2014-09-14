@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="{{pathFor 'index'}}" style="margin-top: -3px;">
-          <img src="pawprints.svg"/>
+          <img src="/pawprints.svg"/>
         </a>
         <button type="button"
                 class="navbar-toggle"
@@ -56,18 +56,21 @@
                 {{#if isInRole 'admin'}}
                   <li class="{{ isActiveRoute 'admin' }}">
                     <a href="{{pathFor 'admin'}}">
+                      <span class="glyphicon glyphicon-wrench"></span>
                        Admin
                     </a>
                   </li>
                 {{/if}}
                 <li class="{{ isActiveRoute 'userEdit' }}">
                   <a href="{{pathFor 'userEdit'}}">
-                     Profile
+                    <span class="glyphicon glyphicon-briefcase"></span>
+                     Account
                   </a>
                 </li>
                 <li>
                   <a id="logout-button"
                      href="#">
+                     <span class="glyphicon glyphicon-log-out"></span>
                      Logout
                   </a> 
                 </li>
