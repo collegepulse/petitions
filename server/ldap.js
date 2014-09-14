@@ -70,13 +70,13 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
   var user, userId;
   if (LDAP.checkAccount(loginRequest)) {
     user = Meteor.users.findOne({
-      username: loginRequest.username
+      username: loginRequest.username.toLowerCase()
     });
     if (user) {
       userId = user._id;
     } else {
       userId = Meteor.users.insert({
-        username: loginRequest.username,
+        username: loginRequest.username.toLowerCase(),
         profile: {
           displayName: LDAP.displayName,
           givenName: LDAP.givenName,
