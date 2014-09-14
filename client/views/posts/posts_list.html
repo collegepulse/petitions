@@ -1,12 +1,12 @@
 <template name="postsList">
   <div class="application-content container-fluid">
-    {{> petitionGroup type="Recent Petitions" posts=posts}}
+    {{> petitionGroup type="Recent Petitions" posts=posts noposts="Be the first to petition your government."}}
   </div>
 </template>
 
 <template name="postsWithResponsesList">
   <div class="application-content container-fluid">
-    {{> petitionGroup type="Petitions with Responses" posts=posts}}
+    {{> petitionGroup type="Petitions with Responses" posts=posts noposts="No petitions have recieved responses."}}
   </div>
 </template>
 
@@ -20,7 +20,7 @@
     {{#if empty posts}}
       <div class="panel">
         <p class="footer-subtitle text-center" style="margin: 50px 0;">
-          <p>No Petitions Found.</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+          <p>{{ noposts }}</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
         </p>
       </div>
     {{/if}}
