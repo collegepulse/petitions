@@ -1,7 +1,7 @@
 About
 =========
 
-Petition SG is a web application for sparking change at RIT. Share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
+PawPrints is a web application for sparking change at RIT. Share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
 
 Homepage:
 ![Homepage](../screenshots/screenshots/homepage.png?raw=true "Home Page")
