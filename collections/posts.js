@@ -50,7 +50,7 @@ Meteor.methods({
     // pick out the whitelisted keys
     var post = _.extend(_.pick(postAttributes, 'title', 'description'), {
       userId: user._id,
-      author: user.profile.displayName,
+      author: user.profile.name,
       submitted: new Date().getTime(),
       upvoters: [user._id],
       votes: 1,

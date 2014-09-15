@@ -35,3 +35,7 @@ Handlebars.registerHelper('empty', function (entity) {
     return null;
   }
 });
+
+Handlebars.registerHelper('upcase', function (str) {
+  return str.toUpperCase();
+});

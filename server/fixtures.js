@@ -17,7 +17,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
       displayName: 'Pete Mikitsh',
       givenName: 'Pete',
       initials: 'PAM',
-      sn: 'Mikitsh'
+      sn: 'Mikitsh',
+      name: 'Pete Mikitsh'
     }
   });
   var pete = Meteor.users.findOne(peteId);
@@ -157,7 +158,8 @@ if (Meteor.users.find({username: "sgweb"}).count() === 0) {
       displayName: 'Pete Mikitsh (Student Employee)',
       givenName: 'Pete',
       initials: 'PAM',
-      sn: 'Mikitsh'
+      sn: 'Mikitsh',
+      name: 'Pete Mikitsh'
     }
   });
   var sgweb = Meteor.users.findOne(sgwebId);
