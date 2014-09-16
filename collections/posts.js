@@ -104,7 +104,7 @@ Meteor.methods({
       throw new Meteor.Error(403, "You are not authorized to edit petitions.");
 
     // pick out the whitelisted keys
-    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response'));
+    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response', 'status'));
 
     if (_.isEmpty(post.response)) {
       delete post.response;

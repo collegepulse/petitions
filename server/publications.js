@@ -37,7 +37,8 @@ Meteor.publish('singlePost', function (id) {
       response: 1,
       responded_at: 1,
       upvoters: 1,
-      minimumVotes: 1
+      minimumVotes: 1,
+      status: 1
     }
   });
 });

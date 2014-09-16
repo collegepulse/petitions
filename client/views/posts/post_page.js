@@ -48,6 +48,9 @@ Template.postPage.helpers({
     } else {
       return '';
     }
+  },
+  'inProgress': function() {
+    return this.post.status == "waiting-for-reply";
   }
 });
 

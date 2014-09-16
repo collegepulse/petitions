@@ -38,9 +38,15 @@
       <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1 col-lg-6 col-lg-offset-2">
         <div class="module module-white">
 
+          {{#if inProgress}}
+            <p><h6>This petition has reached its signature goal. The moderator has assigned a Student Government representative to this petition. The representative will identify and contact the appropriate administrator; a response will be posted shortly.</h6></p>
+            <hr>
+          {{/if}}
+
           <div class="petition-subtitle">
             DESCRIPTION
           </div>
+
           <p><h4>{{{breaklines post.description}}}</h4></p>
           
           <a href="#postReportModal"

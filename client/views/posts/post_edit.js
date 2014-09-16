@@ -5,7 +5,8 @@ Template.postEdit.events({
     var postProperties = {
       title: $(e.target).find('[name=title]').val(),
       description: $(e.target).find('[name=description]').val(),
-      response: $(e.target).find('[name=response]').val()
+      response: $(e.target).find('[name=response]').val(),
+      status: $(e.target).find('[name=status] option:selected').val()
     }
     Meteor.call('edit', currentPostId, postProperties, function (err) {
       if (err) {
@@ -31,5 +32,11 @@ Template.postEdit.events({
         }
       });
     }
+  }
+});
+
+Template.postEdit.helpers({
+  is: function (val) {
+    return this.post.status == val ? "selected" : "";
   }
 });

@@ -1,11 +1,16 @@
 <template name="postEdit">
   <div class="application-content">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row-fluid">
         <form class="main">
           <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
             <h2><strong>Edit Petition</strong></h2>
               <p class="lead">This petition currently has {{pluralize post.votes "signature"}}.</p>
+              <label class="control-label" for="status">Status</label>
+              <select name="status" class="form-group form-control input-lg">
+                <option {{is ""}} value="">None</option>
+                <option {{is "waiting-for-reply"}} value="waiting-for-reply">Waiting For Reply from Administration</option>
+              </select>
               <label class="control-label" for="title">Title</label>
               <input name="title"
                      class="form-group form-control input-lg"
