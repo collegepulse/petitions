@@ -2,7 +2,7 @@ Template.postSubmit.helpers({
   'emptyPost': function() {
     return {
       votes: 1,
-      author: Meteor.user().profile.displayName,
+      author: Meteor.user().profile.name,
       title: Session.get('post.title')
     }
   },
