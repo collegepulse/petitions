@@ -28,7 +28,7 @@ Template.postPage.helpers({
         $in: this.post.upvoters
       }
     }).fetch().map(function (user) {
-      if (!user.profile.initials.trim()) {
+      if (!user.profile.initials) {
         return "XYZ";
       } else {
         return user.profile.initials;
