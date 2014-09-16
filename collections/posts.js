@@ -78,6 +78,20 @@ Meteor.methods({
       $inc: {votes: 1}
     });
 
+    var post = Posts.findOne(postId);
+
+    if (post.votes === post.minimumVotes) {
+      var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
+      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
+
+      Email.send({
+        to: emails,
+        from: "sgnoreply@rit.edu",
+        subject: "[petitions] Petition Reaches Signature Threshold",
+        text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal."
+      });
+    }
+
   },
 
   edit: function (postId, postAttributes) {
