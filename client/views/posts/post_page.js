@@ -25,10 +25,14 @@ Template.postPage.helpers({
   'initials': function () {
     return Meteor.users.find({
       '_id': {
-        $in: Posts.findOne(this.post._id).upvoters
+        $in: this.post.upvoters
       }
     }).fetch().map(function (user) {
-      return user.profile.initials
+      if (!user.profile.initials.trim()) {
+        return "XYZ";
+      } else {
+        return user.profile.initials;
+      }
     });
   },
   'progress': function () {

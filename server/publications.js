@@ -76,16 +76,11 @@ Meteor.publish('singleScore', function (postId) {
 });
 
 
-Meteor.publish('signers', function (postId) {
-  var post = Posts.findOne(postId);
-  if (post) {
-    return Meteor.users.find({_id: {$in: post.upvoters}}, {
+Meteor.publish('signers', function (userIds) {
+  return Meteor.users.find({_id: {$in: userIds}}, {
       fields: {
         "profile.initials": 1
       }
     });
-  } else {
-    this.stop();
-    return;
   }
-});
+);
