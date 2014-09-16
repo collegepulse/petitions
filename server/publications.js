@@ -1,11 +1,14 @@
-Meteor.publish('posts', function (limit) {
+Meteor.publish('posts', function (limit, sortBy) {
+  var sort = {};
+  sort[sortBy] = -1;
   return Posts.find({}, {
     limit: limit,
-    sort: {submitted: -1},
+    sort: sort,
     fields: {
       author: 1,
       title: 1,
-      votes: 1
+      votes: 1,
+      submitted: 1
     }
   });
 });
