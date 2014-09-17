@@ -8,7 +8,8 @@ Meteor.publish('posts', function (limit, sortBy) {
       author: 1,
       title: 1,
       votes: 1,
-      submitted: 1
+      submitted: 1,
+      status: 1
     }
   });
 });

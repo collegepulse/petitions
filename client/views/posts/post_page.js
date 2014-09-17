@@ -51,6 +51,9 @@ Template.postPage.helpers({
   },
   'inProgress': function() {
     return this.post.status == "waiting-for-reply";
+  },
+  'mustReachDate': function() {
+    return new moment(this.post.submitted_at).add(1, 'month').format('ll');
   }
 });
 

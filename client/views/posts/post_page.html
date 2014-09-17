@@ -39,28 +39,25 @@
         <div class="module module-white">
 
           {{#if inProgress}}
-            <p><h6>This petition has reached its signature goal. The moderator has assigned a Student Government representative to this petition. The representative will identify and contact the appropriate administrator; a response will be posted shortly.</h6></p>
-            <hr>
+            <div class="alert alert-warning">
+              <p>Student Government has seen that this petition has reached its signature requirement, and the SG Director of Student Relations is working on contacting the appropriate administrator; a response will be posted soon. Thank you for voicing your opinion!</p>
+            </div>
           {{/if}}
 
           <div class="petition-subtitle">
-            DESCRIPTION
+            <p>DESCRIPTION</p>
           </div>
 
-          <p><h4>{{{breaklines post.description}}}</h4></p>
+          <p>{{{breaklines post.description}}}</p>
           
-          <a href="#postReportModal"
-                class="dropdown-toggle petition-report"
-                data-toggle="modal">
-                Report this petition</a>
 
         </div>
         <div class="module module-white">
           <div class="petition-subtitle">SIGNED BY</div>
 
-          <p><h5 class="petition-initials">{{#each initials}}
+          <p><h6 class="petition-initials">{{#each initials}}
             {{ this }}<br>
-          {{/each}}</h5></p>
+          {{/each}}</h6></p>
 
         </div>
 
@@ -71,6 +68,9 @@
           <div class="petition-subtitle">SIGNATURES</div>
           <p><h3 class="count">{{post.votes}} of {{post.minimumVotes}}</h3></p>
 
+          <div class="petition-subtitle">PETITION EXPIRES ON</div>
+          <p><h3 class="count">{{mustReachDate}}</h3></p>
+
           <div class="petition-subtitle">PROGRESS</div>
           <div class="progress">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
@@ -79,7 +79,12 @@
           </div>
 
           <div class="petition-subtitle">TAKE ACTION</div>
-          <div>{{> postSign }}</div>
+          <div><p>{{> postSign }}</p></div>
+
+          <a href="#postReportModal"
+                class="dropdown-toggle petition-report"
+                data-toggle="modal">
+                Report this petition</a>
           
         </div>
       </div>
