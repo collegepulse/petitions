@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <div class="module module-sm">
           <p class="petition-title-wrapper">
-            <p><a class="title" href="{{pathFor 'postPage'}}">{{post.title}}</a></p>
+            <p><a class="title" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
             <div class="footer-subtitle">{{post.author}} <br> {{ submitted_at }}</div>
           </p>
           {{#if isInRole 'admin' 'moderator'}}
