@@ -34,9 +34,3 @@ Template.postEdit.events({
     }
   }
 });
-
-Template.postEdit.helpers({
-  is: function (val) {
-    return this.post.status == val ? "selected" : "";
-  }
-});

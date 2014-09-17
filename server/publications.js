@@ -57,7 +57,7 @@ Meteor.publish('privilegedUsers', function () {
       fields: {
         username: 1,
         roles: 1,
-        "profile.displayName": 1
+        "profile.name": 1
       }
     });
   } else {

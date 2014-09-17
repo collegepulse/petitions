@@ -36,6 +36,10 @@ Handlebars.registerHelper('empty', function (entity) {
   }
 });
 
+Handlebars.registerHelper('selected', function (obj1, obj2) {
+  return obj1 == obj2 ? "selected" : "";
+});
+
 Handlebars.registerHelper('upcase', function (str) {
   return str.toUpperCase();
 });

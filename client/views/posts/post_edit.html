@@ -8,8 +8,8 @@
               <p class="lead">This petition currently has {{pluralize post.votes "signature"}}.</p>
               <label class="control-label" for="status">Status</label>
               <select name="status" class="form-group form-control input-lg">
-                <option {{is ""}} value="">None</option>
-                <option {{is "waiting-for-reply"}} value="waiting-for-reply">Waiting For Reply from Administration</option>
+                <option {{selected this.post.status ""}} value="">None</option>
+                <option {{selected this.post.status "waiting-for-reply"}} value="waiting-for-reply">Waiting For Reply from Administration</option>
               </select>
               <label class="control-label" for="title">Title</label>
               <input name="title"
