@@ -53,7 +53,7 @@ Template.postPage.helpers({
     return this.post.status == "waiting-for-reply";
   },
   'mustReachDate': function() {
-    return new moment(this.post.submitted_at).add(1, 'month').format('ll');
+    return new moment(this.post.submitted).add(1, 'month').format('ll');
   }
 });
 
