@@ -1,4 +1,4 @@
 Template.accessDenied.rendered = function () {
-  Session.set("loginMsg", "Login to create a petition.");
+  Session.set("loginMsg", "You need to login to do that.");
   $('#loginModal').modal('show');
 };

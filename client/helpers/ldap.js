@@ -30,8 +30,6 @@ Template.login.events({
 Template.header.events({
   'click #logout-button': function(event, template) {
     event.preventDefault();
-    return Meteor.logout(function (err) {
-      // Router.go("/");
-    });
+    return Meteor.logout();
   }
 });
