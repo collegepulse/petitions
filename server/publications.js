@@ -22,7 +22,9 @@ Meteor.publish('postsWithResponses', function (limit) {
       fields: {
         author: 1,
         title: 1,
-        votes: 1
+        votes: 1,
+        submitted: 1,
+        status: 1
       }
     });
 });
