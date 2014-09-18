@@ -43,3 +43,7 @@ Handlebars.registerHelper('selected', function (obj1, obj2) {
 Handlebars.registerHelper('upcase', function (str) {
   return str.toUpperCase();
 });
+
+Handlebars.registerHelper('checked', function (obj) {
+  return obj ? "checked" : "";
+});

@@ -19,6 +19,10 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
       initials: 'PAM',
       sn: 'Mikitsh',
       name: 'Pete Mikitsh'
+    },
+    notify: {
+      updates: false,
+      response: true
     }
   });
   var pete = Meteor.users.findOne(peteId);
@@ -160,6 +164,10 @@ if (Meteor.users.find({username: "sgweb"}).count() === 0) {
       initials: 'PAM',
       sn: 'Mikitsh',
       name: 'Pete Mikitsh'
+    },
+    notify: {
+      updates: false,
+      response: true
     }
   });
   var sgweb = Meteor.users.findOne(sgwebId);

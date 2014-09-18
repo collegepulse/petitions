@@ -4,6 +4,7 @@
       <div class="col-md-6 col-md-offset-3">
         <h1><strong>Profile</strong></h1>
         {{> aboutMe}}
+        {{> myNotifications}}
         {{> apiKeys}}
       </div>
     </div>
@@ -19,6 +20,44 @@
       <p><strong>Username:</strong> {{ user.username }}</p>
       <p><strong>Name:</strong> {{ user.profile.name }}</p>
       <strong>Initials:</strong> {{ user.profile.initials }}
+    </div>
+  </div>
+</template>
+
+<template name="myNotifications">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>Notification Settings</strong>
+    </div>
+    <div class="panel-body">
+      {{> errors}}
+      <form>
+        <div class="checkbox">
+          <label>
+            <input name="notifyUpdates"
+                   type="checkbox"
+                   {{checked user.notify.updates}}>
+                   <p>E-mail me when <strong>incremental updates</strong> occur on petitions I sign. This would include updates such as:</p>
+                  <ul>
+                    <li>Formation of SG committees to investigate petition topics.</li>
+                    <li>Reachout efforts to members of the Administration.</li>
+                  </ul>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input name="notifyResponse"
+                   type="checkbox"
+                   {{checked user.notify.response}}>
+                   <p>E-mail me when <strong>official responses</strong> are posted on petitions I sign.</p>
+          </label>
+        </div>
+        <div class="col-sm-12">
+          <input type="submit"
+                 class="btn btn-lg btn-primary no-margin full-width"
+                 value="Update Notification Preferences">
+        </div>
+      </form>
     </div>
   </div>
 </template>

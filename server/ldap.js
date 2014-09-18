@@ -78,6 +78,8 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
       var name = LDAP.givenName + " " + LDAP.sn;
       userId = Meteor.users.insert({
         username: loginRequest.username.toLowerCase(),
+        notifyUpdates: false,
+        notifyResponse: true,
         profile: {
           displayName: LDAP.displayName,
           givenName: LDAP.givenName,
