@@ -1,11 +1,17 @@
 Template.postSign.events({
   'submit form': function(e) {
     e.preventDefault();
-    var _id = this.post._id;
+    var post = this.post;
     var sign = function () {
-      Meteor.call('sign', _id, function(error) {
+      Meteor.call('sign', post._id, function(error) {
       if (error)
         throwError(error.reason);
+      else {
+        var signaturesNeeded = post.minimumVotes - post.votes;
+        if (signaturesNeeded >= 1) {
+          $('#postShareModal').modal('show');
+        }
+      }
       });
     }; 
     if (Meteor.userId()) {

@@ -68,8 +68,8 @@
           <div class="petition-subtitle">SIGNATURES</div>
           <p><h3 class="count">{{post.votes}} of {{post.minimumVotes}}</h3></p>
 
-          <div class="petition-subtitle">PETITION EXPIRES ON</div>
-          <p><h3 class="count">{{mustReachDate}}</h3></p>
+          <div class="petition-subtitle">PETITION EXPIRES</div>
+          <p><h3 class="count" style="font-size: 18px; line-height: 30px;">{{mustReachDate}}</h3></p>
 
           <div class="petition-subtitle">PROGRESS</div>
           <div class="progress">
@@ -92,4 +92,5 @@
     </div>
   </div>
   {{> postReport}}
+  {{> postShareModal}}
 </template>
