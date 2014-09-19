@@ -43,11 +43,7 @@ Template.postPage.helpers({
     }
   },
   'goalReachedClass': function () {
-    if (this.post.votes > this.post.minimumVotes) {
-      return 'goal-reached';
-    } else {
-      return '';
-    }
+    return this.post.votes >= this.post.minimumVotes ? 'goal-reached' : '';
   },
   'inProgress': function() {
     return this.post.status == "waiting-for-reply";
