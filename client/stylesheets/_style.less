@@ -44,6 +44,10 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
   }
 }
 
+.modal-backdrop, .modal-backdrop.in {
+  opacity: 0;
+}
+
 .full-width {
   width: 100%;
 }
@@ -55,6 +59,15 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
 
 .header-background {
   border-bottom: 1px solid #eee;
+}
+
+.input-clear {
+  border: 0px solid transparent;
+  box-shadow: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 
 .modal-login {

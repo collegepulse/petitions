@@ -47,3 +47,10 @@ Handlebars.registerHelper('upcase', function (str) {
 Handlebars.registerHelper('checked', function (obj) {
   return obj ? "checked" : "";
 });
+
+Handlebars.registerHelper('fromNow', function (time) {
+  var timeTick = new Deps.Dependency();
+  Meteor.setInterval(function () { timeTick.changed(); }, 1000);
+  timeTick.depend();
+  return new moment(time).fromNow().toUpperCase();
+});

@@ -93,6 +93,16 @@ Meteor.publish('signers', function (postId) {
   }
 });
 
+Meteor.publish('updates', function (postId) {
+  return Updates.find( {postId: postId},
+    { fields: {
+      title: 1,
+      description: 1,
+      created_at: 1,
+      author: 1}
+    }
+  );
+});
 
 // Expose individual users' notification preferences 
 Meteor.publish(null, function() {
