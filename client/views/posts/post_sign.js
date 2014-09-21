@@ -11,11 +11,12 @@ Template.postSign.events({
         if (signaturesNeeded >= 1) {
           $('#postShareModal').modal('show');
         }
+        $('.btn-sign').val("Signed");
       }
       });
-    }; 
+    };
     if (Meteor.userId()) {
-      sign(); 
+      sign();
     } else {
       Session.set("loginMsg", "Please login to sign.");
       $('#loginModal').modal('show');
@@ -31,9 +32,17 @@ Template.postSign.helpers({
   signedClass: function() {
     var userId = Meteor.userId();
     if (userId && this.post && _.include(this.post.upvoters, userId)) {
-       return 'disabled';
+      return 'disabled';
     } else {
-       return '';
+      return '';
+    }
+  },
+  btnText: function() {
+    var userId = Meteor.userId();
+    if (userId && this.post && _.include(this.post.upvoters, userId)) {
+      return 'Signed';
+    } else {
+      return 'Sign';
     }
   }
 });
