@@ -16,7 +16,7 @@ Meteor.publish('posts', function (limit, sortBy) {
 
 Meteor.publish('postsWithResponses', function (limit) {
   return Posts.find(
-    { response: { $exists: true, $ne : "" } }, {
+    { status: {$in: ["waiting-for-reply", "responded"]} }, {
       limit: limit,
       sort: {responded_at: -1},
       fields: {
