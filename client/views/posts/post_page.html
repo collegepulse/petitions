@@ -24,6 +24,7 @@
     </div>
   </div>
   <div class="container-fluid application-content post-title-graph {{ goalReachedClass }}">
+
     {{#if post.response}}
       <div class="row-fluid module-row">
         <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
@@ -34,49 +35,63 @@
         </div>
       </div>
     {{/if}}
+
+    {{#if updates}}
+      <div class="row-fluid module-row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <div class="module module-white">
+            <div class="petition-subtitle">STATUS UPDATES</div>
+              {{#each updates}}
+                {{> updateBlurb}}
+              {{/each}}
+            </div>
+        </div>
+      </div>
+    {{/if}}
+
     <div class="row-fluid module-row">
       <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1 col-lg-6 col-lg-offset-2">
         <div class="module module-white">
-
-          {{#if inProgress}}
-            <div class="alert alert-warning">
-              <p>Student Government has seen that this petition has reached its signature requirement, and the SG Director of Student Relations is working on contacting the appropriate administrator; a response will be posted soon. Thank you for voicing your opinion!</p>
-            </div>
-          {{/if}}
-
           <div class="petition-subtitle">
             <p>DESCRIPTION</p>
           </div>
-
           <p>{{{breaklines post.description}}}</p>
-          
-
         </div>
-        <div class="module module-white">
-          <div class="petition-subtitle">SIGNED BY</div>
 
+        <div class="module module-white petition-signature-module">
+          <div class="petition-subtitle">SIGNED BY</div>
           <p><h6 class="petition-initials">{{#each initials}}
             {{ this }}<br>
           {{/each}}</h6></p>
-
         </div>
 
       </div>
       <div class="col-xs-12 col-sm-3 col-md-2">
         <div class="module module-white">
 
-          <div class="petition-subtitle">SIGNATURES</div>
-          <p><h3 class="count">{{post.votes}} of {{post.minimumVotes}}</h3></p>
-
-          <div class="petition-subtitle">PETITION EXPIRES</div>
-          <p><h3 class="count" style="font-size: 18px; line-height: 30px;">{{mustReachDate}}</h3></p>
-
           <div class="petition-subtitle">PROGRESS</div>
-          <div class="progress">
+          <div class="progress" style="margin-bottom: 10px;">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
               <span class="sr-only">{{progress}}%</span>
             </div>
           </div>
+
+          <div class="petition-subtitle">STATUS</div>
+          <p>
+            <h4 class="count">
+            {{#if equal this.post.status "waiting-for-reply"}}Pending Response{{/if}}
+            {{#if equal this.post.status "responded"}}Response Posted{{/if}}
+            {{#if equal this.post.status undefined}}Goal Not Met{{/if}}
+            </h4>
+          </p>
+
+          <div class="petition-subtitle">SIGNATURES</div>
+          <p><h4 class="count">{{post.votes}} of {{post.minimumVotes}}</h4></p>
+
+          {{#if equal this.post.status undefined}}
+            <div class="petition-subtitle">PETITION EXPIRES</div>
+            <p><h4 class="count">{{mustReachDate}}</h4></p>
+          {{/if}}
 
           <div class="petition-subtitle">TAKE ACTION</div>
           <div><p>{{> postSign }}</p></div>

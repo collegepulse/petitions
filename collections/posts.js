@@ -84,17 +84,24 @@ Meteor.methods({
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
       var emails = users.map(function (user) { return user.username + "@rit.edu"; });
 
-      Email.send({
-        to: emails,
-        from: "sgnoreply@rit.edu",
-        subject: "[petitions] Petition Reaches Signature Threshold",
-        text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal."
-      });
+      if (emails) {
+        Email.send({
+          to: emails,
+          from: "sgnoreply@rit.edu",
+          subject: "[petitions] Petition Reaches Signature Threshold",
+          text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal."
+        });
+      }
     }
 
   },
 
   edit: function (postId, postAttributes) {
+
+    var oldPost = Posts.findOne(postId, {
+                    fields: { response: 1,
+                              upvoters: 1,
+                              author: 1 }});
 
     validatePost(postAttributes);
 
@@ -113,6 +120,30 @@ Meteor.methods({
     }
 
     Posts.update(postId, {$set: post });
+
+    if (_.isEmpty(oldPost.response) && !_.isEmpty(post.response)) {
+
+      Posts.update(postId, {$set: {status: "responded"}});
+
+      this.unblock();
+      
+      var users = Meteor.users.find({$and: [{'notify.response': true},
+                                           {_id: {$in: oldPost.upvoters}}]},
+                                    {fields: {username: 1}});
+
+      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
+
+      Email.send({
+        bcc: emails,
+        to: "sgnoreply@rit.edu",
+        from: "sgnoreply@rit.edu",
+        subject: "PawPrints - A petition you signed has received a response",
+        text: "Hello, \n\n" +
+              "Petition \"" + post.title + "\" by " + oldPost.author + " has recieved a response: \n\n" +
+              Meteor.settings.public.root_url + "/petitions/" + oldPost._id +
+              "\n\nThanks, \nRIT Student Government"
+      });
+    }
   },
   delete: function (postId) {
 

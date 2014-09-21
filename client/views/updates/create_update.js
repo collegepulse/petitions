@@ -31,7 +31,7 @@ Template.createUpdate.events({
           $(this.e.target).find('[name=description]').val("");
         }
       }
-    }.call({method: method, e: e}));
+    }.bind({method: method, e: e}));
 
   }
 })

@@ -40,6 +40,11 @@ Handlebars.registerHelper('selected', function (obj1, obj2) {
   return obj1 == obj2 ? "selected" : "";
 });
 
+
+Handlebars.registerHelper('equal', function (obj1, obj2) {
+  return obj1 == obj2;
+});
+
 Handlebars.registerHelper('upcase', function (str) {
   return str.toUpperCase();
 });

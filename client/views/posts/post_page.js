@@ -45,9 +45,6 @@ Template.postPage.helpers({
   'goalReachedClass': function () {
     return this.post.votes >= this.post.minimumVotes ? 'goal-reached' : '';
   },
-  'inProgress': function() {
-    return this.post.status == "waiting-for-reply";
-  },
   'mustReachDate': function() {
     return new moment(this.post.submitted).add(1, 'month').format('ll');
   }
