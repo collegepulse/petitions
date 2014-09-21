@@ -1,13 +1,17 @@
 <template name="errors">
-  <div class="errors row-fluid">
-    {{#each errors}}
-      {{> error}}
-    {{/each}}
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="alert alert-warning" style="margin: 0;">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        {{#each errors}}
+          {{message}}
+        {{/each}}
+      </div>
+    </div>
   </div>
-</template>
-
-<template name="error">
-  <div class="alert alert-warning" style="margin: 0;">
-    {{message}}
-  </div>
+  <script>
+    $('#errorModal').on('hidden.bs.modal', function () {
+      Errors.remove({});
+    });
+  </script>
 </template>
