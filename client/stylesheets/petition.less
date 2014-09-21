@@ -40,9 +40,8 @@
 
 .module-row {
   overflow: auto;
-  padding-bottom: 0px;
-  @media (min-width: @screen-sm-min) {
-    padding-bottom: 25px;
+  @media (max-width: @screen-sm-min) {
+    padding-bottom: 15px;
   }
 }
 
@@ -63,6 +62,12 @@
   overflow: visible !important;
   height: 50%;
   width: 50%;
+}
+
+.petition-signature-module {
+  @media (max-width: @screen-xs-max) {
+    display: none;
+  }
 }
 
 .petition-initials {
@@ -207,6 +212,17 @@
 }
 
 .waiting-for-reply:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 50px solid lighten(@gray, 10%);
+  border-left: 50px solid transparent;
+  right: 15px;
+  top: 15px;
+}
+
+.waiting-for-reply:after {
   content: 'Pending Response';
   position: absolute;
   font-style: italic;
@@ -223,4 +239,12 @@
   border-left: 50px solid transparent;
   right: 15px;
   top: 15px;
+}
+
+.responded:after {
+  content: 'Response Posted';
+  position: absolute;
+  font-style: italic;
+  margin-top: 10px;
+  bottom: 25px; 
 }
