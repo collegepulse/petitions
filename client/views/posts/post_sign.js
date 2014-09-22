@@ -11,7 +11,6 @@ Template.postSign.events({
         if (signaturesNeeded >= 1) {
           $('#postShareModal').modal('show');
         }
-        $('.btn-sign').val("Signed");
       }
       });
     };
