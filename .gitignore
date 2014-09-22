@@ -2,3 +2,4 @@
 .meteor/meteorite
 .env
 settings.json
+node_modules/*
