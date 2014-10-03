@@ -21,7 +21,7 @@ Usage
 - Copy .env.sample to .env and edit appropriately. All enviornment variables are required. Ensure read permissions on the file (```chmod```).
 - Install meteorite ```npm install -g meteorite```
 - Run ```mrt install```
-- From the project root directory, run ```meteor```.
+- From the project root directory, run ```meteor --settings settings.json```.
 
 
 Contributing
