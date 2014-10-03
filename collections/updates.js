@@ -57,7 +57,7 @@ Meteor.methods({
         subject: "PawPrints - A petition you signed has a status update",
         text: "Hello, \n\n" +
               "Petition \"" + post.title + "\" by " + post.author + " has a status update: \n\n" +
-              Meteor.absoluteUrl("petitions/" + post._id) +
+              Meteor.settings.public.root_url + "/petitions/" + post._id +
               "\n\nThanks, \nRIT Student Government"
       });
 
@@ -80,7 +80,8 @@ Meteor.methods({
     if (!Roles.userIsInRole(user, ['admin', 'moderator']))
       throw new Meteor.Error(403, "You are not authorized to edit updates.");
 
-    validateUpdate(updateAttrs);
+    var post = Posts.findOne(updateAttrs.postId);
+    validateUpdate(updateAttrs, post);
 
     var update = _.extend(_.pick(updateAttrs, 'title', 'description', 'postId'), {
       updated_at: new Date().getTime(),
