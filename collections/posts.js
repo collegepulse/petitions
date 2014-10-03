@@ -88,8 +88,10 @@ Meteor.methods({
         Email.send({
           to: emails,
           from: "sgnoreply@rit.edu",
-          subject: "[petitions] Petition Reaches Signature Threshold",
-          text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal."
+          subject: "PawPrints - Petition Reaches Signature Threshold",
+          text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal: \n\n" +
+                Meteor.settings.public.root_url + "/petitions/" + postId +
+                "\n\nThanks, \nRIT Student Government"
         });
       }
     }
