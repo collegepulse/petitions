@@ -17,6 +17,7 @@ if (Meteor.isServer) {
       auth: setUser,
       get: function(data) {
         if (this.userId) {
+          this.setContentType('application/json');
           var limit = Math.min(parseInt(this.query.limit) || 500, 500);
           var posts = Posts.find({}, {fields: { title: 1,
                                                 votes: 1,
@@ -47,6 +48,7 @@ if (Meteor.isServer) {
                                                   responded_at: 1,
                                                   minimumVotes: 1}});
           if (post) {
+            this.setContentType('application/json');
             post.signers = Meteor.users.find({'_id': {$in: post.upvoters}}).map(function (signer) { return signer.profile.initials });
             post.history = Scores.find({
                               postId: post._id, 
