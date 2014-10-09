@@ -80,11 +80,11 @@ Meteor.methods({
 
     var post = Posts.findOne(postId);
 
-    if (post.votes === post.minimumVotes) {
+    if (post.votes === post.minimumVotes && Meteor.isServer) {
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
       var emails = users.map(function (user) { return user.username + "@rit.edu"; });
 
-      if (emails) {
+      if (!_.isEmpty(emails)) {
         Email.send({
           to: emails,
           from: "sgnoreply@rit.edu",

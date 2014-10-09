@@ -79,9 +79,7 @@
           <div class="petition-subtitle">STATUS</div>
           <p>
             <h4 class="count">
-            {{#if equal this.post.status "waiting-for-reply"}}Pending Response{{/if}}
-            {{#if equal this.post.status "responded"}}Response Posted{{/if}}
-            {{#if equal this.post.status undefined}}Goal Not Met{{/if}}
+            {{ petitionStatus }}
             </h4>
           </p>
 

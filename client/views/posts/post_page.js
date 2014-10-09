@@ -47,6 +47,19 @@ Template.postPage.helpers({
   },
   'mustReachDate': function() {
     return new moment(this.post.submitted).add(1, 'month').format('ll');
+  },
+  'petitionStatus': function () {
+    if (this.post.status == "waiting-for-reply") {
+      return "Pending Response";
+    } else if (this.post.status == "responded") {
+      return "Response Posted";
+    } else {
+      if (this.post.votes >= this.post.minimumVotes) {
+        return "Goal Met";
+      } else {
+        return "Goal Not Met";
+      }
+    }
   }
 });
 
