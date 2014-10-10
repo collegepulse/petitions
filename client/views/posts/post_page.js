@@ -49,15 +49,28 @@ Template.postPage.helpers({
     return new moment(this.post.submitted).add(1, 'month').format('ll');
   },
   'petitionStatus': function () {
-    if (this.post.status == "waiting-for-reply") {
-      return "In Progress";
-    } else if (this.post.status == "responded") {
-      return "Responded";
+    var post = Posts.findOne();
+    if (post.status == "waiting-for-reply") {
+      return {
+        title: "In Progress",
+        description: "This petition is being reviewed by Student Government."
+      };
+    } else if (post.status == "responded") {
+      return {
+        title: "Responded",
+        description: "This petition has recieved an official response."
+      };
     } else {
-      if (this.post.votes >= this.post.minimumVotes) {
-        return "Goal Met";
+      if (post.votes >= post.minimumVotes) {
+        return {
+          title: "Goal Met",
+          description: "This petition has met its signature goal, but has not yet been reviewed by Student Government."
+        };
       } else {
-        return "Goal Not Met";
+        return {
+          title: "Goal Not Met",
+          description: "This petition is below its signature threshold of " + post.minimumVotes + "."
+        };
       }
     }
   }
@@ -71,3 +84,12 @@ Template.postPage.events({
     window.open(url);
   }
 });
+
+Template.postPage.rendered = function () {
+  Deps.autorun( function () {
+    var post = Posts.findOne();
+    $('.petition-status').tooltip('destroy');
+    $('.petition-status').tooltip({title: Template.postPage.petitionStatus().description});
+    $('.petition-expires').tooltip();
+  });
+}
