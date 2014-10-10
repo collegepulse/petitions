@@ -1,7 +1,12 @@
-Meteor.publish('posts', function (limit, sortBy) {
-  var sort = {};
+var findPosts = function (limit, sortBy, status) {
+  var sort = {},
+      filter = {};
   sort[sortBy] = -1;
-  return Posts.find({}, {
+  sort.submitted = -1;
+  if (status) {
+    filter.status = {$in: [status]};
+  }
+  return Posts.find(filter, {
     limit: limit,
     sort: sort,
     fields: {
@@ -12,36 +17,18 @@ Meteor.publish('posts', function (limit, sortBy) {
       status: 1
     }
   });
+};
+
+Meteor.publish('posts', function (limit, sortBy) {
+  return findPosts(limit, sortBy);
 });
 
-Meteor.publish('postsInProgress', function (limit) {
-  return Posts.find(
-    { status: {$in: ["waiting-for-reply"]} }, {
-      limit: limit,
-      sort: {responded_at: -1},
-      fields: {
-        author: 1,
-        title: 1,
-        votes: 1,
-        submitted: 1,
-        status: 1
-      }
-    });
+Meteor.publish('postsInProgress', function (limit, sortBy) {
+  return findPosts(limit, sortBy, "waiting-for-reply");
 });
 
-Meteor.publish('postsWithResponses', function (limit) {
-  return Posts.find(
-    { status: {$in: ["responded"]} }, {
-      limit: limit,
-      sort: {responded_at: -1},
-      fields: {
-        author: 1,
-        title: 1,
-        votes: 1,
-        submitted: 1,
-        status: 1
-      }
-    });
+Meteor.publish('postsWithResponses', function (limit, sortBy) {
+  return findPosts(limit, sortBy, "responded");
 });
 
 Meteor.publish('singlePost', function (id) {
