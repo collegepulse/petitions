@@ -9,6 +9,12 @@
   margin-top: 10px;
 }
 
+.center-xs {
+  @media (max-width: @screen-sm) {
+    text-align: center;
+  }
+}
+
 .count {
   font-weight: 600;
   margin: 0;
@@ -239,7 +245,7 @@
 }
 
 .waiting-for-reply:after {
-  content: 'Pending Response';
+  content: 'In Progress';
   position: absolute;
   font-style: italic;
   margin-top: 10px;
@@ -258,7 +264,7 @@
 }
 
 .responded:after {
-  content: 'Response Posted';
+  content: 'Responded';
   position: absolute;
   font-style: italic;
   margin-top: 10px;

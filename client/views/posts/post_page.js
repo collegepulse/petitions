@@ -50,9 +50,9 @@ Template.postPage.helpers({
   },
   'petitionStatus': function () {
     if (this.post.status == "waiting-for-reply") {
-      return "Pending Response";
+      return "In Progress";
     } else if (this.post.status == "responded") {
-      return "Response Posted";
+      return "Responded";
     } else {
       if (this.post.votes >= this.post.minimumVotes) {
         return "Goal Met";
