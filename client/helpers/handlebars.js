@@ -59,3 +59,7 @@ Handlebars.registerHelper('fromNow', function (time) {
   timeTick.depend();
   return new moment(time).fromNow().toUpperCase();
 });
+
+Handlebars.registerHelper('singleton', function () {
+  return Singleton.findOne();
+});
