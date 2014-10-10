@@ -16,8 +16,8 @@ var validateUpdate = function (updateAttrs, post) {
   if (!updateAttrs.title || updateAttrs.title.length > 80)
     throw new Meteor.Error(422, "Title is longer than 80 characters or not present.");
 
-  if (!updateAttrs.description || updateAttrs.description.length > 400)
-    throw new Meteor.Error(422, "Description is longer than 400 characters or not present.");
+  if (!updateAttrs.description || updateAttrs.description.length > 4000)
+    throw new Meteor.Error(422, "Description is longer than 4000 characters or not present.");
 
   if (!updateAttrs.postId)
     throw new Meteor.Error(422, "The title's postId is missing.");
