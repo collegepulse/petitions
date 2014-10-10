@@ -6,3 +6,7 @@ Template.petitionGroup.events({
     Session.set('postsLimit', Session.get('postsLimit') + 12);
   }
 });
+
+Template.petitionGroup.rendered = function () {
+  $('[data-toggle="tooltip"]').tooltip();
+};

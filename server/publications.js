@@ -14,9 +14,24 @@ Meteor.publish('posts', function (limit, sortBy) {
   });
 });
 
+Meteor.publish('postsInProgress', function (limit) {
+  return Posts.find(
+    { status: {$in: ["waiting-for-reply"]} }, {
+      limit: limit,
+      sort: {responded_at: -1},
+      fields: {
+        author: 1,
+        title: 1,
+        votes: 1,
+        submitted: 1,
+        status: 1
+      }
+    });
+});
+
 Meteor.publish('postsWithResponses', function (limit) {
   return Posts.find(
-    { status: {$in: ["waiting-for-reply", "responded"]} }, {
+    { status: {$in: ["responded"]} }, {
       limit: limit,
       sort: {responded_at: -1},
       fields: {
