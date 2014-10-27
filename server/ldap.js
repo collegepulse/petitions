@@ -75,7 +75,7 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
     if (user) {
       userId = user._id;
     } else {
-      var name = LDAP.givenName + " " + LDAP.sn;
+      var name = (LDAP.givenName && LDAP.sn) ? LDAP.givenName + " " + LDAP.sn : null;
       userId = Meteor.users.insert({
         username: loginRequest.username.trim().toLowerCase(),
         notify: {
@@ -83,10 +83,10 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
           response: true
         },
         profile: {
-          displayName: LDAP.displayName,
-          givenName: LDAP.givenName,
-          initials: LDAP.initials,
-          sn: LDAP.sn,
+          displayName: LDAP.displayName || null,
+          givenName: LDAP.givenName || null,
+          initials: LDAP.initials || null,
+          sn: LDAP.sn || null,
           name: name
         }
       });
