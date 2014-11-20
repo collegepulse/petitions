@@ -1,10 +1,13 @@
-var findPosts = function (limit, sortBy, status) {
+var findPosts = function (limit, sortBy, status, tagName) {
   var sort = {},
       filter = {};
   sort[sortBy] = -1;
   sort.submitted = -1;
   if (status) {
     filter.status = {$in: [status]};
+  }
+  if (tagName) {
+    filter.tag_ids = {$in: [Tags.findOne({name: tagName})._id]}
   }
   return Posts.find(filter, {
     limit: limit,
@@ -20,8 +23,8 @@ var findPosts = function (limit, sortBy, status) {
   });
 };
 
-Meteor.publish('posts', function (limit, sortBy) {
-  return findPosts(limit, sortBy);
+Meteor.publish('posts', function (limit, sortBy, tagName) {
+  return findPosts(limit, sortBy, undefined, tagName);
 });
 
 Meteor.publish('postsInProgress', function (limit, sortBy) {

@@ -5,13 +5,18 @@
         <div class="module module-sm">
           <p class="petition-title-wrapper">
             <p><a class="title" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
-            <div class="footer-subtitle">{{post.author}} <br> {{ submitted_at }}</div>
-          </p>
-          {{#if isInRole 'admin' 'moderator'}}
             <p>
-              <a class="btn btn-primary" href="{{pathFor 'postEdit' _id=post._id}}">Edit</a>
+              {{#each post.tag_ids}}
+                {{#with tag this}}
+                  <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
+                {{/with}}
+              {{/each}}
+              {{#if isInRole 'admin' 'moderator'}}
+                <a href="{{pathFor 'postEdit' _id=post._id}}"><span class="label label-primary">EDIT</span></a>
+              {{/if}}
             </p>
-          {{/if}}
+            <div class="footer-subtitle">POSTED {{ submitted_at }} BY {{post.author}}</div>
+          </p>
           <p class="petition-social-wrapper">
             <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
             <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
