@@ -7,8 +7,12 @@
           {{post.title}}
         </a>
       </h3>
-      <p class="footer-subtitle">
-        {{upcase post.author}}
+      <p>
+        {{#each post.tag_ids}}
+          {{#with tag this}}
+            <span class="label label-primary">{{upcase this.name}}</span>
+          {{/with}}
+        {{/each}}
       </p>
     </div>
   </div>

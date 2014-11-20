@@ -63,3 +63,7 @@ Handlebars.registerHelper('fromNow', function (time) {
 Handlebars.registerHelper('singleton', function () {
   return Singleton.findOne();
 });
+
+Handlebars.registerHelper('tag', function (tag_id) {
+  return Tags.findOne({_id: tag_id});
+});

@@ -1,9 +1,11 @@
 Template.postSubmit.helpers({
   'emptyPost': function() {
+
     return {
       votes: 1,
       author: Meteor.user().profile.name,
-      title: Session.get('post.title')
+      title: Session.get('post.title'),
+      tag_ids: Session.get('post.tag_ids')
     }
   },
   'title': function() {
@@ -45,6 +47,7 @@ Template.postSubmit.events({
 });
 
 Template.postSubmit.rendered = function () {
+  Session.set('post.tag_ids', []);
   Deps.autorun(function () {
     $('#tags').select2({
       placeholder: "Petition Tags",
@@ -59,6 +62,18 @@ Template.postSubmit.rendered = function () {
       formatSelectionTooBig: function (object) { return "You can only select up to 3 tags." }
     });
     $('.select2-search-field>input').addClass("input");
+  });
+  $('#tags').on("change", function (e) {
+    var tag_ids = Session.get('post.tag_ids')
+    if (e.added) {
+      tag_ids.push(e.added._id);
+      Session.set('post.tag_ids', tag_ids);
+    } else if (e.removed) {
+      var tag_ids = _.without(tag_ids, e.removed._id);
+      Session.set('post.tag_ids', tag_ids);
+    } else {
+      // to-do
+    }
   });
   // Accessing selected tags
   // $('#s2id_tags').select2('data');
