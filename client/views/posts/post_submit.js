@@ -54,7 +54,9 @@ Template.postSubmit.rendered = function () {
       id: function (object) { return object._id; },
       matcher: function(term, text, option) { return option.name.toUpperCase().indexOf(term.toUpperCase()) > -1; },
       formatSelection: function (object, container) { return object.name.toUpperCase(); },
-      formatResult: function (object, container, query) { return object.name; }
+      formatResult: function (object, container, query) { return object.name; },
+      formatNoMatches: function (object) { return "No tags found." },
+      formatSelectionTooBig: function (object) { return "You can only select up to 3 tags." }
     });
     $('.select2-search-field>input').addClass("input");
   });
