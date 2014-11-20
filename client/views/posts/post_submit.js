@@ -45,23 +45,19 @@ Template.postSubmit.events({
 });
 
 Template.postSubmit.rendered = function () {
-  $('#tags').select2({
-    maximumSelectionSize: 3,
-    multiple: true,
-    placeholder: "Petition Tags",
-    query: function (query) {
-      query.callback({results: [{id: 1, text: "PARKING & TRANSPORTATION"},
-                                {id: 2, text: "DINING"},
-                                {id: 3, text: "FMS"},
-                                {id: 4, text: "CLUBS & ORGANIZATIONS"},
-                                {id: 5, text: "GOVERNANCE"},
-                                {id: 6, text: "ACADEMIC"},
-                                {id: 7, text: "PUBLIC SAFETY"},
-                                {id: 8, text: "CAMPUS LIFE"},
-                                {id: 9, text: "HOUSING"},
-                                {id: 10, text: "TECHNOLOGY"},
-                                {id: 11, text: "OTHER"}]})
-    }
+  Deps.autorun(function () {
+    $('#tags').select2({
+      placeholder: "Petition Tags",
+      data: {results: Tags.find().fetch()},
+      multiple: true,
+      maximumSelectionSize: 3,
+      id: function (object) { return object._id; },
+      matcher: function(term, text, option) { return option.name.toUpperCase().indexOf(term.toUpperCase()) > -1; },
+      formatSelection: function (object, container) { return object.name.toUpperCase(); },
+      formatResult: function (object, container, query) { return object.name; }
+    });
+    $('.select2-search-field>input').addClass("input");
   });
-$('.select2-search-field>input').addClass("input");
+  // Accessing selected tags
+  // $('#s2id_tags').select2('data');
 };
