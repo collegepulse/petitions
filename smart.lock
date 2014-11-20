@@ -17,7 +17,8 @@
       "roles": {},
       "cron-tick": {},
       "easy-search": {},
-      "GAnalytics": {}
+      "GAnalytics": {},
+      "select2": {}
     },
     "packages": {
       "iron-router": {
@@ -89,6 +90,11 @@
         "git": "https://github.com/datariot/meteor-ganalytics.git",
         "tag": "v0.2.0",
         "commit": "2d5e48d5cc4c2f88edd40c0b2341d378bd4a702b"
+      },
+      "select2": {
+        "git": "https://github.com/nate-strauser/meteor-select2.git",
+        "tag": "v3.4.5",
+        "commit": "4a8d05582b949a14f0ee217c185166abbf112822"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

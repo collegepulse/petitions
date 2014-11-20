@@ -43,3 +43,25 @@ Template.postSubmit.events({
     Session.set('post.description', $('textarea[name=description]').val());
   }
 });
+
+Template.postSubmit.rendered = function () {
+  $('#tags').select2({
+    maximumSelectionSize: 3,
+    multiple: true,
+    placeholder: "Petition Tags",
+    query: function (query) {
+      query.callback({results: [{id: 1, text: "PARKING & TRANSPORTATION"},
+                                {id: 2, text: "DINING"},
+                                {id: 3, text: "FMS"},
+                                {id: 4, text: "CLUBS & ORGANIZATIONS"},
+                                {id: 5, text: "GOVERNANCE"},
+                                {id: 6, text: "ACADEMIC"},
+                                {id: 7, text: "PUBLIC SAFETY"},
+                                {id: 8, text: "CAMPUS LIFE"},
+                                {id: 9, text: "HOUSING"},
+                                {id: 10, text: "TECHNOLOGY"},
+                                {id: 11, text: "OTHER"}]})
+    }
+  });
+$('.select2-search-field>input').addClass("input");
+};

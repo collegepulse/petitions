@@ -15,6 +15,7 @@
     "roles": {},
     "cron-tick": {},
     "easy-search": {},
-    "GAnalytics": {}
+    "GAnalytics": {},
+    "select2": {}
   }
 }
