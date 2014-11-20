@@ -8,55 +8,97 @@
         <ul class="nav nav-tabs" role="tablist">
           <li class="active"><a href="#users" role="tab" data-toggle="tab">Users</a></li>
           <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+          <li><a href="#tags" role="tab" data-toggle="tab">Petition tags</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div class="tab-pane active" id="users">
-            <div class="col-sm-4">
-              <h2>Admins</h2>
-              <p>Administrators can manage user roles and petitions.</p>
-              {{> userList users=admins role="admin" }}
-            </div>
-            <div class="col-sm-4">
-              <h2>Moderators</h2>
-              <p>Moderators can edit or respond to petitions.</p>
-              {{> userList users=moderators role="moderator" }}
-            </div>
-            <div class="col-sm-4">
-              <h2>Notifiers</h2>
-              <p>Recieve an e-mail when petitions reaches their goal count.</p>
-              {{> userList users=notifiers role="notify-threshold-reached" }}
-            </div>
-          </div>
-          <div class="tab-pane" id="settings">
-            <h2>Settings</h2>
-            <div class="col-sm-6">
-              <p>Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
-              <form id="thresholdForm">
-                <div class="input-group">
-                  <input name="minimumThreshold"
-                         class="form-control"
-                         value="{{singleton.minimumThreshold}}"
-                         type="number"
-                         step="1">
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary"
-                            type="submit"
-                            style="border-radius: 0;">
-                            Change
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </div>
-          </div>
+          {{> users}}
+          {{> settings}}
+          {{> tags}}
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<template name="users">
+  <div class="tab-pane active" id="users">
+    <div class="col-sm-4">
+      <h2>Admins</h2>
+      <p>Administrators can manage user roles and petitions.</p>
+      {{> userList users=admins role="admin" }}
+    </div>
+    <div class="col-sm-4">
+      <h2>Moderators</h2>
+      <p>Moderators can edit or respond to petitions.</p>
+      {{> userList users=moderators role="moderator" }}
+    </div>
+    <div class="col-sm-4">
+      <h2>Notifiers</h2>
+      <p>Recieve an e-mail when petitions reaches their goal count.</p>
+      {{> userList users=notifiers role="notify-threshold-reached" }}
+    </div>
+  </div>
+</template>
+
+<template name="settings">
+  <div class="tab-pane" id="settings">
+    <h2>Settings</h2>
+    <div class="col-sm-6">
+      <p>Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
+      <form id="thresholdForm">
+        <div class="input-group">
+          <input name="minimumThreshold"
+                 class="form-control"
+                 value="{{singleton.minimumThreshold}}"
+                 type="number"
+                 step="1">
+          <span class="input-group-btn">
+            <button class="btn btn-primary"
+                    type="submit"
+                    style="border-radius: 0;">
+                    Change
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
+<template name="tags">
+  <div class="tab-pane" id="tags">
+    <h2>Petition Tags</h2>
+    <p>Manage tags.</p>
+    {{#each tags}}
+      <form id="tagDelete">
+        <div class="input-group">
+          <input class="input form-control"
+                 value="{{this.name}}"
+                 disabled>
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">X</button>
+          </span>
+        </div>
+      </form>
+    {{/each}}
+    <form id="newPetitionTag">
+      <div class="input-group">
+        <input name="name"
+               value=""
+               type="text"
+               placeholder="Tag name..."
+               class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-primary"
+                  type="submit">+
+                  </button>
+        </span>
+      </div>
+    </form>
+  </div>
+</template>
 
 <template name="userList">
   {{#each users}}

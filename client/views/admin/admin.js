@@ -12,6 +12,26 @@ Template.admin.events({
       }
     });
   },
+  'submit #tagDelete': function (e) {
+    e.preventDefault();
+    Meteor.call('deleteTag', this._id, function (err) {
+      if (err) {
+        throwError(err.reason);
+      }
+    });
+  },
+  'submit #newPetitionTag': function (e) {
+    e.preventDefault();
+    var tagDOM = $(event.target).find('[name=name]');
+    var payload = {name: tagDOM.val()};
+    Meteor.call('createTag', payload, function (err) {
+      if (err) {
+        throwError(err.reason)
+      } else {
+        tagDOM.val("");
+      }
+    })
+  },
   'submit form': function(e) {
     e.preventDefault();
 

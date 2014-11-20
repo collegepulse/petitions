@@ -106,6 +106,10 @@ Meteor.publish('updates', function (postId) {
   );
 });
 
+Meteor.publish('tags', function () {
+  return Tags.find();
+});
+
 // Expose individual users' notification preferences 
 Meteor.publish(null, function() {
   return Meteor.users.find({_id: this.userId}, {fields: {'notify.updates': 1, 'notify.response': 1}});
