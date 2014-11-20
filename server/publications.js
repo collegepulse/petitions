@@ -14,7 +14,8 @@ var findPosts = function (limit, sortBy, status) {
       title: 1,
       votes: 1,
       submitted: 1,
-      status: 1
+      status: 1,
+      tag_ids: 1
     }
   });
 };
@@ -43,7 +44,8 @@ Meteor.publish('singlePost', function (id) {
       responded_at: 1,
       upvoters: 1,
       minimumVotes: 1,
-      status: 1
+      status: 1,
+      tag_ids: 1
     }
   });
 });

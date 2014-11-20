@@ -22,7 +22,8 @@ Template.postSubmit.events({
 
     var post = {
       title: Session.get('post.title'),
-      description: Session.get('post.description')
+      description: Session.get('post.description'),
+      tag_ids: Session.get('post.tag_ids')
     }
 
     Meteor.call('post', post, function(error, id) {

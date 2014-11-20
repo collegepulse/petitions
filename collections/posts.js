@@ -30,6 +30,13 @@ var validatePost = function validatePost (postAttributes) {
   if (titleLength > 70)
     throw new Meteor.Error(422, 'Title must not exceed 70 characters. Currently: ' + titleLength );
 
+  // ensure the post has at least one tag
+  if (!postAttributes.tag_ids || postAttributes.tag_ids.length == 0)
+    throw new Meteor.Error(422, 'Please add at least one tag to the petition.');
+
+  if (postAttributes.tag_ids.length > 3)
+    throw new Meteor.Error(422, 'Petitions are limited to at most 3 tags.');
+
   // ensure the post has a description
   if (!postAttributes.description || !postAttributes.description.trim())
     throw new Meteor.Error(422, 'Please fill in a description.');
@@ -48,7 +55,7 @@ Meteor.methods({
     var user = Meteor.user();
 
     // pick out the whitelisted keys
-    var post = _.extend(_.pick(postAttributes, 'title', 'description'), {
+    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'tag_ids'), {
       userId: user._id,
       author: user.profile.name,
       submitted: new Date().getTime(),
@@ -113,7 +120,7 @@ Meteor.methods({
       throw new Meteor.Error(403, "You are not authorized to edit petitions.");
 
     // pick out the whitelisted keys
-    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response', 'status'));
+    var post = _.extend(_.pick(postAttributes, 'title', 'description', 'response', 'status', 'tag_ids'));
 
     if (_.isEmpty(post.response)) {
       delete post.response;
