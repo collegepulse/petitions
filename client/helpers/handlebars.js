@@ -67,3 +67,22 @@ Handlebars.registerHelper('singleton', function () {
 Handlebars.registerHelper('tag', function (tag_id) {
   return Tags.findOne({_id: tag_id});
 });
+
+var routeUtils = {
+  context: function() {
+    return Router.current();
+  },
+  regex: function(expression) {
+    return new RegExp(expression, 'i');
+  },
+  testRoutes: function(routeNames) {
+    var reg = this.regex(routeNames);
+    return this.context() && reg.test(this.context().route.name);
+  }
+};
+
+Handlebars.registerHelper('isActiveRoute', function(routes, className) {
+  if (className.hash)
+    className = 'active';
+  return routeUtils.testRoutes(routes) ? className : '';
+});

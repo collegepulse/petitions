@@ -4,23 +4,22 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-iron-router
-spin
 coffeescript
-npm
 accounts-base
-iron-router-active
 less
-bootstrap3-less
-dotenv
-http-methods
-ms-seo
-crypto-md5
-moment
-roles
-cron-tick
 email
-easy-search
-GAnalytics
 spiderable
-select2
+iron:router
+cfs:http-methods
+matteodem:easy-search
+percolatestudio:synced-cron
+meteorhacks:npm
+npm-container
+datariot:ganalytics
+natestrauser:select2
+tmeasday:crypto-md5
+manuelschoebel:ms-seo
+pauldowman:dotenv
+mrt:moment
+sacha:spin
+alanning:roles

@@ -1,6 +1,6 @@
 var assert, ldap, Future, LDAP;
 
-ldap = Meteor.require('ldapjs');
+ldap = Meteor.npmRequire('ldapjs');
 assert = Npm.require('assert');
 Future = Npm.require('fibers/future');
 
