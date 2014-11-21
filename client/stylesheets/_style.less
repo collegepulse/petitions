@@ -11,6 +11,13 @@ body {
           border-radius: 0 !important;
 }
 
+::selection {
+  background: lighten(@brand-primary, 30%); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: @brand-primary; /* Gecko Browsers */
+}
+
 blockquote {
   @media(max-width: @screen-xs-min) {
     padding: 0;
@@ -23,6 +30,10 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
   border: none;
   color: #fff;
   padding: 10px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 .application-content {  
