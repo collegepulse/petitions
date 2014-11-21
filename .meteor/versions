@@ -53,6 +53,7 @@ mongo-livedata@1.0.6
 mongo@1.0.8
 mrt:moment@2.8.1
 natestrauser:select2@3.5.1
+npm-container@1.0.0
 observe-sequence@1.0.3
 ordered-dict@1.0.1
 pauldowman:dotenv@1.0.1
