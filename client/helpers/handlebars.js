@@ -77,12 +77,10 @@ var routeUtils = {
   },
   testRoutes: function(routeNames) {
     var reg = this.regex(routeNames);
-    return this.context() && reg.test(this.context().route.name);
+    return this.context() && reg.test(this.context().route.getName());
   }
 };
 
-Handlebars.registerHelper('isActiveRoute', function(routes, className) {
-  if (className.hash)
-    className = 'active';
-  return routeUtils.testRoutes(routes) ? className : '';
+Handlebars.registerHelper('isActiveRoute', function(route) {
+  return routeUtils.testRoutes(route) ? 'active' : '';
 });
