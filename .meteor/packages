@@ -14,7 +14,6 @@ cfs:http-methods
 matteodem:easy-search
 percolatestudio:synced-cron
 meteorhacks:npm
-npm-container
 datariot:ganalytics
 natestrauser:select2
 tmeasday:crypto-md5
