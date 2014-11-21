@@ -89,7 +89,7 @@ Template.postPage.rendered = function () {
   Deps.autorun( function () {
     var post = Posts.findOne();
     $('.petition-status').tooltip('destroy');
-    $('.petition-status').tooltip({title: Template.postPage.petitionStatus().description});
+    $('.petition-status').tooltip({title: Template.postPage.__helpers[" petitionStatus"]().description});
     $('.petition-expires').tooltip();
   });
 }

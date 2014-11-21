@@ -35,10 +35,17 @@ Template.admin.events({
   'submit form': function(e) {
     e.preventDefault();
 
-    var usernameDOM = $(event.target).find('[name=username]'),
-        username = usernameDOM.val(),
+    var username,
+        usernameDOM = $(event.target).find('[name=username]'),
         role = $(event.target).find('[name=role]').val(),
         action = $(event.target).find('[name=action]').val();
+
+    if (action === "add") {
+      username = usernameDOM.val();
+    }
+    if (action === "remove") {
+      username = this.username;
+    }
 
     Meteor.call('editUserRole', username, role, action, function (error) {
       if (action === "add")
