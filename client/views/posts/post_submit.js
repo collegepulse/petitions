@@ -52,7 +52,7 @@ Template.postSubmit.rendered = function () {
   Deps.autorun(function () {
     $('#tags').select2({
       placeholder: "Petition Tags",
-      data: {results: Tags.find().fetch()},
+      data: {results: Tags.find({}, {sort: {name: 1}}).fetch()},
       multiple: true,
       maximumSelectionSize: 3,
       id: function (object) { return object._id; },
