@@ -1,3 +1,3 @@
 Meteor.startup(function () {
-  Singleton.update({}, {$set: { version: "v1.2.0" }});
+  Singleton.update({}, {$set: { version: "v1.2.1" }});
 });
