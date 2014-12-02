@@ -59,7 +59,12 @@ input:-webkit-autofill {
   opacity: 0;
 }
 
-.form-control:focus {
+input.input-clear:not([type="submit"]):focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input:not([type="submit"]):focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   box-shadow: 0 0 0px 1000px white inset;
 }
@@ -141,4 +146,8 @@ input:-webkit-autofill {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+
+.search-icon {
+  padding-right: 10px;
 }

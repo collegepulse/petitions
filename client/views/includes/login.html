@@ -6,7 +6,7 @@
        aria-labelledby="myModalLabel"
        aria-hidden="true">
     <div class="modal-dialog modal-login">
-      <div class="modal-content">
+      <div class="modal-content" style="border: none;">
         <form class="main">
           {{#if session 'loginMsg'}}
             <input type="text"
@@ -22,12 +22,11 @@
           <input id="password"
                  type="password"
                  class="form-control input-lg"
-                 placeholder="Password"
-                 style="border-radius: 0;">
+                 placeholder="Password">
           <input id="login-button"
-                  type="submit"
-                  class="form-control input-lg btn-primary"
-                  value="Login">
+                 type="submit"
+                 class="input-lg btn-lg full-width form-control btn-primary"
+                 value="Login">
         </form>
       </div>
     </div>

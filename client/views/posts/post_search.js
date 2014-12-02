@@ -35,3 +35,7 @@ Template.postSearch.helpers({
     return Session.get('results') && Session.get('results').length == 0;
   }
 });
+
+Template.postSearch.rendered = function () {
+  $("#search").attr('autocomplete', 'off');
+}
