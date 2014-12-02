@@ -1,27 +1,15 @@
-About
-=========
-
-PawPrints is a web application for sparking change at RIT. Share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
-
-Homepage:
 ![Homepage](../screenshots/screenshots/homepage.png?raw=true "Home Page")
 
-Petition Detail page:
-![Petition Detail Page](../screenshots/screenshots/petition_detail_page_with_response.png?raw=true "Petition Detail Page")
+About
+=====
 
-
-Requirements
-============
-
-- Install [Node] +  [Meteor.js]
-- Made for Meteor v0.8.3
+PawPrints is a web application for sparking change at RIT. Share ideas and influence decision making by posting petitions. The community expresses support for petitions by adding signatures. Once a minimum signature threshold is reached, notifications are dispatched to members of Student Government. As an issue evolves, SG posts incremental status updates. Once a final decision is made, a response is issued by either an SG representative or a member of the administration, or both. PawPrints is built using Meteor v1.0.
 
 Usage (Local Development)
 =========================
 
-- Copy .env.sample to .env and edit appropriately. All enviornment variables are required. Ensure read permissions on the file (`chmod`).
-- Install meteorite `npm install -g meteorite`
-- Run `mrt install`
+- Install [Meteor].
+- Copy `.env.sample` to `.env` and edit appropriately. All variables listed in `.env.sample` are required.
 - From the project root directory, run `meteor --settings settings.json`.
 
 Usage (Production Enviornment)
@@ -38,7 +26,7 @@ Contributing
 
 
 [Node]:http://nodejs.org/
-[Meteor.js]:https://www.meteor.com/
+[Meteor]:https://www.meteor.com/
 [roadmap]:https://trello.com/b/b6Kyx395/petition-roadmap
 [config]:https://github.com/ritstudentgovernment/config
 [article]:https://gentlenode.com/journal/meteor-1-deploy-and-manage-a-meteor-application-on-ubuntu-with-nginx/1
