@@ -1,11 +1,6 @@
 Meteor.ldapLogin = function (username, password, callback) {
-  var loginRequest;
-  loginRequest = {
-    username: username,
-    password: password
-  };
   return Accounts.callLoginMethod({
-    methodArguments: [loginRequest],
+    methodArguments: [{username: username, password: password}],
     userCallback: callback
   });
 };
