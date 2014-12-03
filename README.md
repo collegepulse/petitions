@@ -9,7 +9,7 @@ Usage (Local Development)
 =========================
 
 - Install [Meteor].
-- Copy `.env.sample` to `.env` and `settings.json.sample` to `settings.json` and edit appropriately. All variables listed in `.env.sample` are required.
+- Copy `settings.json.sample` to `settings.json` and edit appropriately. All properties defined in `settings.json.sample` are required.
 - From the root directory, run `meteor --settings settings.json`.
 
 Usage (Production Enviornment)
