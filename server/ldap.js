@@ -16,7 +16,7 @@ LDAP.searchQuery = function(user){
 LDAP.checkAccount = function(options) {
   var dn, future;
   LDAP.client = ldap.createClient({
-    url: process.env.LDAP_URL,
+    url: Meteor.settings.LDAP_URL,
     maxConnections: 2,
     bindDN:          'uid=' + options.username + ',ou=People,dc=rit,dc=edu',
     bindCredentials: options.password

@@ -1,4 +1,6 @@
 {
+  "LDAP_URL": "ldaps://ldap.rit.edu",
+  "MAIL_URL": "smtp://username@main.ad.rit.edu:password@mymail.ad.rit.edu:587",
   "public" : {
     "ga": {
       "account":"UA-XXXXXXXX-Y"
