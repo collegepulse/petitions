@@ -67,28 +67,30 @@ LDAP.checkAccount = function(options) {
 };
 
 Accounts.registerLoginHandler('ldap', function(loginRequest) {
-  var user, userId;
+  var user, userId, profile;
   if (LDAP.checkAccount(loginRequest)) {
     user = Meteor.users.findOne({
       username: loginRequest.username.trim().toLowerCase()
     });
+    var name = (LDAP.givenName && LDAP.sn) ? LDAP.givenName + " " + LDAP.sn : null,
+        profile = {
+          displayName: LDAP.displayName || null,
+          givenName: LDAP.givenName || null,
+          initials: LDAP.initials || null,
+          sn: LDAP.sn || null,
+          name: name
+        };
     if (user) {
       userId = user._id;
+      Meteor.users.update(userId, {$set: {profile: profile}});
     } else {
-      var name = (LDAP.givenName && LDAP.sn) ? LDAP.givenName + " " + LDAP.sn : null;
       userId = Meteor.users.insert({
         username: loginRequest.username.trim().toLowerCase(),
         notify: {
           updates: true,
           response: true
         },
-        profile: {
-          displayName: LDAP.displayName || null,
-          givenName: LDAP.givenName || null,
-          initials: LDAP.initials || null,
-          sn: LDAP.sn || null,
-          name: name
-        }
+        profile: profile
       });
     }
     return {
