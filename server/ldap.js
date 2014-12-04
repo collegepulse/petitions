@@ -79,7 +79,7 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
       userId = Meteor.users.insert({
         username: loginRequest.username.trim().toLowerCase(),
         notify: {
-          updates: false,
+          updates: true,
           response: true
         },
         profile: {
