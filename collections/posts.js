@@ -5,7 +5,10 @@ if (Meteor.isServer)
 
 Posts.initEasySearch(
   [ 'title', 'description', 'author' ],
-  { 'limit' : 50 }
+  {
+    'limit' : 50,
+    'use': 'mongo-db'
+  }
 );
 
 var validatePostOnCreate = function validatePostOnCreate (postAttributes) {
