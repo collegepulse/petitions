@@ -82,6 +82,11 @@ Accounts.registerLoginHandler('ldap', function(loginRequest) {
         };
     if (user) {
       userId = user._id;
+      profile.displayName = profile.displayName || user.profile.displayName || null;
+      profile.givenName = profile.givenName || user.profile.givenName || null;
+      profile.initials = profile.initials || user.profile.initials || null;
+      profile.sn = profile.sn || user.profile.sn || null;
+      profile.name = profile.name || user.profile.name || null;
       Meteor.users.update(userId, {$set: {profile: profile}});
     } else {
       userId = Meteor.users.insert({
