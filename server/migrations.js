@@ -26,7 +26,7 @@ Meteor.startup(function () {
   }
   // auto-subscribe users to status update e-mails *if* they have official responses enabled
   if (!Migrations.findOne({name: "enableStatusUpdateEmailsIfOfficialResponsesEnabled"})) {
-    Meteor.users.update({'notify.response': true}, {$set: {'notify.updates': true}});
+    Meteor.users.update({'notify.response': true}, {$set: {'notify.updates': true}}, {multi: true});
     Migrations.insert({name: "enableStatusUpdateEmailsIfOfficialResponsesEnabled"});
   }
 });
