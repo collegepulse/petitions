@@ -95,8 +95,7 @@ Meteor.publish('signers', function (postId) {
       }
     });
   } else {
-    this.stop();
-    return;
+    return [];
   }
 });
 
