@@ -11,6 +11,8 @@ if (Singleton.find().count() === 0) {
 
 if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
 
+  console.log("Adding test posts...");
+
   var peteId = Meteor.users.insert({
     username: 'pam3961',
     profile: {
@@ -131,6 +133,19 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     submitted: new Date().getTime(),
     title: "Offer more options for students with unique dietary needs.",
     description: "Increase the number of options for vegan students at on-campus Dining Service locations.",
+    upvoters: [pete._id],
+    votes: 1,
+    minimumVotes: Singleton.findOne().minimumThreshold
+  });
+
+  // Expired post
+
+  var postId_expired = Posts.insert({
+    userId: pete._id,
+    author: pete.profile.displayName,
+    submitted: moment().subtract(2, 'months').valueOf(),
+    title: "Expired Petition.",
+    description: "This petition has expired because it is greater than one month old.",
     upvoters: [pete._id],
     votes: 1,
     minimumVotes: Singleton.findOne().minimumThreshold

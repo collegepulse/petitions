@@ -30,7 +30,8 @@ Template.postSign.events({
 Template.postSign.helpers({
   signedClass: function() {
     var userId = Meteor.userId();
-    if (userId && this.post && _.include(this.post.upvoters, userId)) {
+    if (userId && this.post && _.include(this.post.upvoters, userId) ||
+        moment(this.post.submitted).isBefore(moment().subtract(1, 'month'))) {
       return 'disabled';
     } else {
       return '';
@@ -40,6 +41,8 @@ Template.postSign.helpers({
     var userId = Meteor.userId();
     if (userId && this.post && _.include(this.post.upvoters, userId)) {
       return 'Signed';
+    } else if (moment(this.post.submitted).isBefore(moment().subtract(1, 'month'))) {
+      return 'Expired';
     } else {
       return 'Sign';
     }

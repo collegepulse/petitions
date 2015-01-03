@@ -66,6 +66,11 @@ Template.postPage.helpers({
           title: "Goal Met",
           description: "This petition has met its signature goal, but has not yet been reviewed by Student Government."
         };
+      } else if (moment(post.submitted).isBefore(moment().subtract(1, 'month'))) {
+        return {
+          title: "Expired",
+          description: "This petition didn't meet it's minimum signature goal within one month."
+        };
       } else {
         return {
           title: "Goal Not Met",
