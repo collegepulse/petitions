@@ -17,6 +17,7 @@
                   <li class="active"><a href="#petition" role="tab" data-toggle="tab">Petition</a></li>
                   <li><a href="#updates" role="tab" data-toggle="tab">Updates</a></li>
                   <li><a href="#response" role="tab" data-toggle="tab">Response</a></li>
+                  <li><a href="#publish" role="tab" data-toggle="tab">Publish</a></li>
                 </ul>
               </p>
 
@@ -30,6 +31,9 @@
                 </div>
                 <div class="tab-pane" id="response">
                   {{> petitionResponse}}
+                </div>
+                <div class="tab-pane" id="publish">
+                  {{> petitionPublish}}
                 </div>
               </div>
 
@@ -91,6 +95,22 @@
             rows="15"
             value="{{ post.response }}"></textarea>
   
+</template>
+
+<template name="petitionPublish">
+  {{#with post}}
+    <div class="panel panel-default panel-body">
+      <label class="control-label" for="publish">Publish Status</label>
+      <p>This petition is currently <strong>{{publishStatus}}</strong>. Published petitions are publicly viewable and accessible via the API; unpublished petitions are only visible to administrators and not accessible via the API.</p>
+      <p>
+        <form id="publish">
+          <button type="submit"
+                  class="btn btn-primary"
+                  value="Submit">{{ publishAction }}</button>
+        </form>
+      </p>
+    </div>
+  {{/with}}
 </template>
 
 <template name="petitionButtons">
