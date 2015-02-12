@@ -11,6 +11,15 @@ if (Singleton.find().count() === 0) {
 
 if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
 
+  console.log("Adding test tags...");
+
+  var tagId_housing = Tags.insert({name: "Housing"});
+  var tagId_technology = Tags.insert({name: "Technology"});
+  var tagId_dining = Tags.insert({name: "Dining"});
+  var tagId_test = Tags.insert({name: "Test"});
+
+  console.log("Adding test posts...");
+
   var peteId = Meteor.users.insert({
     username: 'pam3961',
     profile: {
@@ -37,7 +46,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     description: "As there is only enough housing for half the student population, it creates a challenge to find affordably priced off-campus housing.",
     upvoters: [pete._id],
     votes: 50,
-    minimumVotes: Singleton.findOne().minimumThreshold
+    minimumVotes: Singleton.findOne().minimumThreshold,
+    tag_ids: [tagId_housing]
   });
 
   Scores.insert({
@@ -99,7 +109,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
     upvoters: [pete._id],
     votes: 4,
-    minimumVotes: Singleton.findOne().minimumThreshold
+    minimumVotes: Singleton.findOne().minimumThreshold,
+    tag_ids: [tagId_technology]
   });
 
   Scores.insert({
@@ -133,7 +144,22 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     description: "Increase the number of options for vegan students at on-campus Dining Service locations.",
     upvoters: [pete._id],
     votes: 1,
-    minimumVotes: Singleton.findOne().minimumThreshold
+    minimumVotes: Singleton.findOne().minimumThreshold,
+    tag_ids: [tagId_test, tagId_dining]
+  });
+
+  // Expired post
+
+  var postId_expired = Posts.insert({
+    userId: pete._id,
+    author: pete.profile.displayName,
+    submitted: moment().subtract(2, 'months').valueOf(),
+    title: "Expired Petition.",
+    description: "This petition has expired because it is greater than one month old.",
+    upvoters: [pete._id],
+    votes: 1,
+    minimumVotes: Singleton.findOne().minimumThreshold,
+    tag_ids: [tagId_housing]
   });
 
   // Extra posts for testing scalability and pagination
@@ -147,7 +173,8 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
       description: "Foo",
       upvoters: [pete._id],
       votes: 1,
-      minimumVotes: Singleton.findOne().minimumThreshold
+      minimumVotes: Singleton.findOne().minimumThreshold,
+      tag_ids: [tagId_test]
     });
   }
 

@@ -80,6 +80,14 @@ Meteor.methods({
     if (!user)
       throw new Meteor.Error(401, "You need to login to sign a petition.");
 
+    var post = Posts.findOne(postId);
+
+    if (!post.published)
+      throw new Meteor.Error(401, "This petition is not published.");
+
+    if (moment(post.submitted).isBefore(moment().subtract(1, 'month')))
+      throw new Meteor.Error(401, "This petition has expired.");
+
     Posts.update({
       _id: postId,
       upvoters: {$ne: user._id}
@@ -87,8 +95,6 @@ Meteor.methods({
       $addToSet: {upvoters: user._id},
       $inc: {votes: 1}
     });
-
-    var post = Posts.findOne(postId);
 
     if (post.votes === post.minimumVotes && Meteor.isServer) {
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
@@ -167,6 +173,18 @@ Meteor.methods({
     Posts.remove(postId);
 
     Singleton.update({}, {$inc: {postsCount: -1}});
+
+  },
+
+  changePublishStatus: function (postId) {
+
+    var user = Meteor.user();
+
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change publishing status.");
+
+    var post = Posts.findOne(postId);
+    Posts.update(postId, {$set: {published: !post.published}});
 
   }
 });

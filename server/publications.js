@@ -1,16 +1,22 @@
-var findPosts = function (limit, sortBy, status, tagName) {
+var findPosts = function (options) {
   var sort = {},
-      filter = {};
-  sort[sortBy] = -1;
+      selector = {};
+
+  // configure sort parameters
+  sort[options.sortBy] = -1;
   sort.submitted = -1;
-  if (status) {
-    filter.status = {$in: [status]};
+
+  // configure query selector
+  selector.status = {$in: [options.status]};
+  if (options.tagName) {
+    selector.tag_ids = {$in: [Tags.findOne({name: options.tagName})._id]}
   }
-  if (tagName) {
-    filter.tag_ids = {$in: [Tags.findOne({name: tagName})._id]}
+  if (!Roles.userIsInRole(options.userId, ['admin'])) {
+    selector['published'] = true;
   }
-  return Posts.find(filter, {
-    limit: limit,
+
+  return Posts.find(selector, {
+    limit: options.limit,
     sort: sort,
     fields: {
       author: 1,
@@ -24,19 +30,39 @@ var findPosts = function (limit, sortBy, status, tagName) {
 };
 
 Meteor.publish('posts', function (limit, sortBy, tagName) {
-  return findPosts(limit, sortBy, undefined, tagName);
+  return findPosts({ 
+    limit: limit,
+    sortBy: sortBy,
+    tagName: tagName,
+    userId: this.userId
+  });
 });
 
 Meteor.publish('postsInProgress', function (limit, sortBy) {
-  return findPosts(limit, sortBy, "waiting-for-reply");
+  return findPosts({ 
+    limit: limit,
+    sortBy: sortBy,
+    status: "waiting-for-reply",
+    userId: this.userId
+  });
 });
 
 Meteor.publish('postsWithResponses', function (limit, sortBy) {
-  return findPosts(limit, sortBy, "responded");
+  return findPosts({
+    limit: limit,
+    sortBy: sortBy,
+    status: "responded",
+    userId: this.userId
+  });
 });
 
 Meteor.publish('singlePost', function (id) {
-  return id && Posts.find(id, {
+  var selector = {};
+  selector["_id"] = id;
+  if (!Roles.userIsInRole(this.userId, ['admin'])) {
+    selector['published'] = true;
+  }
+  return Posts.find(selector, {
     fields: {
       author: 1,
       title: 1,
@@ -48,7 +74,8 @@ Meteor.publish('singlePost', function (id) {
       upvoters: 1,
       minimumVotes: 1,
       status: 1,
-      tag_ids: 1
+      tag_ids: 1,
+      published: 1
     }
   });
 });
@@ -95,18 +122,20 @@ Meteor.publish('signers', function (postId) {
       }
     });
   } else {
-    this.stop();
-    return;
+    return [];
   }
 });
 
 Meteor.publish('updates', function (postId) {
-  return Updates.find( {postId: postId},
-    { fields: {
-      title: 1,
-      description: 1,
-      created_at: 1,
-      author: 1}
+  return Updates.find(
+    { postId: postId },
+    { fields:
+      {
+        title: 1,
+        description: 1,
+        created_at: 1,
+        author: 1
+      }
     }
   );
 });

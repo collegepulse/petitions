@@ -19,7 +19,7 @@ Template.postEdit.events({
   },
   'click .delete-petition': function(e) {
     e.preventDefault();
-    if (confirm("Delete this petition?")) {
+    if (confirm("Delete this petition? Consider unpublishing it instead.")) {
       Meteor.call('delete', this.post._id, function (err) {
         if (err) {
           GAnalytics.event("post", "delete", err.reason);
@@ -51,3 +51,26 @@ Template.postEdit.rendered = function () {
     $('.select2-search-field>input').addClass("input");
   }.bind(this));
 };
+
+Template.petitionPublish.events({
+  'submit #publish': function (e) {
+    e.preventDefault();
+    Meteor.call('changePublishStatus', this._id, function (err) {
+      if (err) {
+        GAnalytics.event("post", "changePublishStatus", err.reason);
+        throwError(err.reason);
+      } else {
+        GAnalytics.event("post", "changePublishStatus");
+      }
+    });
+  }
+});
+
+Template.petitionPublish.helpers({
+  publishStatus: function () {
+    return this.published ? "published" : "unpublished";
+  },
+  publishAction: function () {
+    return this.published ? "Unpublish" : "Publish";
+  }
+});
