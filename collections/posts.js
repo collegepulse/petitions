@@ -64,7 +64,8 @@ Meteor.methods({
       submitted: new Date().getTime(),
       upvoters: [user._id],
       votes: 1,
-      minimumVotes: Singleton.findOne().minimumThreshold
+      minimumVotes: Singleton.findOne().minimumThreshold,
+      published: true
     });
 
     var postId = Posts.insert(post);
