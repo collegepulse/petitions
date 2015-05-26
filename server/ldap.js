@@ -1,6 +1,6 @@
 var assert, ldap, Future, LDAP;
 
-ldap = Meteor.require('ldapjs');
+ldap = Meteor.npmRequire('ldapjs');
 assert = Npm.require('assert');
 Future = Npm.require('fibers/future');
 
@@ -16,7 +16,7 @@ LDAP.searchQuery = function(user){
 LDAP.checkAccount = function(options) {
   var dn, future;
   LDAP.client = ldap.createClient({
-    url: process.env.LDAP_URL,
+    url: Meteor.settings.LDAP_URL,
     maxConnections: 2,
     bindDN:          'uid=' + options.username + ',ou=People,dc=rit,dc=edu',
     bindCredentials: options.password
@@ -67,22 +67,35 @@ LDAP.checkAccount = function(options) {
 };
 
 Accounts.registerLoginHandler('ldap', function(loginRequest) {
-  var user, userId;
+  var user, userId, profile;
   if (LDAP.checkAccount(loginRequest)) {
     user = Meteor.users.findOne({
-      username: loginRequest.username
+      username: loginRequest.username.trim().toLowerCase()
     });
+    var name = (LDAP.givenName && LDAP.sn) ? LDAP.givenName + " " + LDAP.sn : null,
+        profile = {
+          displayName: LDAP.displayName || null,
+          givenName: LDAP.givenName || null,
+          initials: LDAP.initials || null,
+          sn: LDAP.sn || null,
+          name: name
+        };
     if (user) {
       userId = user._id;
+      profile.displayName = profile.displayName || user.profile.displayName || null;
+      profile.givenName = profile.givenName || user.profile.givenName || null;
+      profile.initials = profile.initials || user.profile.initials || null;
+      profile.sn = profile.sn || user.profile.sn || null;
+      profile.name = profile.name || user.profile.name || null;
+      Meteor.users.update(userId, {$set: {profile: profile}});
     } else {
       userId = Meteor.users.insert({
-        username: loginRequest.username,
-        profile: {
-          displayName: LDAP.displayName,
-          givenName: LDAP.givenName,
-          initials: LDAP.initials,
-          sn: LDAP.sn
-        }
+        username: loginRequest.username.trim().toLowerCase(),
+        notify: {
+          updates: true,
+          response: true
+        },
+        profile: profile
       });
     }
     return {

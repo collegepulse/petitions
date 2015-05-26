@@ -2,7 +2,9 @@
   <nav class="header-background navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand {{isActiveRoute 'index'}}" href="{{pathFor 'index'}}">Petition SG</a>
+        <a class="navbar-brand" href="{{pathFor 'index'}}" style="margin-top: -3px;">
+          <img src="/pawprints.svg"/>
+        </a>
         <button type="button"
                 class="navbar-toggle"
                 data-toggle="collapse"
@@ -14,27 +16,45 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="nav-collapse" style="border: 0;">
-        <ul class="nav navbar-nav navbar-right">
-          {{#if currentUser}}
-            <li class="{{ isActiveRoute 'postSubmit' }}">
-              <a href="{{pathFor 'postSubmit'}}">New Petition</a>
-            </li>
-          {{/if}}
-          <li class="{{ isActiveRoute 'postsList' }}">
-            <a href="{{pathFor 'postsList'}}">
-              Petitions
+        <ul class="nav navbar-nav navbar-left">
+          <li class="{{ isActiveRoute 'postsInProgress' }}">
+            <a href="{{pathFor 'postsInProgress'}}">
+              <span class="glyphicon glyphicon-wrench"></span>
+              In Progress
             </a>
           </li>
           <li class="{{ isActiveRoute 'postsResponses' }}">
             <a href="{{pathFor 'postsResponses'}}">
+              <span class="glyphicon glyphicon-comment"></span>
               Responses
             </a>
           </li>
+          <li class="{{ isActiveRoute 'about' }} {{ isActiveRoute 'petitionProcess' }} {{ isActiveRoute 'moderation' }} {{ isActiveRoute 'api' }}">
+            <a href="{{pathFor 'about'}}">
+              <span class="glyphicon glyphicon-info-sign"></span>
+              About
+            </a>
+          </li>
+          <li class="{{ isActiveRoute 'postSubmit' }}">
+            <a href="{{pathFor 'postSubmit'}}">
+              <span class="glyphicon glyphicon-plus"></span>
+              Create
+            </a>
+          </li>
+          <li>
+            <a class="navbar-search" href="#">
+              <span class="glyphicon glyphicon-search"></span>
+              Search
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right"> 
           {{#if currentUser}}
-            <li class="dropdown">
+            <li class="dropdown {{isActiveRoute 'admin'}} {{isActiveRoute 'userEdit'}}">
               <a href="#"
                  class="dropdown-toggle"
                  data-toggle="dropdown">
+                 <span class="glyphicon glyphicon-user"></span>
                  {{currentUser.profile.givenName}}
                  <span class="caret"></span>
               </a>
@@ -42,18 +62,21 @@
                 {{#if isInRole 'admin'}}
                   <li class="{{ isActiveRoute 'admin' }}">
                     <a href="{{pathFor 'admin'}}">
+                      <span class="glyphicon glyphicon-wrench"></span>
                        Admin
                     </a>
                   </li>
                 {{/if}}
                 <li class="{{ isActiveRoute 'userEdit' }}">
                   <a href="{{pathFor 'userEdit'}}">
-                     Profile
+                    <span class="glyphicon glyphicon-briefcase"></span>
+                     Account
                   </a>
                 </li>
                 <li>
                   <a id="logout-button"
                      href="#">
+                     <span class="glyphicon glyphicon-log-out"></span>
                      Logout
                   </a> 
                 </li>
@@ -64,9 +87,9 @@
               <a href="#loginModal"
                  class="dropdown-toggle"
                  data-toggle="modal">
+                 <span class="glyphicon glyphicon-user"></span>
                  Login
-              </a>      
-              
+              </a>
             </li>
           {{/if}}
         </ul>

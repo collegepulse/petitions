@@ -1,0 +1,48 @@
+<template name="createUpdate">
+  <div class="panel panel-default panel-body">
+    <form id="updateForm">
+
+      {{#if update._id}}
+        <button id="deleteUpdate"
+                class="close update-form-close"
+                data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      {{/if}}
+
+      <h4 class="update-title no-padding no-margin" style="margin-left: 0;">
+        <input name="title"
+               class="form-group form-control input-clear update-title"
+               maxlength="70"
+               placeholder="Update Title"
+               type="text"
+               value="{{ update.title }}">
+      </h4>
+      {{#if update._id}}
+        <h6 class="petition-subtitle update-subtitle">
+          <p>{{fromNow update.created_at}} BY {{upcase update.author}}</p>
+        </h6>
+      {{else}}
+        <h6 class="petition-subtitle update-subtitle">
+          <p>{{fromNow null}} BY {{upcase user.profile.name}}</p>
+        </h6>
+      {{/if}}
+      <p><textarea name="description"
+                   class="form-group form-control input-clear"
+                   maxlength="4000"
+                   placeholder="Update Description"
+                   type="text"
+                   rows="6"
+                   value="{{ update.description }}"
+                   style="font-size: 16px; resize: none;"></textarea></p>
+
+      <div class="btn-group">
+        <button type="submit"
+                class="btn btn-lg btn-primary add-update"
+                value="Submit">
+                {{#if update._id}}Save{{else}}Create{{/if}}</button>
+      </div>
+
+    </form>
+  </div>
+</template>

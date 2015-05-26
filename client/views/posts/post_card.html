@@ -1,29 +1,19 @@
 <template name="postCard">
   <div class="square col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="square-content">
-      <div class="petition-sign-count">{{pluralize votes "Signature"}}</div>
-      {{#if currentUser}}
-        <form>
-          <input name="_id"
-                 value="{{_id}}"
-                 type="hidden">
-          <input type="submit"
-                 class="btn btn-primary petition-sign {{signedClass}}"
-                 value="Sign">
-        </form>
-      {{else}}
-        <a href="#loginModal"
-           data-toggle="modal"
-           class="btn btn-primary petition-sign">
-           Sign
-        </a>
-      {{/if}}
+    <div class="square-content {{ post.status }}">
+      <h4 class="petition-sign-count">{{pluralize post.votes "Signature"}}</h4>
       <h3 class="petition-title">
-        <a href="{{pathFor 'postPage'}}">
-          {{title}}
+        <a href="{{pathFor 'postPage' _id=post._id }}">
+          {{post.title}}
         </a>
       </h3>
-      <p>{{author}}</p>
+      <p>
+        {{#each post.tag_ids}}
+          {{#with tag this}}
+            <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
+          {{/with}}
+        {{/each}}
+      </p>
     </div>
   </div>
 </template>

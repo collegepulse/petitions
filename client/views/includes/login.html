@@ -1,6 +1,4 @@
 <template name="login">
-
-  <!-- Modal -->
   <div class="modal fade"
        id="loginModal"
        tabindex="-1"
@@ -8,25 +6,29 @@
        aria-labelledby="myModalLabel"
        aria-hidden="true">
     <div class="modal-dialog modal-login">
-      <div class="modal-content">
+      <div class="modal-content" style="border: none;">
         <form class="main">
+          {{#if session 'loginMsg'}}
+            <input type="text"
+                   class="form-control input-lg text-center"
+                   value="{{session 'loginMsg'}}"
+                   disabled
+                   style="cursor: default;">
+          {{/if}}
           <input id="username"
                  type="text"
                  class="form-control input-lg"
-                 placeholder="User"
-                 style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                 placeholder="RIT Username">
           <input id="password"
                  type="password"
                  class="form-control input-lg"
-                 placeholder="Password"
-                 style="border-radius: 0;">
+                 placeholder="Password">
           <input id="login-button"
-                  type="submit"
-                  class="btn btn-primary btn-lg"
-                  style="border-top-left-radius: 0; border-top-right-radius: 0; width: 100%;"
-                  value="Sign in">
+                 type="submit"
+                 class="input-lg btn-lg full-width form-control btn-primary"
+                 value="Login">
         </form>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      </div>
+    </div>
+  </div>
 </template>
