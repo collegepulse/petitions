@@ -1,31 +1,4 @@
 Meteor.methods({
-  editName: function(userAttributes) {
-
-    var user = Meteor.user();
-    
-    // ensure the user is logged in
-    if (!user)
-      throw new Meteor.Error(401, "You need to login to edit name preferences.");
-
-    if (user.profile.displayName.toLowerCase() != userAttributes.profile.displayName.toLowerCase())
-      throw new Meteor.Error(422, "Full name must use same spelling.");
-
-    if (user.profile.givenName.toLowerCase() != userAttributes.profile.givenName.toLowerCase())
-      throw new Meteor.Error(422, "First name must use same spelling.");
-
-    if (user.profile.sn.toLowerCase() != userAttributes.profile.sn.toLowerCase())
-      throw new Meteor.Error(422, "Last name must use same spelling.");
-
-    Meteor.users.update({
-      _id: user._id
-    }, {
-      $set: {
-        'profile.displayName': userAttributes.profile.displayName,
-        'profile.givenName': userAttributes.profile.givenName,
-        'profile.sn': userAttributes.profile.sn
-      }
-    });
-  },
   editUserRole: function(username, role, actionType) {
 
     var loggedInUser = Meteor.user();
@@ -41,5 +14,20 @@ Meteor.methods({
 
     Meteor.users.update({username: username}, action);
 
+  },
+  editNotifications: function(notificationPrefs) {
+
+    var user = Meteor.user();
+
+    if (!user)
+      throw new Meteor.Error(401, "You need to login to update notification preferences.");
+
+    var notifyAttributes = _.pick(notificationPrefs, 'updates', 'response');
+
+    if (typeof notifyAttributes.updates != "boolean" || typeof notifyAttributes.response != "boolean") {
+      throw new Meteor.Error(422, 'Notification preferences could not be saved.');
+    }
+    
+    Meteor.users.update(user._id, {$set: {notify: notifyAttributes}});
   }
 });

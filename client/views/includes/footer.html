@@ -7,10 +7,19 @@
           About
         </p>
         <p style="font-size: 20px;">
-          Petition SG is a place for sparking change at RIT. Share ideas with the RIT community and influence decision making.
+          PawPrints is a place for sparking change at RIT. Share ideas with the RIT community and influence decision making.
         </p>
         <p style="font-size: 15px;">
-          <a href="https://sg.rit.edu/">&copy; Student Government 2014.</a>
+          <a href="https://sg.rit.edu/">
+            &copy;&nbsp;&nbsp; Student Government 2014.
+          </a>
+          <br>
+          <a href="https://github.com/ritstudentgovernment/petitions">
+            <span class="glyphicon glyphicon-link"></span>
+            Available on GitHub.
+          </a>
+          <br>
+          <span class="footer-version">{{ singleton.version }}</span>
         </p>
       </div>
     </div>
@@ -21,30 +30,21 @@
           Learn More
         </p>
         <p>
+          <a href="{{pathFor 'about'}}">About PawPrints</a>
+          <br>
           <a href="{{pathFor 'petitionProcess'}}">Petition Process</a>
           <br>
           <a href="{{pathFor 'moderation'}}">Moderation</a>
           <br>
           <a href="{{pathFor 'api'}}">API Access</a>
         </p>
-        <p class="footer-subtitle">
-          Join the Mailing List
-        </p>
-        <p>
-          <form>
-            <input type="text"
-                   class="inverse"
-                   placeholder="Add your email"
-                   style="width: 100%; max-width: 220px;">
-          </form>
-        </p>
       </div>
-      <div class="col-sm-2 hidden-xs">
-        <div class="footer-subtitle text-right">
+      <div class="col-sm-3 footer-count">
+        <div class="footer-subtitle">
           Petitions
         </div>
-        <h2 class="count text-right">
-          {{postsCount.count}}
+        <h2 class="count">
+          {{ singleton.postsCount }}
         </h2>
       </div>
     </div>

@@ -3,93 +3,97 @@
     <div class="row-fluid">
       <div class="col-md-6 col-md-offset-3">
         <h1><strong>Profile</strong></h1>
-        <p>Update the way your name is displayed on Petition SG.</p>
-        <p>Name changes can <u>only</u> be used to correct capitalization only on future petitions and signatures.</p>
-        <p>For all other changes, visit <a href="https://start.rit.edu/NamePreference">https://start.rit.edu/NamePreference</a>.</p>
-        {{> errors}}
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Full Name</label>
-            <div class="col-sm-9">
-              <input name="displayName"
-                     class="form-control"
-                     maxlength="80"
-                     placeholder="Full Name"
-                     type="text"
-                     value="{{user.profile.displayName}}">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-3 control-label">First Name</label>
-            <div class="col-sm-9">
-              <input name="givenName"
-                     class="form-control"
-                     maxlength="80"
-                     placeholder="First Name"
-                     type="text"
-                     value="{{user.profile.givenName}}">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Last Name</label>
-            <div class="col-sm-9">
-              <input name="sn"
-                     class="form-control"
-                     maxlength="80"
-                     placeholder="Last Name"
-                     type="text"
-                     value="{{user.profile.sn}}">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input type="submit"
-                     class="btn btn-lg btn-primary"
-                     value="Update Name Preferences"
-                     style="width: 100%;">
-            </div>
-          </div>
-        </form>
+        {{> aboutMe}}
+        {{> myNotifications}}
         {{> apiKeys}}
       </div>
     </div>
   </div>
 </template>
 
-
-<template name="apiKeys">
-  <h1><strong>API Keys</strong></h1>
-  
-  {{#if hasOldKey}}
-    <div class="alert alert-warning">
-      <p>You already generated an API Key on {{formatDate apiKeys.created "MM/DD/YYYY"}}.</p>
-      <p>Generating a new one will delete the old one.</p>
-      <p><input type="submit"
-           class="btn btn-danger get-key"
-           value="Make a new one anyways."></p>
+<template name="aboutMe">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>About Me</strong>
     </div>
-  {{/if}}
+    <div class="panel-body">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Name:</strong> {{ user.profile.name }}</p>
+      <strong>Initials:</strong> {{ user.profile.initials }}
+    </div>
+  </div>
+</template>
 
-  {{#if hasNoKey}}
-    <div class="form-horizontal">
-      <div class="form-group">
+<template name="myNotifications">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>Notification Settings</strong>
+    </div>
+    <div class="panel-body">
+      <form>
+        <div class="checkbox">
+          <label>
+            <input name="notifyUpdates"
+                   type="checkbox"
+                   {{checked user.notify.updates}}>
+                   <p>E-mail me when new <strong>status updates</strong> are posted on petitions I sign, such as:</p>
+                  <ul>
+                    <li>The formation of SG committees to investigate petition topics.</li>
+                    <li>Reachout efforts to members of the Administration.</li>
+                  </ul>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input name="notifyResponse"
+                   type="checkbox"
+                   {{checked user.notify.response}}>
+                   <p>E-mail me when an <strong>official responses</strong> is posted on a petition I sign.</p>
+          </label>
+        </div>
         <div class="col-sm-12">
           <input type="submit"
-                 class="btn btn-lg btn-primary get-key"
-                 value="Get API Key"
-                 style="width: 100%;">
+                 class="btn btn-lg btn-primary no-margin full-width"
+                 value="Update Notification Preferences">
         </div>
-      </div>
+      </form>
     </div>
-  {{/if}}
+  </div>
+</template>
 
-  {{#if sessionKeyExists}}
-    <div class="alert alert-success">
-      <p>Your API Key is: <strong>{{key}}</strong></p>
-      <p>Store it in a safe place. Keys are encrypted when stored; your key will not be available after you refresh your browser.</p>
+<template name="apiKeys">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>API Key</strong>
     </div>
-  {{/if}}
+    <div class="panel-body">
+      {{#if hasOldKey}}
+        <div class="alert alert-warning no-margin">
+          <p>You already generated an API Key on {{formatDate apiKeys.created "MM/DD/YYYY"}}.</p>
+          <p>Generating a new one will delete the old one.</p>
+          <p><input type="submit"
+               class="btn btn-danger get-key"
+               value="Make a new one anyways."></p>
+        </div>
+      {{/if}}
+
+      {{#if hasNoKey}}
+        <p>You currently have no API Key.</p>
+        <div class="form-horizontal">
+          <div class="col-sm-12">
+            <input type="submit"
+                   class="btn btn-lg btn-primary get-key no-margin full-width"
+                   value="Get API Key">
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if sessionKeyExists}}
+        <div class="alert alert-success" style="margin: 0;">
+          <p>Your API Key is: <strong>{{key}}</strong></p>
+          <p>Store it in a safe place. Keys are encrypted when stored; your key will not be available after you refresh your browser.</p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
 </template>

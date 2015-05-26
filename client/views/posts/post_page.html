@@ -1,101 +1,124 @@
 <template name="postPage">
   <div class="container-fluid" style="background: white;">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="module module-sm">
-        <p class="petition-title-wrapper">
-          <p><a class="title" href="{{pathFor 'postPage'}}">{{post.title}}</a></p>
-          <div class="footer-subtitle">{{post.author}}</div>
-        </p>
-        <p class="petition-social-wrapper">
-          <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
-          <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
-          <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
-          <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
-          <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
-        </p>
+    <div class="row-fluid row-eq-height">
+      <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="module module-sm">
+          <p class="petition-title-wrapper">
+            <p><a class="title" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
+            <p>
+              {{#each post.tag_ids}}
+                {{#with tag this}}
+                  <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
+                {{/with}}
+              {{/each}}
+              {{#if isInRole 'admin' 'moderator'}}
+                <a href="{{pathFor 'postEdit' _id=post._id}}"><span class="label label-primary">EDIT</span></a>
+              {{/if}}
+            </p>
+            <div class="footer-subtitle">POSTED {{ submitted_at }} BY {{post.author}}</div>
+          </p>
+          <p class="petition-social-wrapper">
+            <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
+            <a href="#"><img class="social-icon" social="twitter" src="../twitter.svg"></a>
+            <a href="#"><img class="social-icon" social="reddit" src="../reddit.svg"></a>
+            <a href="#"><img class="social-icon" social="plus" src="../plus.svg"></a>
+            <a href="#"><img class="social-icon" social="linkedin" src="../linkedin.svg"></a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="container-fluid application-content post-title-graph">
-    <div class="row-fluid">
-      <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-2 module-container">
+  <div class="container-fluid application-content post-title-graph {{ goalReachedClass }}">
+
+    {{#if post.response}}
+      <div class="row-fluid module-row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <div class="module module-white">
+            <div class="petition-subtitle">OFFICIAL RESPONSE - LAST UPDATED {{ responded_at }}</div>
+              <p><h4>{{{breaklines post.response }}}</h4></p>
+            </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if updates}}
+      <div class="row-fluid module-row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <div class="module module-white">
+            <div class="petition-subtitle">STATUS UPDATES</div>
+              {{#each updates}}
+                {{> updateBlurb}}
+              {{/each}}
+            </div>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="row-fluid module-row">
+      <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1 col-lg-6 col-lg-offset-2">
+        <div class="module module-white">
+          <div class="petition-subtitle">
+            <p>DESCRIPTION</p>
+          </div>
+          <p>{{{breaklines post.description}}}</p>
+        </div>
+
+        <div class="module module-white petition-signature-module">
+          <div class="petition-subtitle">SIGNED BY</div>
+          <p><h6 class="petition-initials">{{#each initials}}
+            {{ this }}<br>
+          {{/each}}</h6></p>
+        </div>
+
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-2">
         <div class="module module-white">
 
+          <div class="petition-subtitle">TAKE ACTION</div>
+          <div><p>{{> postSign }}</p></div>
+
           <div class="petition-subtitle">
-            PETITION DESCRIPTION
+               SIGNATURES ({{post.votes}} / {{post.minimumVotes}})
           </div>
-          <p><h4>{{{breaklines post.description}}}</h4></p>
-          
+          <div class="progress" style="margin-bottom: 10px;">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+              <span class="sr-only">{{progress}}%</span>
+            </div>
+          </div>
+
+          <div class="petition-subtitle petition-status"
+               data-toggle="tooltip"
+               data-placement="bottom">
+               STATUS
+               <div class="glyphicon glyphicon-question-sign"></div>
+          </div>
+          <p>
+            <h4 class="count">
+            {{ petitionStatus.title }}
+            </h4>
+          </p>
+
+          {{#if equal this.post.status undefined}}
+            <div class="petition-subtitle petition-expires"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Petitions have one month to reach the signature threshold.">
+                  EXPIRES
+                  <div class="glyphicon glyphicon-question-sign"></div>
+            </div>
+            <p><h4 class="count">{{mustReachDate}}</h4></p>
+          {{/if}}
+
           <a href="#postReportModal"
                 class="dropdown-toggle petition-report"
                 data-toggle="modal">
-                Report this petition</a>
-        </div>
-      </div>
-      <div class="col-sm-3 col-md-2">
-        <div class="module module-white">
-
-          <div class="petition-subtitle">SIGNATURES</div>
-          <p><h3 class="count">{{post.votes}}</h3></p>
-
-          <div class="petition-subtitle">TAKE ACTION</div>
-          <div><button class="btn btn-sm btn-petition btn-primary">Sign</button></div>
+                Report petition</a>
           
         </div>
       </div>
+
     </div>
   </div>
   {{> postReport}}
-</template>
-
-<template name="postReport">
-  <div class="modal fade"
-       id="postReportModal"
-       tabindex="-1"
-       role="dialog"
-       aria-labelledby="myModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="main">
-          <div class="modal-header">
-            <button type="button"
-                    class="close"
-                    data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-              <span class="sr-only">Close</span>
-            </button>
-            <h2 class="modal-title">Why are you reporting this petition?</h2>
-          </div>
-          <div class="modal-body" style="font-size: 16px;">
-
-            <div class="radio">
-              <label>
-                <input type="radio"
-                       name="report-reason"
-                       value="inappropriate">
-                The petition contains inappropriate language.
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input type="radio"
-                       name="report-reason"
-                       value="spam">
-                The petition is spam.
-              </label>
-            </div>
-
-            <p>All reports are subject to the Moderation Policy.</p>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Report</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  {{> postShareModal}}
 </template>

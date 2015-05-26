@@ -1,0 +1,23 @@
+<template name="aboutTemplate">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-3 about-side-panel">
+          <div class="list-group">
+            <a class="list-group-item {{ isActiveRoute 'about' }}" 
+               href="{{ pathFor 'about' }}">About</a>
+            <a class="list-group-item  {{ isActiveRoute 'petitionProcess' }}"
+               href="{{ pathFor 'petitionProcess' }}">Petition Process</a>
+            <a class="list-group-item  {{ isActiveRoute 'moderation' }}"
+               href="{{ pathFor 'moderation' }}">Moderation</a>
+            <a class="list-group-item  {{ isActiveRoute 'api' }}"
+               href="{{ pathFor 'api' }}">API Access</a>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          {{> UI.dynamic template=subtemplate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
