@@ -54,7 +54,7 @@ Meteor.methods({
         bcc: emails,
         to: "sgnoreply@rit.edu",
         from: "sgnoreply@rit.edu",
-        subject: "PawPrints - A petition you signed has a status update",
+        subject: "A petition you signed has a status update",
         text: "Hello, \n\n" +
               "Petition \"" + post.title + "\" by " + post.author + " has a status update: \n\n" +
               Meteor.settings.public.root_url + "/petitions/" + post._id +

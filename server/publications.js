@@ -98,8 +98,7 @@ Meteor.publish('privilegedUsers', function () {
       }
     });
   } else {
-    this.stop();
-    return;
+    this.ready();
   }
 });
 
@@ -122,7 +121,7 @@ Meteor.publish('signers', function (postId) {
       }
     });
   } else {
-    return [];
+    this.ready();
   }
 });
 

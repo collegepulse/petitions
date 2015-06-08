@@ -1,21 +1,10 @@
 @import "../vendor/custom.bootstrap.import.less";
 @import "_variables.import.less";
 
-body {
-  background: @main-background;
-}
-
 * {
   -webkit-border-radius: 0 !important;
      -moz-border-radius: 0 !important;
           border-radius: 0 !important;
-}
-
-::selection {
-  background: lighten(@brand-primary, 30%); /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: lighten(@brand-primary, 30%); /* Gecko Browsers */
 }
 
 blockquote {
@@ -43,10 +32,6 @@ input:-webkit-autofill {
   @media (min-width: @screen-sm-min) {
     padding: 30px inherit;
   } 
-}
-
-.btn-secondary {
-  .button-variant(@btn-primary-color; @brand-secondary; @brand-secondary);
 }
 
 .container-fluid {

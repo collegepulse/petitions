@@ -105,7 +105,7 @@ Meteor.methods({
         Email.send({
           to: emails,
           from: "sgnoreply@rit.edu",
-          subject: "PawPrints - Petition Reaches Signature Threshold",
+          subject: "Petition Reaches Signature Threshold",
           text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal: \n\n" +
                 Meteor.settings.public.root_url + "/petitions/" + postId +
                 "\n\nThanks, \nRIT Student Government"
@@ -156,7 +156,7 @@ Meteor.methods({
         bcc: emails,
         to: "sgnoreply@rit.edu",
         from: "sgnoreply@rit.edu",
-        subject: "PawPrints - A petition you signed has received a response",
+        subject: "A petition you signed has received a response",
         text: "Hello, \n\n" +
               "Petition \"" + post.title + "\" by " + oldPost.author + " has recieved a response: \n\n" +
               Meteor.settings.public.root_url + "/petitions/" + oldPost._id +
