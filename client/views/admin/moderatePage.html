@@ -1,0 +1,18 @@
+<template name="moderatePage">
+  <div class="container">
+    {{#if isInRole 'admin'}}
+      <h3>Moderation: {{#if singleton.moderation}}Enabled{{else}}Disabled{{/if}}
+      </h3>
+      <form id="changeModeration">
+        <button type="submit" class="btn btn-md btn-primary">Enable/Disable Moderation</button>
+      </form>
+    {{/if}}
+    <div class="application-content container-fluid">
+      {{> petitionGroup posts=posts
+                        postOrder=postOrder
+                        title="Pending Approval"
+                        description="These petitions are currently being evaluated for submission"
+                        noposts="No petitions are currently pending." }}
+    </div>
+  </div>
+</template>

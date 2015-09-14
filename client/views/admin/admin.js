@@ -1,9 +1,7 @@
 Template.admin.events({
   'submit #thresholdForm': function (e) {
     e.preventDefault();
-
     var threshold = $(e.target).find('[name=minimumThreshold]').val();
-
     Meteor.call('changeMinimumThreshold', threshold, function (error) {
       if (error) {
         throwError(error.reason);

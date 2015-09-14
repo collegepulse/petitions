@@ -1,6 +1,6 @@
 /** Site-wide, global information, including denormalized data.
  *
- *  Structure: 
+ *  Structure:
  *
  *    {
  *      postsCount:            <integer>, // Petition count
@@ -29,5 +29,13 @@ Meteor.methods({
     Singleton.update({}, {$set: { minimumThreshold: thresholdInt,
                                   threshold_updated_at: new Date().getTime()}});
 
+  },
+  'toggleModeration': function(){
+    var current = Singleton.findOne().moderation;
+    if(current){
+      Singleton.update({}, {$set: { moderation: false}});
+    }else{
+      Singleton.update({}, {$set: { moderation: true}});
+    }
   }
 });

@@ -30,7 +30,7 @@ var findPosts = function (options) {
 };
 
 Meteor.publish('posts', function (limit, sortBy, tagName) {
-  return findPosts({ 
+  return findPosts({
     limit: limit,
     sortBy: sortBy,
     tagName: tagName,
@@ -39,7 +39,7 @@ Meteor.publish('posts', function (limit, sortBy, tagName) {
 });
 
 Meteor.publish('postsInProgress', function (limit, sortBy) {
-  return findPosts({ 
+  return findPosts({
     limit: limit,
     sortBy: sortBy,
     status: "waiting-for-reply",
@@ -56,10 +56,19 @@ Meteor.publish('postsWithResponses', function (limit, sortBy) {
   });
 });
 
+Meteor.publish('pendingPosts', function(){
+  if (Roles.userIsInRole(this.userId, ['admin', 'moderator'])) {
+    return Posts.find({pending: true});
+  }else{
+    this.stop();
+    return;
+  }
+});
+
 Meteor.publish('singlePost', function (id) {
   var selector = {};
   selector["_id"] = id;
-  if (!Roles.userIsInRole(this.userId, ['admin'])) {
+  if ((!Roles.userIsInRole(this.userId, ['admin', 'moderator']))) {
     selector['published'] = true;
   }
   return Posts.find(selector, {
@@ -105,7 +114,7 @@ Meteor.publish('privilegedUsers', function () {
 
 Meteor.publish('singleScore', function (postId) {
   return Scores.find({
-    postId: postId, 
+    postId: postId,
     created_at: { $gte: moment().startOf('day').subtract(1, 'week').valueOf() }
   }, {
     limit: 7,
@@ -144,7 +153,7 @@ Meteor.publish('tags', function () {
   return Tags.find();
 });
 
-// Expose individual users' notification preferences 
+// Expose individual users' notification preferences
 Meteor.publish(null, function() {
   return Meteor.users.find({_id: this.userId}, {fields: {'notify.updates': 1, 'notify.response': 1}});
 });
