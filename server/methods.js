@@ -23,5 +23,17 @@ Meteor.methods({
       });
     }
 
+  },
+  changePendingPost: function(postId, approved){
+    var user = Meteor.user()
+    if (!Roles.userIsInRole(user, ['admin', 'moderator']))
+      throw new Meteor.Error(403, "You are not authorized to approve this post.");
+
+    var post = Posts.findOne(postId);
+    Posts.update(postId, {$set: {pending: false}});
+    if(approved){
+      Posts.update(postId, {$set: {published: true,
+        submitted: new Date().getTime()}});
+    }
   }
 });

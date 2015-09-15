@@ -36,7 +36,8 @@ Template.postSubmit.events({
         Session.set('post.title', '');
         Session.set('post.description', '');
         if(Singleton.findOne().moderation){
-          Router.go('pendingPost');
+          Router.go('index');
+          throwError("Petition is pending approval, you will recieve an email once it has gone thorugh the approval process.");
         }else{
           Router.go('postPage', {_id: id});
         }

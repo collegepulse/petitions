@@ -31,7 +31,10 @@ Meteor.methods({
 
   },
   'toggleModeration': function(){
+    var user = Meteor.user()
     var current = Singleton.findOne().moderation;
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change the moderation.");
     if(current){
       Singleton.update({}, {$set: { moderation: false}});
     }else{
