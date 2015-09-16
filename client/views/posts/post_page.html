@@ -75,7 +75,10 @@
         <div class="module module-white">
           {{#if post.pending}}
             <button id="approve" value="approve" class="btn btn-md btn-primary">Approve Post</button>
-            <button id="reject" value="reject" class="btn btn-md btn-secondary">Reject Post</button>
+            <a href="#postRejectModal"
+                  class="btn btn-md btn-secondary"
+                  data-toggle="modal">
+                  Reject petition</a>
           {{else}}
           <div class="petition-subtitle">TAKE ACTION</div>
           <div><p>{{> postSign }}</p></div>
@@ -125,5 +128,6 @@
     </div>
   </div>
   {{> postReport}}
+  {{> postReject}}
   {{> postShareModal}}
 </template>

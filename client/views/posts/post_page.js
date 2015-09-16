@@ -91,30 +91,14 @@ Template.postPage.events({
   'click #approve' : function(e){
     e.preventDefault();
     var _id = this.post._id
-    console.log("Approved");
     Meteor.call('changePendingPost', _id, true, function(error) {
-
       if (error) {
         throwError(error.reason);
       } else {
-        throwError("Petition Approved.");
+        throwError(result);
       }
     });
-  },
-  'click #reject' : function(e){
-    e.preventDefault();
-    var _id = this.post._id
-    console.log("Rejected");
-    Meteor.call('changePendingPost', _id, false, function(error) {
-
-      if (error) {
-        throwError(error.reason);
-      } else {
-        throwError("Petition Approved.");
-      }
-    });
-  },
-
+  }
 });
 
 Template.postPage.rendered = function () {
