@@ -7,6 +7,7 @@ Template.petitionGroup.events({
   }
 });
 
+
 Template.petitionGroup.rendered = function () {
   $('[data-toggle="tooltip"]').tooltip();
 };

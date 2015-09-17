@@ -47,7 +47,7 @@
               Search
             </a>
           </li>
-          {{#if isInRole 'admin,moderator'}}
+          {{#if moderationEnabled }}
           <li class="{{ isActiveRoute 'moderate'}}">
             <a href="{{pathFor 'moderate'}}">
               <span class="glyphicon glyphicon-list-alt"></span>
