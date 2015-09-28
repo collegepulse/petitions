@@ -4,6 +4,11 @@ Template.petitionGroup.events({
   },
   'click #load-more': function () {
     Session.set('postsLimit', Session.get('postsLimit') + 12);
+  },
+  'click #tag-select': function () {
+    console.log(evt.currentTarget.value);
+    Session.set('tag', evt.currentTarget.value);
+    console.log(tag);
   }
 });
 
