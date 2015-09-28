@@ -30,7 +30,7 @@ var findPosts = function (options) {
 };
 
 Meteor.publish('posts', function (limit, sortBy, tagName) {
-  return findPosts({ 
+  return findPosts({
     limit: limit,
     sortBy: sortBy,
     tagName: tagName,
@@ -38,19 +38,21 @@ Meteor.publish('posts', function (limit, sortBy, tagName) {
   });
 });
 
-Meteor.publish('postsInProgress', function (limit, sortBy) {
-  return findPosts({ 
+Meteor.publish('postsInProgress', function (limit, sortBy, tagName) {
+  return findPosts({
     limit: limit,
     sortBy: sortBy,
+    tagName: tagName,
     status: "waiting-for-reply",
     userId: this.userId
   });
 });
 
-Meteor.publish('postsWithResponses', function (limit, sortBy) {
+Meteor.publish('postsWithResponses', function (limit, sortBy, tagName) {
   return findPosts({
     limit: limit,
     sortBy: sortBy,
+    tagName: tagName,
     status: "responded",
     userId: this.userId
   });
@@ -105,7 +107,7 @@ Meteor.publish('privilegedUsers', function () {
 
 Meteor.publish('singleScore', function (postId) {
   return Scores.find({
-    postId: postId, 
+    postId: postId,
     created_at: { $gte: moment().startOf('day').subtract(1, 'week').valueOf() }
   }, {
     limit: 7,
@@ -144,7 +146,7 @@ Meteor.publish('tags', function () {
   return Tags.find();
 });
 
-// Expose individual users' notification preferences 
+// Expose individual users' notification preferences
 Meteor.publish(null, function() {
   return Meteor.users.find({_id: this.userId}, {fields: {'notify.updates': 1, 'notify.response': 1}});
 });

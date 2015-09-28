@@ -5,10 +5,24 @@ Template.petitionGroup.events({
   'click #load-more': function () {
     Session.set('postsLimit', Session.get('postsLimit') + 12);
   },
-  'click #tag-select': function () {
-    console.log(evt.currentTarget.value);
-    Session.set('tag', evt.currentTarget.value);
-    console.log(tag);
+  'click .tag-item': function (e) {
+    if(e.target.id == 'all'){
+      Session.set('activeTag', null);
+    }else{
+      Session.set('activeTag', e.target.id);
+    }
+  }
+});
+
+Template.petitionGroup.helpers({
+  'isActiveTag' : function(name){
+    if((name == Session.get('activeTag')) ||
+    (!Session.get('activeTag') && (name == 'all'))){
+      return 'active';
+    }else{
+      return '';
+    }
+
   }
 });
 
