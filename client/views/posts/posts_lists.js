@@ -22,7 +22,13 @@ Template.petitionGroup.helpers({
     }else{
       return '';
     }
-
+  },
+  'tagTitle' : function() {
+    if(Session.get('activeTag')){
+      return Session.get('activeTag') + ' Petitions';
+    }else{
+      return this.title;
+    }
   }
 });
 
