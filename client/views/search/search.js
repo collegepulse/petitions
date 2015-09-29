@@ -26,9 +26,4 @@ Template.search1.helpers({
 
 Template.search1.rendered = function () {
   $("#search").attr('autocomplete', 'on');
-
-  $('.dropdown-toggle').dropdown();
-  $('#divNewNotifications li > a').click(function(){
-    $('#title').text($(this).html());
-  });
 }
