@@ -52,6 +52,15 @@ Template.postEdit.rendered = function () {
   }.bind(this));
 };
 
+Template.petitionForm.rendered = function(){
+  $('#postDescription').editable({inlineMode: false, imageUpload: false});
+}
+
+Template.petitionResponse.rendered = function(){
+  $('#responseText').editable({inlineMode: false, imageUpload: false});
+}
+
+
 Template.petitionPublish.events({
   'submit #publish': function (e) {
     e.preventDefault();

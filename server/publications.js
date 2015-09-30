@@ -3,6 +3,7 @@ var findPosts = function (options) {
       selector = {};
 
   // configure sort parameters
+
   sort[options.sortBy] = -1;
   sort.submitted = -1;
 

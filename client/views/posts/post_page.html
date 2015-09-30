@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <div class="module module-sm">
           <p class="petition-title-wrapper">
-            <p><a class="title" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
+            <p><a class="title long-string-fix" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
             <p>
               {{#each post.tag_ids}}
                 {{#with tag this}}
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <div class="module module-white">
             <div class="petition-subtitle">OFFICIAL RESPONSE - LAST UPDATED {{ responded_at }}</div>
-              <p><h4>{{{breaklines post.response }}}</h4></p>
+              <p><h4 class="long-string-fix">{{{breaklines post.response }}}</h4></p>
             </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <div class="petition-subtitle">
             <p>DESCRIPTION</p>
           </div>
-          <p>{{{breaklines post.description}}}</p>
+          <p class="long-string-fix">{{{breaklines post.description}}}</p>
         </div>
 
         <div class="module module-white petition-signature-module">
@@ -121,7 +121,6 @@
                 data-toggle="modal">
                 Report petition</a>
           {{/if}}
-
         </div>
       </div>
 

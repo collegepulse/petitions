@@ -7,6 +7,15 @@ Template.petitionGroup.events({
   }
 });
 
+Template.petitionGroup.helpers({
+  'sortType': function(title){
+    if(title == "Responses"){
+      return "responded_at"
+    }else{
+      return "submitted"
+    }
+  }
+});
 
 Template.petitionGroup.rendered = function () {
   $('[data-toggle="tooltip"]').tooltip();

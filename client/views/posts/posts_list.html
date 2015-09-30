@@ -62,7 +62,7 @@
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
         <span class="pull-left">Sort By</span>
         <select id="petition-order" class="form-control input-lg">
-          <option {{selected postOrder "submitted"}} value="submitted">Most Recent</option>
+          <option {{selected postOrder "{{sortType this.title}}"}} value="{{sortType this.title}}">Most Recent</option>
           <option {{selected postOrder "votes"}} value="votes">Most Signatures</option>
         </select>
       </div>
