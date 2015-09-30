@@ -3,6 +3,7 @@ var findPosts = function (options) {
       selector = {};
 
   // configure sort parameters
+
   sort[options.sortBy] = -1;
   sort.submitted = -1;
 
@@ -38,6 +39,7 @@ Meteor.publish('posts', function (limit, sortBy, tagName) {
   });
 });
 
+
 Meteor.publish('postsInProgress', function (limit, sortBy, tagName) {
   return findPosts({
     limit: limit,
@@ -58,10 +60,19 @@ Meteor.publish('postsWithResponses', function (limit, sortBy, tagName) {
   });
 });
 
+Meteor.publish('pendingPosts', function(){
+  if (Roles.userIsInRole(this.userId, ['admin', 'moderator'])) {
+    return Posts.find({pending: true});
+  }else{
+    this.stop();
+    return;
+  }
+});
+
 Meteor.publish('singlePost', function (id) {
   var selector = {};
   selector["_id"] = id;
-  if (!Roles.userIsInRole(this.userId, ['admin'])) {
+  if ((!Roles.userIsInRole(this.userId, ['admin', 'moderator']))) {
     selector['published'] = true;
   }
   return Posts.find(selector, {
@@ -77,7 +88,8 @@ Meteor.publish('singlePost', function (id) {
       minimumVotes: 1,
       status: 1,
       tag_ids: 1,
-      published: 1
+      published: 1,
+      pending: 1
     }
   });
 });

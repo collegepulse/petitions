@@ -87,6 +87,17 @@ Template.postPage.events({
     var url = social_links[network] + this.url;
     GAnalytics.event("post", "share", network);
     window.open(url);
+  },
+  'click #approve' : function(e){
+    e.preventDefault();
+    var _id = this.post._id
+    Meteor.call('changePendingPost', _id, true, function(error) {
+      if (error) {
+        throwError(error.reason);
+      } else {
+        throwError(result);
+      }
+    });
   }
 });
 

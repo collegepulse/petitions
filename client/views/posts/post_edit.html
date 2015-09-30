@@ -58,8 +58,9 @@
   <input id="tags" style="width: 100%; margin-bottom: 10px;">
 
   <label class="control-label" for="description">Description</label>
-  <textarea name="description"
-            class="form-group form-control input-lg"
+  <textarea id="postDescription"
+            name="description"
+            class="form-group form-control input-lg textarea-padding"
             maxlength="4000"
             placeholder="My Petition's Description"
             type="text"
@@ -87,14 +88,15 @@
     <p>Use response for the <u>final</u> petition update, e.g., the final decision reached by Administration, the consensus reached by the committee formed for the petition, etc.</p>
     <p>When a response is initially posted, an e-mail is dispatched to petition signers who subscribe to updates.</p>
   </div>
-  <textarea name="response"
-            class="form-group form-control input-lg"
+  <textarea id="responseText"
+            name="response"
+            class="form-group form-control input-lg textarea-padding"
             maxlength="4000"
             placeholder="Petition Response"
             type="text"
             rows="15"
             value="{{ post.response }}"></textarea>
-  
+
 </template>
 
 <template name="petitionPublish">
@@ -114,7 +116,7 @@
 </template>
 
 <template name="petitionButtons">
-  <div class="btn-group btn-group-lg">
+  <div class="btn-group btn-group-lg btn-margin">
     <button type="submit"
             class="btn btn-primary"
             value="Submit">Save Petition</button>

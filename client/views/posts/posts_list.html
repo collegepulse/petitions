@@ -44,6 +44,7 @@
 <template name="petitionGroup">
   <div class="petitions col-sm-10 col-sm-offset-1">
     <div class="row">
+      {{#unless pending}}
       <div class="col-md-3 col-sm-12">
         <div class="col-md-12">
           <span class="pull-left">Sort By</span>
@@ -61,6 +62,7 @@
           </div>
         </div>
       </div>
+      {{/unless}}
       <div class="col-md-9 col-sm-12">
         <div>
           <h2
@@ -80,12 +82,11 @@
         {{#if empty posts}}
           <div class="panel">
             <p class="footer-subtitle text-center" style="margin: 50px 0;">
-              <p>{{ noposts }}</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+              <p>{{ noposts }}</p>{{#unless pending}}<a href="{{pathFor 'postSubmit'}}">Create a petition.</a>{{/unless}}
             </p>
           </div>
         {{/if}}
       </div>
     </div>
-
   </div>
 </template>

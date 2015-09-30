@@ -1,0 +1,15 @@
+<template name="moderatePage">
+  <div class="container">
+    {{> moderationButton}}
+    <div class="application-content container-fluid">
+      {{> petitionGroup posts=posts
+                        postOrder=postOrder
+                        title="Pending Approval"
+                        description="These petitions are currently being evaluated for submission"
+                        noposts="No petitions are currently pending."
+                        pending=true
+                      }}
+    </div>
+  </div>
+
+</template>

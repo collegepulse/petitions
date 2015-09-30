@@ -1,6 +1,6 @@
 /** Site-wide, global information, including denormalized data.
  *
- *  Structure: 
+ *  Structure:
  *
  *    {
  *      postsCount:            <integer>, // Petition count
@@ -29,5 +29,16 @@ Meteor.methods({
     Singleton.update({}, {$set: { minimumThreshold: thresholdInt,
                                   threshold_updated_at: new Date().getTime()}});
 
+  },
+  'toggleModeration': function(){
+    var user = Meteor.user()
+    var current = Singleton.findOne().moderation;
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change the moderation.");
+    if(current){
+      Singleton.update({}, {$set: { moderation: false}});
+    }else{
+      Singleton.update({}, {$set: { moderation: true}});
+    }
   }
 });
