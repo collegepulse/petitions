@@ -4,6 +4,31 @@ Template.petitionGroup.events({
   },
   'click #load-more': function () {
     Session.set('postsLimit', Session.get('postsLimit') + 12);
+  },
+  'click .tag-item': function (e) {
+    if(e.target.id == 'all'){
+      Session.set('activeTag', null);
+    }else{
+      Session.set('activeTag', e.target.id);
+    }
+  }
+});
+
+Template.petitionGroup.helpers({
+  'isActiveTag' : function(name){
+    if((name == Session.get('activeTag')) ||
+    (!Session.get('activeTag') && (name == 'all'))){
+      return 'active';
+    }else{
+      return '';
+    }
+  },
+  'tagTitle' : function() {
+    if(Session.get('activeTag')){
+      return Session.get('activeTag') + ' Petitions';
+    }else{
+      return this.title;
+    }
   }
 });
 

@@ -3,6 +3,7 @@
     {{> petitionGroup posts=posts
                       postOrder=postOrder
                       title="All Petitions"
+                      tags=tags
                       noposts="Be the first to petition your government." }}
   </div>
 </template>
@@ -12,6 +13,7 @@
     {{> petitionGroup posts=posts
                       postOrder=postOrder
                       tag=this.tag
+                      tags=tags
                       noposts="There are no petitions with that tag." }}
   </div>
 </template>
@@ -22,6 +24,7 @@
                       postOrder=postOrder
                       title="In Progress"
                       description="These petitions are currently being worked on by Student Government. Status updates may be available on the petition page."
+                      tags=tags
                       noposts="No petitions are currently in progress." }}
   </div>
 </template>
@@ -32,6 +35,7 @@
                       postOrder=postOrder
                       title="Responses"
                       description="These petitions have recieved official responses."
+                      tags=tags
                       noposts="No petitions have received responses." }}
   </div>
 </template>
@@ -39,42 +43,50 @@
 
 <template name="petitionGroup">
   <div class="petitions col-sm-10 col-sm-offset-1">
-    {{#if empty posts}}
-    {{else}}
-      <div class="center-xs col-xs-12 col-sm-12 col-md-8 col-lg-9">
-        <h2 style="display: inline-block; margin-bottom: 0;"
-            data-toggle="tooltip"
-            data-placement="bottom"
-            title="{{description}}">
-          {{#if this.tag}}
-            {{this.tag}} Petitions
-          {{else}}
-            {{title}}
-          {{/if}}
-          {{#if description}}
-            <div class="glyphicon glyphicon-question-sign"
-                  style="zoom: 65%; padding-left: 5px;"></div>
-          {{/if}}
-        </h2>
-
+    <div class="row">
+      {{#unless pending}}
+      <div class="col-md-3 col-sm-12">
+        <div class="col-md-12">
+          <span class="pull-left">Sort By</span>
+          <select id="petition-order" class="form-control input-lg">
+            <option {{selected postOrder "submitted"}} value="submitted">Most Recent</option>
+            <option {{selected postOrder "votes"}} value="votes">Most Signatures</option>
+          </select>
+          <div class="tag-box" id="tag-select">
+            <div class="list-group">
+              <a id="all" class="list-group-item {{ isActiveTag 'all' }} tag-item" href="">All</a>
+              {{#each this.tags}}
+              <a id="{{this.name}}" class="list-group-item {{ isActiveTag this.name }} tag-item" href="">{{this.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-        <span class="pull-left">Sort By</span>
-        <select id="petition-order" class="form-control input-lg">
-          <option {{selected postOrder "{{sortType this.title}}"}} value="{{sortType this.title}}">Most Recent</option>
-          <option {{selected postOrder "votes"}} value="votes">Most Signatures</option>
-        </select>
+      {{/unless}}
+      <div class="col-md-9 col-sm-12">
+        <div>
+          <h2
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="{{description}}">
+            {{ tagTitle }}
+            {{#if description}}
+              <div class="glyphicon glyphicon-question-sign"
+                    style="zoom: 65%; padding-left: 5px;"></div>
+            {{/if}}
+          </h2>
+        </div>
+        {{#each posts}}
+          {{> postCard post=this }}
+        {{/each}}
+        {{#if empty posts}}
+          <div class="panel">
+            <p class="footer-subtitle text-center" style="margin: 50px 0;">
+              <p>{{ noposts }}</p>{{#unless pending}}<a href="{{pathFor 'postSubmit'}}">Create a petition.</a>{{/unless}}
+            </p>
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-    {{#each posts}}
-      {{> postCard post=this }}
-    {{/each}}
-    {{#if empty posts}}
-      <div class="panel">
-        <p class="footer-subtitle text-center" style="margin: 50px 0;">
-          <p>{{ noposts }}</p>{{#unless pending}}<a href="{{pathFor 'postSubmit'}}">Create a petition.</a>{{/unless}}
-        </p>
-      </div>
-    {{/if}}
+    </div>
   </div>
 </template>

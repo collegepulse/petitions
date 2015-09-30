@@ -39,19 +39,22 @@ Meteor.publish('posts', function (limit, sortBy, tagName) {
   });
 });
 
-Meteor.publish('postsInProgress', function (limit, sortBy) {
+
+Meteor.publish('postsInProgress', function (limit, sortBy, tagName) {
   return findPosts({
     limit: limit,
     sortBy: sortBy,
+    tagName: tagName,
     status: "waiting-for-reply",
     userId: this.userId
   });
 });
 
-Meteor.publish('postsWithResponses', function (limit, sortBy) {
+Meteor.publish('postsWithResponses', function (limit, sortBy, tagName) {
   return findPosts({
     limit: limit,
     sortBy: sortBy,
+    tagName: tagName,
     status: "responded",
     userId: this.userId
   });
