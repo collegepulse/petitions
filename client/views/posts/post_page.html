@@ -73,7 +73,13 @@
       </div>
       <div class="col-xs-12 col-sm-3 col-md-2">
         <div class="module module-white">
-
+          {{#if post.pending}}
+            <button id="approve" value="approve" class="btn btn-md btn-primary">Approve Post</button>
+            <a href="#postRejectModal"
+                  class="btn btn-md btn-secondary"
+                  data-toggle="modal">
+                  Reject petition</a>
+          {{else}}
           <div class="petition-subtitle">TAKE ACTION</div>
           <div><p>{{> postSign }}</p></div>
 
@@ -98,6 +104,7 @@
             </h4>
           </p>
 
+
           {{#if equal this.post.status undefined}}
             <div class="petition-subtitle petition-expires"
                   data-toggle="tooltip"
@@ -113,12 +120,13 @@
                 class="dropdown-toggle petition-report"
                 data-toggle="modal">
                 Report petition</a>
-
+          {{/if}}
         </div>
       </div>
 
     </div>
   </div>
   {{> postReport}}
+  {{> postReject}}
   {{> postShareModal}}
 </template>

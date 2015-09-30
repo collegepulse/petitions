@@ -72,7 +72,7 @@
     {{#if empty posts}}
       <div class="panel">
         <p class="footer-subtitle text-center" style="margin: 50px 0;">
-          <p>{{ noposts }}</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+          <p>{{ noposts }}</p>{{#unless pending}}<a href="{{pathFor 'postSubmit'}}">Create a petition.</a>{{/unless}}
         </p>
       </div>
     {{/if}}

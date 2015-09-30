@@ -57,10 +57,19 @@ Meteor.publish('postsWithResponses', function (limit, sortBy) {
   });
 });
 
+Meteor.publish('pendingPosts', function(){
+  if (Roles.userIsInRole(this.userId, ['admin', 'moderator'])) {
+    return Posts.find({pending: true});
+  }else{
+    this.stop();
+    return;
+  }
+});
+
 Meteor.publish('singlePost', function (id) {
   var selector = {};
   selector["_id"] = id;
-  if (!Roles.userIsInRole(this.userId, ['admin'])) {
+  if ((!Roles.userIsInRole(this.userId, ['admin', 'moderator']))) {
     selector['published'] = true;
   }
   return Posts.find(selector, {
@@ -76,7 +85,8 @@ Meteor.publish('singlePost', function (id) {
       minimumVotes: 1,
       status: 1,
       tag_ids: 1,
-      published: 1
+      published: 1,
+      pending: 1
     }
   });
 });
