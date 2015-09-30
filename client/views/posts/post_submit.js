@@ -75,7 +75,11 @@ Template.postSubmit.rendered = function () {
     }
   });
 
-  $('#postDescription').editable({inlineMode: false, imageUpload: false});
+  $('#postDescription').editable({
+    inlineMode: false,
+    imageUpload: false,
+    buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'sep', 'formatBlock', 'blockStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'sep', 'createLink', 'insertImage', 'insertVideo', 'table', 'undo', 'redo']
+  });
   // Accessing selected tags
   // $('#s2id_tags').select2('data');
 };
