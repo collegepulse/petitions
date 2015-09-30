@@ -1,4 +1,4 @@
-Template.search1.events({
+Template.search.events({
   'keyup #search': function (e) {
     var query = $(e.target).val();
     if (query.length >= 0) {
@@ -18,12 +18,12 @@ Template.search1.events({
 
 });
 
-Template.search1.helpers({
+Template.search.helpers({
   noResults: function() {
     return Session.get('results') && Session.get('results').length == 0;
   }
 });
 
-Template.search1.rendered = function () {
+Template.search.rendered = function () {
   $("#search").attr('autocomplete', 'on');
 }

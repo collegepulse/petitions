@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <div class="module module-sm">
           <p class="petition-title-wrapper">
-            <p><a class="title" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
+            <p><a class="title long-string-fix" href="{{pathFor 'postPage' _id=post._id}}">{{post.title}}</a></p>
             <p>
               {{#each post.tag_ids}}
                 {{#with tag this}}
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <div class="module module-white">
             <div class="petition-subtitle">OFFICIAL RESPONSE - LAST UPDATED {{ responded_at }}</div>
-              <p><h4>{{{breaklines post.response }}}</h4></p>
+              <p><h4 class="long-string-fix">{{{breaklines post.response }}}</h4></p>
             </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <div class="petition-subtitle">
             <p>DESCRIPTION</p>
           </div>
-          <p>{{{breaklines post.description}}}</p>
+          <p class="long-string-fix">{{{breaklines post.description}}}</p>
         </div>
 
         <div class="module module-white petition-signature-module">
@@ -73,7 +73,13 @@
       </div>
       <div class="col-xs-12 col-sm-3 col-md-2">
         <div class="module module-white">
-
+          {{#if post.pending}}
+            <button id="approve" value="approve" class="btn btn-md btn-primary">Approve Post</button>
+            <a href="#postRejectModal"
+                  class="btn btn-md btn-secondary"
+                  data-toggle="modal">
+                  Reject petition</a>
+          {{else}}
           <div class="petition-subtitle">TAKE ACTION</div>
           <div><p>{{> postSign }}</p></div>
 
@@ -98,6 +104,7 @@
             </h4>
           </p>
 
+
           {{#if equal this.post.status undefined}}
             <div class="petition-subtitle petition-expires"
                   data-toggle="tooltip"
@@ -113,12 +120,13 @@
                 class="dropdown-toggle petition-report"
                 data-toggle="modal">
                 Report petition</a>
-          
+          {{/if}}
         </div>
       </div>
 
     </div>
   </div>
   {{> postReport}}
+  {{> postReject}}
   {{> postShareModal}}
 </template>

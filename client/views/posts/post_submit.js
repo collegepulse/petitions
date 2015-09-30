@@ -19,10 +19,11 @@ Template.postSubmit.helpers({
 Template.postSubmit.events({
   'submit form': function(e) {
     e.preventDefault();
+    var description = $('#postDescription').val();
 
     var post = {
       title: Session.get('post.title'),
-      description: Session.get('post.description'),
+      description: description,
       tag_ids: Session.get('post.tag_ids')
     }
 
@@ -35,15 +36,18 @@ Template.postSubmit.events({
       } else {
         Session.set('post.title', '');
         Session.set('post.description', '');
-        Router.go('postPage', {_id: id});
+        if(Singleton.findOne().moderation){
+          Router.go('index');
+          throwError("Petition is pending approval, you will recieve an email once it has gone through the approval process.");
+        }else{
+          Router.go('postPage', {_id: id});
+        }
       }
     });
+
   },
   'keyup *[name=title]': function (e) {
     Session.set('post.title', $('*[name=title]').val());
-  },
-  'keyup *[name=description]': function (e) {
-    Session.set('post.description', $('textarea[name=description]').val());
   }
 });
 
@@ -75,6 +79,12 @@ Template.postSubmit.rendered = function () {
     } else {
       // to-do
     }
+  });
+
+  $('#postDescription').editable({
+    inlineMode: false,
+    imageUpload: false,
+    buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'sep', 'formatBlock', 'blockStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'sep', 'createLink', 'insertImage', 'insertVideo', 'table', 'undo', 'redo']
   });
   // Accessing selected tags
   // $('#s2id_tags').select2('data');
