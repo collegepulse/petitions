@@ -155,7 +155,7 @@ Meteor.publish('updates', function (postId) {
 });
 
 Meteor.publish('tags', function () {
-  return Tags.find();
+  return Tags.find({},{sort: {name: 1} } );
 });
 
 // Expose individual users' notification preferences
