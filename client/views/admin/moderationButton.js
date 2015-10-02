@@ -7,7 +7,6 @@ Template.moderationButton.events({
 
 Template.moderationButton.helpers({
   'moderationStyle' : function(){
-    console.log(Singleton.findOne().moderation);
     if(Singleton.findOne().moderation){
       return 'Enabled'
     }else{
