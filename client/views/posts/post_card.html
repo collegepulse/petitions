@@ -7,13 +7,13 @@
           {{post.title}}
         </a>
       </h3>
-      <p>
-        {{#each post.tag_ids}}
-          {{#with tag this}}
-            <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
-          {{/with}}
-        {{/each}}
-      </p>
+
+      {{#each post.tag_ids}}
+        {{#with tag this}}
+          <a href="" name="{{this.name}}" class="label label-primary card-tag">{{upcase this.name}}</a>
+        {{/with}}
+      {{/each}}
+
     </div>
   </div>
 </template>

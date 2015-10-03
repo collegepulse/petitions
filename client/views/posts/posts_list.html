@@ -52,7 +52,8 @@
             <option {{selected postOrder "submitted"}} value="submitted">Most Recent</option>
             <option {{selected postOrder "votes"}} value="votes">Most Signatures</option>
           </select>
-          <div class="tag-box" id="tag-select">
+
+          <div class="tag-box hidden-xs hidden-sm" id="tag-select">
             <div class="list-group">
               <a id="all" class="list-group-item {{ isActiveTag 'all' }} tag-item" href="">All</a>
               {{#each this.tags}}
