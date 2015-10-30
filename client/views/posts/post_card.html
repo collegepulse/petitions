@@ -3,9 +3,15 @@
     <div class="square-content {{ post.status }}">
       <h4 class="petition-sign-count">{{pluralize post.votes "Signature"}}</h4>
       <h3 class="petition-title">
-        <a href="{{pathFor 'postPage' _id=post._id }}">
-          {{post.title}}
-        </a>
+        {{#if isExpired}}
+          <a href="{{pathFor 'postPage' _id=post._id }}">
+            {{post.title}}
+          </a>
+          {{else}}
+          <a href="{{pathFor 'postPage' _id=post._id }}" style="color: #513127">
+            {{post.title}}
+          </a>
+        {{/if}}  
       </h3>
       <p>
       {{#each post.tag_ids}}
