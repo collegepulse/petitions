@@ -2,7 +2,7 @@
   <div class="application-content container-fluid">
     {{> petitionGroup posts=posts
                       postOrder=postOrder
-                      title="All Petitions"
+                      title="Open/Expired Petitions"
                       tags=tags
                       noposts="Be the first to petition your government." }}
   </div>
@@ -52,7 +52,8 @@
             <option {{selected postOrder "submitted"}} value="submitted">Most Recent</option>
             <option {{selected postOrder "votes"}} value="votes">Most Signatures</option>
           </select>
-          <div class="tag-box" id="tag-select">
+
+          <div class="tag-box hidden-xs hidden-sm" id="tag-select">
             <div class="list-group">
               <a id="all" class="list-group-item {{ isActiveTag 'all' }} tag-item" href="">All</a>
               {{#each this.tags}}

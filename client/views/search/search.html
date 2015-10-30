@@ -1,10 +1,9 @@
 <template name="search">
   <div class="page container">
     <form class="main">
-      <div style="padding-top: 26px;">
+      <div style="padding-top: 26px; padding-bottom:26px;">
           <input index="posts" class="form-control input-lg" id="search" placeholder="Search Petitions by name, description, or author" style="height: 49px; width:100%;">
       </div>
-      <hr />
       <div class="row">
             {{#if session 'waiting'}}
               {{> loading}}
