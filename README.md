@@ -21,12 +21,11 @@ Usage (Production Environment)
 Contributing
 ============
 
-- The [roadmap] details planned features by core project maintainers.
+- See GitHub Issues for work to be done. If you have any questions, just ask!
 - We are open to pull requests! Please follow the coding conventions currently in place.
 
 
 [Node]:http://nodejs.org/
 [Meteor]:https://www.meteor.com/
-[roadmap]:https://trello.com/b/b6Kyx395/petition-roadmap
 [config]:https://github.com/ritstudentgovernment/config
 [article]:https://gentlenode.com/journal/meteor-1-deploy-and-manage-a-meteor-application-on-ubuntu-with-nginx/1

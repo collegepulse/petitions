@@ -56,6 +56,7 @@ Meteor.methods({
     validatePostOnCreate(postAttributes);
 
     var user = Meteor.user();
+    var publishByDefault = !(Singleton.findOne().moderation);
 
     // pick out the whitelisted keys
     var post = _.extend(_.pick(postAttributes, 'title', 'description', 'tag_ids'), {
@@ -65,7 +66,8 @@ Meteor.methods({
       upvoters: [user._id],
       votes: 1,
       minimumVotes: Singleton.findOne().minimumThreshold,
-      published: true
+      published: publishByDefault,
+      pending: Singleton.findOne().moderation
     });
 
     var postId = Posts.insert(post);
@@ -145,7 +147,7 @@ Meteor.methods({
       Posts.update(postId, {$set: {status: "responded"}});
 
       this.unblock();
-      
+
       var users = Meteor.users.find({$and: [{'notify.response': true},
                                            {_id: {$in: oldPost.upvoters}}]},
                                     {fields: {username: 1}});

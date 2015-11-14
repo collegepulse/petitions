@@ -43,9 +43,9 @@
 </template>
 
 <template name="settings">
-  <div class="tab-pane" id="settings">
+  <div class="tab-pane setting-padding" id="settings">
     <h2>Settings</h2>
-    <div class="col-sm-6">
+    <div class="setting-padding">
       <p>Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
       <form id="thresholdForm">
         <div class="input-group">
@@ -64,6 +64,7 @@
         </div>
       </form>
     </div>
+    {{> moderationButton}}
   </div>
 </template>
 

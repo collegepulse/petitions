@@ -35,7 +35,12 @@ Template.postSubmit.events({
       } else {
         Session.set('post.title', '');
         Session.set('post.description', '');
-        Router.go('postPage', {_id: id});
+        if(Singleton.findOne().moderation){
+          Router.go('index');
+          throwError("Petition is pending approval, you will recieve an email once it has gone thorugh the approval process.");
+        }else{
+          Router.go('postPage', {_id: id});
+        }
       }
     });
   },
