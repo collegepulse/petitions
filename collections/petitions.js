@@ -1,4 +1,4 @@
-Petitions = new Meteor.Collection('petitions');
+Petitions = new Meteor.Collection('posts');
 
 if (Meteor.isServer)
   Petitions._ensureIndex({title: 1}, {unique: 1});
