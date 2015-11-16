@@ -12,7 +12,14 @@
                 <a href="{{pathFor 'petitionEdit' _id=petition._id}}"><span class="label label-primary">EDIT</span></a>
               {{/if}}
             </p>
-            <div class="text-center" style="margin-bottom:15px;">Petition by {{petition.author}}</div>
+            <div class="text-center" style="margin-bottom:15px;">
+              <p>Petition by {{petition.author}}</p>
+              {{#if updates}}
+                {{#each updates}}
+                  <p>Update by {{this.author}}</p>
+                {{/each}}
+              {{/if}}
+            </div>
     </div>
   </div>
   <div class="container application-content">
