@@ -36,6 +36,12 @@ Meteor.startup(function () {
     Migrations.insert({name: "renamePostToPetition"});
   }
 
+  if(!Migrations.findOne({name: "fixSingletonPetitionCount"})){
+    single = Singleton.findOne();
+    single.petitionsCount += single.postsCount;
+    Migrations.insert({name: "fixSingletonPetitionCount"});
+  }
+
   // auto-subscribe users to status update e-mails *if* they have official responses enabled
   if (!Migrations.findOne({name: "enableStatusUpdateEmailsIfOfficialResponsesEnabled"})) {
     Meteor.users.update({'notify.response': true}, {$set: {'notify.updates': true}}, {multi: true});
