@@ -19,7 +19,7 @@ LDAP.checkAccount = function(options) {
   LDAP.client = ldap.createClient({
     url: Meteor.settings.LDAP.url,
     maxConnections: 2,
-    bindDN: 'cn=' + options.username + ',' + Meteor.settings.LDAP.search_ou,
+    bindDN: Meteor.settings.LDAP.bind_dn_prefix + options.username + ',' + Meteor.settings.LDAP.search_ou,
     bindCredentials: options.password
   });
   
