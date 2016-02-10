@@ -31,8 +31,15 @@ Meteor.methods({
     Meteor.users.update(user._id, {$set: {notify: notifyAttributes}});
   },
   editProfile: function(profilePrefs) {
+    var editingLocked;
+    try {
+        editingLocked = Meteor.settings.public.ui.initials_locked;
+    }catch(Exception){
+        editingLocked = false;
+    }
+    
     //Right now the only thing you can edit on your profile is your initials.
-    if(Meteor.settings.public.ui.initials_locked)
+    if(editingLocked)
       throw new Meteor.Error(403, "Initials are not editable.");
 
     var user = Meteor.user();
