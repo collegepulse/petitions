@@ -87,4 +87,4 @@ Handlebars.registerHelper('isActiveRoute', function(route) {
 
 Handlebars.registerHelper('publicSettings', function(route) {
   return Meteor.settings.public;
-}); 
+});
