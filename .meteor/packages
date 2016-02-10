@@ -26,3 +26,5 @@ standard-minifiers
 
 
 npm-container
+fileer:string-format
+meteorhacks:ssr
