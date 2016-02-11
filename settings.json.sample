@@ -2,9 +2,9 @@
   "LDAP_URL": "ldaps://ldap.rit.edu",
   "MAIL": {
     "__comments": [
-      "default_doman:  Appended to the username to construct an email address if no email address is present                                        ",
-      "gateway_url:  The MAIL_URL environment variable, more information here:  http://docs.meteor.com/#/full/email                                 ",
-      "templates: used by the Mailer object and provide defaults for the Email.send function.  Example:                                             ",
+      " default_doman:  Appended to the username to construct an email address if no email address is present                                        ",
+      " gateway_url:  The MAIL_URL environment variable, more information here:  http://docs.meteor.com/#/full/email                                 ",
+      " templates: used by the Mailer object and provide defaults for the Email.send function.  Example:                                             ",
       "   {                                                                                                                                         ",
       "     'say_hello': {                                                                                                                          ",
       "       'subject': 'Hello!',      Default subject for the email, can be overridden by the caller                                              ",
@@ -12,8 +12,8 @@
       "       'template': 'say_hello'   Required key for the template, a template should exist at the path /private/email_templates/say_hello.html  ",
       "     }                                                                                                                                       ", 
       "   }                                                                                                                                         ",
-      "template_defaults:  Optional settings that are applied last to every template, so they are easily overridden                                 ",
-      "template_overrides:  Optional settings that are applied first to every template, they are most useful for local testing.                     "
+      " template_defaults:  Optional settings that are applied last to every template, so they are easily overridden                                 ",
+      " template_overrides:  Optional settings that are applied first to every template, they are most useful for local testing.                     "
     ],
     
     "default_domain": "rit.edu",    
