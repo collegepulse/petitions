@@ -28,18 +28,18 @@ Mailer = {
         try {        
           /* 
           * The settings for an email trickle down from most to least important:
-          * 1. Overrides passed in
-          * 2. Individual template settings
-          * 3. Default template settings
-          * 4. Settings in this file (like text)
+          * 1. Override template settings
+          * 2. Overrides passed in
+          * 3. Individual template settings
+          * 4. Default template settings
+          * 5. Settings in this file (like text)
           */               
-          template = _.extend(
-              {
-                text: SSR.render(templateKey, context)
-              }, 
-              Meteor.settings.MAIL.templates.default, 
+          template = _.extend(              
+              { text: SSR.render(templateKey, context) }, 
+              Meteor.settings.MAIL.template_defaults, 
               templateSettings,
-              overrides
+              overrides,
+              Meteor.settings.MAIL.template_overrides
           );
         }catch(e) {
           //This means there was a general error either finding the template passed in or in rendering the compiled template.
