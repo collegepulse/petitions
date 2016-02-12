@@ -11,6 +11,12 @@ Template.petitionGroup.events({
     }else{
       Session.set('activeTag', e.target.id);
     }
+  },
+  'change #show-signed': function(e) {
+    Session.set('showSigned', $(e.target).is(':checked'));
+  },
+  'change #show-created': function(e) {
+    Session.set('showCreated', $(e.target).is(':checked'));
   }
 });
 
