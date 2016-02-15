@@ -3,13 +3,13 @@ Petitions = new Meteor.Collection('petitions');
 if (Meteor.isServer)
   Petitions._ensureIndex({title: 1}, {unique: 1});
 
-Petitions.initEasySearch(
-  [ 'title', 'description', 'author' ],
-  {
-    'limit' : 50,
-    'use': 'mongo-db'
-  }
-);
+PetitionsIndex = new EasySearch.Index({
+  collection: Petitions,
+  fields: ['title', 'description', 'author'],
+  engine: new EasySearch.Minimongo()
+}, {
+  limit: 50
+})
 
 var validatePetitionOnCreate = function validatePetitionOnCreate (petitionAttributes) {
 
