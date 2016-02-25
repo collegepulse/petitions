@@ -11,7 +11,6 @@ email
 spiderable
 iron:router
 cfs:http-methods
-matteodem:easy-search
 percolatestudio:synced-cron
 meteorhacks:npm
 datariot:ganalytics
@@ -26,3 +25,4 @@ standard-minifiers
 
 
 npm-container
+easy:search
