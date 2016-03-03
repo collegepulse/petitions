@@ -69,10 +69,12 @@
                   <input id='show-signed' type='checkbox' /> 
                   <label for='show-signed'>My signed petitions</label>
                 </div>
-                <div class="filter-checkbox">
-                  <input id='show-created' type='checkbox' /> 
-                  <label for='show-created'>My approved petitions</label>
-                </div>
+                {{# if moderation}}
+                    <div class="filter-checkbox">
+                    <input id='show-created' type='checkbox' /> 
+                    <label for='show-created'>My approved petitions</label>
+                    </div>
+                {{/if}}
               </div>
             {{/if}}
             <div class="tag-box hidden-xs hidden-sm" id="tag-select">

@@ -35,6 +35,13 @@ Template.petitionGroup.helpers({
     }else{
       return this.title;
     }
+   },
+   'moderation' : function(){
+    if(Singleton.findOne().moderation){
+      return true
+    }else{
+      return false
+    }
   }
 });
 
