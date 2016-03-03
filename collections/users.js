@@ -1,5 +1,14 @@
 Meteor.methods({
   editUserRole: function(username, role, actionType) {
+    var editingLocked;
+    try {
+        editingLocked = Meteor.settings.public.ui.roles_locked;
+    }catch(Exception){
+        editingLocked = false;
+    }
+    
+    if(editingLocked)
+      throw new Meteor.Error(403, "Roles are not editable.");
 
     var loggedInUser = Meteor.user();
     var action;
