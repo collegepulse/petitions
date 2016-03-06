@@ -86,7 +86,7 @@ Template.petitionSubmit.events({
         Session.set('petition.description', '');
         if(Singleton.findOne().moderation){
           Router.go('index');
-          throwError("Petition is pending approval, you will recieve an email once it has gone thorugh the approval process.");
+          throwError("Petition is pending approval, you will receive an email once it has gone thorugh the approval process.");
         }else{
           Router.go('petitionPage', {_id: id});
         }
