@@ -45,7 +45,7 @@ Meteor.methods({
       Petitions.update(updateAttrs.petitionId, {$set: {status: "waiting-for-reply"}});
 
       var users = Meteor.users.find({$and: [{'notify.updates': true},
-                                           {_id: {$in: petition.upvoters}}]},
+                                           {_id: {$in: petition.subscribers}}]},
                                     {fields: {username: 1}});
       
       var emails = users.map(function (user) { return user.username + "@rit.edu"; });

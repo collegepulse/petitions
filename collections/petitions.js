@@ -100,26 +100,43 @@ Meteor.methods({
       $inc: {votes: 1},
       $set: {lastSignedAt: new Date().getTime()}
     });
-
+    subscribe(petitionId); //add the user to the subscribed list
     if (petition.votes === petition.minimumVotes && Meteor.isServer) {
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
       var emails = users.map(function (user) { return user.profile.mail || user.username + '@' + Meteor.settings.MAIL.default_domain; });
 	      
       if (!_.isEmpty(emails)) {
         Mailer.sendTemplatedEmail(
-          "petition_threshold_reached", 
-          {   
-            to: emails          
-          }, 
+          "petition_threshold_reached",
           {
-            petition: petition          
+            to: emails
+          },
+          {
+            petition: petition
           }
         );
       }
     }
 
   },
+  subscribe: function(petitionId) {
+    var user = Meteor.user();
 
+    if (!user)
+      throw new Meteor.Error(401, "You need to login to subscribe to a petition.");
+
+    var petition = Petitions.findOne(petitionId);
+
+    if (!petition.published)
+      throw new Meteor.Error(401, "This petition is not published.");
+
+    Petitions.update({
+      _id: petitionId,
+      subscribers: {$ne: user._id}
+    }, {
+      $addToSet: {subscribers: user._id}
+    });
+  },
   edit: function (petitionId, petitionAttributes) {
 
     var oldPetition = Petitions.findOne(petitionId, {
@@ -151,11 +168,11 @@ Meteor.methods({
 
       this.unblock();
 
-      var users = Meteor.users.find({$and: [{'notify.response': true},
-                                           {_id: {$in: oldPetition.upvoters}}]},
+      var notifyees = Meteor.users.find({$and: [{'notify.response': true},
+                                           {_id: {$in: oldPetition.subscribers}}]},
                                     {fields: {username: 1}});
 
-      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
+      var emails = notifyees.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
 
       Mailer.sendTemplatedEmail("petition_response_received", {   
           bcc: emails
