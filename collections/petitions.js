@@ -64,6 +64,7 @@ Meteor.methods({
       author: user.profile.name,
       submitted: new Date().getTime(),
       upvoters: [user._id],
+      subscribers: [user._id],
       votes: 1,
       minimumVotes: Singleton.findOne().minimumThreshold,
       published: publishByDefault,
@@ -94,17 +95,19 @@ Meteor.methods({
 
     Petitions.update({
       _id: petitionId,
-      upvoters: {$ne: user._id}
+      upvoters: {$ne: user._id},
+      subscribers: {$ne: user._id}
     }, {
       $addToSet: {upvoters: user._id},
+      $addToSet: {subscribers: user._id},
       $inc: {votes: 1},
       $set: {lastSignedAt: new Date().getTime()}
     });
-    subscribe(petitionId); //add the user to the subscribed list
+
     if (petition.votes === petition.minimumVotes && Meteor.isServer) {
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
       var emails = users.map(function (user) { return user.profile.mail || user.username + '@' + Meteor.settings.MAIL.default_domain; });
-	      
+
       if (!_.isEmpty(emails)) {
         Mailer.sendTemplatedEmail(
           "petition_threshold_reached",
@@ -142,6 +145,7 @@ Meteor.methods({
     var oldPetition = Petitions.findOne(petitionId, {
                     fields: { response: 1,
                               upvoters: 1,
+                              subscribers: 1,
                               author: 1 }});
 
     validatePetition(petitionAttributes);
@@ -174,13 +178,13 @@ Meteor.methods({
 
       var emails = notifyees.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
 
-      Mailer.sendTemplatedEmail("petition_response_received", {   
+      Mailer.sendTemplatedEmail("petition_response_received", {
           bcc: emails
         },{
           petition: petition,
           oldPetition: oldPetition
         }
-      );      
+      );
     }
   },
   delete: function (petitionId) {
