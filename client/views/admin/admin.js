@@ -57,3 +57,20 @@ Template.admin.events({
     });
   }
 });
+
+Template.interface.events({
+  'submit #changeParallax': function(e){
+    e.preventDefault();
+    Meteor.call('toggleParallax');
+  }
+});
+
+Template.interface.helpers({
+  'parallaxStyle' : function(){
+    if(Singleton.findOne().parallax){
+      return 'Enabled'
+    }else{
+      return 'Disabled'
+    }
+  }
+});
