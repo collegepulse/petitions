@@ -47,10 +47,10 @@ Meteor.methods({
       var users = Meteor.users.find({$and: [{'notify.updates': true},
                                            {_id: {$in: petition.upvoters}}]},
                                     {fields: {username: 1}});
-      
-      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
-      
-      Mailer.sendTemplatedEmail("petition_status_update", {   
+
+      var emails = users.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
+
+      Mailer.sendTemplatedEmail("petition_status_update", {
         bcc: emails
       }, {
         petition: petition
