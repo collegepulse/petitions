@@ -22,9 +22,6 @@ var validateUpdate = function (updateAttrs, petition) {
   if (!updateAttrs.petitionId)
     throw new Meteor.Error(422, "The title's petitionId is missing.");
 
-  if (petition.status == "responded")
-    throw new Meteor.Error(422, "Updates can't be added to petitions with responses.");
-
 };
 
 Meteor.methods({
