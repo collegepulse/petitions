@@ -35,7 +35,8 @@ var findPetitions = function (options) {
       status: 1,
       tag_ids: 1,
       lastSignedAt: 1,
-      upvoters: 1
+      upvoters: 1,
+      pending: 1
     }
   });
 };
