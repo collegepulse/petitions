@@ -17,10 +17,12 @@
             </p>
             <div class="text-center" style="margin-bottom:15px;">
               <p>Petition by {{petition.author}}</p>
-              {{#if updates}}
-                {{#each updates}}
-                  <p>Update by {{this.author}}</p>
-                {{/each}}
+              {{#if show_history}}
+                {{#if updates}}
+                  {{#each updates}}
+                    <p>Update by {{this.author}}</p>
+                  {{/each}}
+                {{/if}}
               {{/if}}
             </div>
     </div>
