@@ -16,8 +16,8 @@ var validateUpdate = function (updateAttrs, petition) {
   if (!updateAttrs.title || updateAttrs.title.length > 80)
     throw new Meteor.Error(422, "Title is longer than 80 characters or not present.");
 
-  if (!updateAttrs.description || updateAttrs.description.length > 4000)
-    throw new Meteor.Error(422, "Description is longer than 4000 characters or not present.");
+  if (!updateAttrs.description || updateAttrs.description.length > 10000)
+    throw new Meteor.Error(422, "Description is longer than 10000 characters or not present.");
 
   if (!updateAttrs.petitionId)
     throw new Meteor.Error(422, "The title's petitionId is missing.");
@@ -47,10 +47,10 @@ Meteor.methods({
       var users = Meteor.users.find({$and: [{'notify.updates': true},
                                            {_id: {$in: petition.upvoters}}]},
                                     {fields: {username: 1}});
-      
-      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
-      
-      Mailer.sendTemplatedEmail("petition_status_update", {   
+
+      var emails = users.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
+
+      Mailer.sendTemplatedEmail("petition_status_update", {
         bcc: emails
       }, {
         petition: petition
