@@ -9,6 +9,7 @@
           <li class="active"><a href="#users" role="tab" data-toggle="tab">Users</a></li>
           <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
           <li><a href="#tags" role="tab" data-toggle="tab">Petition tags</a></li>
+          <li><a href="#interface" role="tab" data-toggle="tab">Interface</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -16,13 +17,14 @@
           {{> users}}
           {{> settings}}
           {{> tags}}
+          {{> interface}}
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<template name="users">  
+<template name="users">
   <div class="tab-pane active" id="users">
     {{#if publicSettings.ui.roles_locked}}
         <div class="alert alert-warning" role="alert">
@@ -103,6 +105,30 @@
         </span>
       </div>
     </form>
+  </div>
+</template>
+
+<template name="interface">
+  <div class="tab-pane" id="interface">
+    <h2>User Interface</h2>
+    <p>Manage UI settings.</p>
+        <form id="changeParallax">
+          <div class="input-group">
+            <input name="parallaxInput"
+                   class="form-control"
+                   value="{{parallaxStyle}}"
+                   type="string"
+                   step="1"
+                   readonly>
+            <span class="input-group-btn">
+              <button class="btn btn-primary"
+                      type="submit"
+                      style="border-radius: 0;">
+                      Toggle
+              </button>
+            </span>
+          </div>
+        </form>
   </div>
 </template>
 

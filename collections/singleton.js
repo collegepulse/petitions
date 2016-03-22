@@ -40,5 +40,16 @@ Meteor.methods({
     }else{
       Singleton.update({}, {$set: { moderation: true}});
     }
+  },
+  'toggleParallax': function(){
+    var user = Meteor.user()
+    var current = Singleton.findOne().parallax;
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change the parallax setting.");
+    if(current){
+      Singleton.update({}, {$set: { parallax: false}});
+    }else{
+      Singleton.update({}, {$set: { parallax: true}});
+    }
   }
 });
