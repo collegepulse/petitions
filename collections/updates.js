@@ -22,9 +22,6 @@ var validateUpdate = function (updateAttrs, petition) {
   if (!updateAttrs.petitionId)
     throw new Meteor.Error(422, "The title's petitionId is missing.");
 
-  if (petition.status == "responded")
-    throw new Meteor.Error(422, "Updates can't be added to petitions with responses.");
-
 };
 
 Meteor.methods({
@@ -44,6 +41,7 @@ Meteor.methods({
 
       Petitions.update(updateAttrs.petitionId, {$set: {status: "waiting-for-reply"}});
 
+
       var users = Meteor.users.find({$and: [{'notify.updates': true},
                                            {_id: {$in: petition.upvoters}}]},
                                     {fields: {username: 1}});
@@ -55,7 +53,9 @@ Meteor.methods({
       }, {
         petition: petition
       });
+
     }
+    
 
     var update = _.extend(_.pick(updateAttrs, 'title', 'description', 'petitionId'), {
       created_at: new Date().getTime(),
@@ -84,7 +84,7 @@ Meteor.methods({
     });
 
     Updates.update(updateAttrs._id, {$set: update });
-    
+
   },
   'deleteUpdate': function (updateAttrs) {
 
