@@ -51,5 +51,27 @@ Meteor.methods({
     }else{
       Singleton.update({}, {$set: { parallax: true}});
     }
+  },
+  'togglePetitionHistoryDisplay': function(){
+    var user = Meteor.user()
+    var current = Singleton.findOne().petitionHistoryDisplay;
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change the petition history display setting.");
+    if(current){
+      Singleton.update({}, {$set: { petitionHistoryDisplay: false}});
+    }else{
+      Singleton.update({}, {$set: { petitionHistoryDisplay: true}});
+    }
+  },
+  'toggleUpdateAuthorDisplay': function(){
+    var user = Meteor.user()
+    var current = Singleton.findOne().updateAuthorDisplay;
+    if (!Roles.userIsInRole(user, ['admin']))
+      throw new Meteor.Error(403, "You are not authorized to change the update author display setting.");
+    if(current){
+      Singleton.update({}, {$set: { updateAuthorDisplay: false}});
+    }else{
+      Singleton.update({}, {$set: { updateAuthorDisplay: true}});
+    }
   }
 });

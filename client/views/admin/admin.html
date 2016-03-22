@@ -112,21 +112,52 @@
   <div class="tab-pane" id="interface">
     <h2>User Interface</h2>
     <p>Manage UI settings.</p>
-        <form id="changeParallax">
-          <div class="input-group">
+        <form id="changeParallax" class="form-inline">
+          <div class="form-group">
+            <label >Parallax Carousel Images:</label>
             <input name="parallaxInput"
                    class="form-control"
                    value="{{parallaxStyle}}"
                    type="string"
                    step="1"
                    readonly>
-            <span class="input-group-btn">
               <button class="btn btn-primary"
                       type="submit"
                       style="border-radius: 0;">
                       Toggle
               </button>
-            </span>
+          </div>
+        </form>
+        <form id="changePetitionHistoryDisplay" class="form-inline">
+          <div class="form-group">
+            <label >Petition History Display:</label>
+            <input name="petitionHistoryDisplayInput"
+                   class="form-control"
+                   value="{{petitionHistoryDisplayStyle}}"
+                   type="string"
+                   step="1"
+                   readonly>
+              <button class="btn btn-primary"
+                      type="submit"
+                      style="border-radius: 0;">
+                      Toggle
+              </button>
+          </div>
+        </form>
+        <form id="changeUpdateAuthorDisplay" class="form-inline">
+          <div class="form-group">
+            <label>Display Update Author:</label>
+            <input name="updateAuthorDisplayInput"
+                   class="form-control"
+                   value="{{updateAuthorDisplayStyle}}"
+                   type="string"
+                   step="1"
+                   readonly>
+              <button class="btn btn-primary"
+                      type="submit"
+                      style="border-radius: 0;">
+                      Toggle
+              </button>
           </div>
         </form>
   </div>
@@ -136,7 +167,7 @@
   {{#each users}}
     {{#if publicSettings.ui.roles_locked}}
         <p>{{profile.name}} - {{username}}</p>
-    {{else}}    
+    {{else}}
         <form>
         <div class="input-group">
             <input name="action"
@@ -149,12 +180,12 @@
                 value="{{profile.name}} - {{username}}"
                 type="text"
                 class="form-control"
-                disabled>           
+                disabled>
                 <span class="input-group-btn">
                 <button class="btn btn-primary"
                         type="submit">&times;
                         </button>
-                </span>            
+                </span>
         </div>
         </form>
     {{/if}}
