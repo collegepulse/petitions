@@ -36,6 +36,14 @@ Meteor.methods({
     validateUpdate(updateAttrs, petition);
 
     var existingUpdates = Updates.find({petitionId: updateAttrs.petitionId});
+    var update = _.extend(_.pick(updateAttrs, 'title', 'description', 'petitionId'), {
+      created_at: new Date().getTime(),
+      updated_at: new Date().getTime(),
+      author: user.profile.name,
+      userId: user._id
+    });
+
+    var updateId = Updates.insert(update);
     if(Meteor.isServer){
       if (_.isEmpty(petition.response)) {
 
@@ -57,17 +65,6 @@ Meteor.methods({
 
       }
     }
-
-
-    var update = _.extend(_.pick(updateAttrs, 'title', 'description', 'petitionId'), {
-      created_at: new Date().getTime(),
-      updated_at: new Date().getTime(),
-      author: user.profile.name,
-      userId: user._id
-    });
-
-    var updateId = Updates.insert(update);
-
   },
   'editUpdate': function (updateAttrs) {
 
