@@ -172,6 +172,7 @@ Meteor.methods({
 
       this.unblock();
 
+      if(Meteor.isServer){
       var notifyees = Meteor.users.find({$and: [{'notify.response': true},
                                            {_id: {$in: oldPetition.subscribers}}]},
                                     {fields: {username: 1}});
@@ -185,6 +186,7 @@ Meteor.methods({
           oldPetition: oldPetition
         }
       );
+    }
     }
   },
   delete: function (petitionId) {
