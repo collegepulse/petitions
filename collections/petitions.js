@@ -44,9 +44,6 @@ var validatePetition = function validatePetition (petitionAttributes) {
   if (!petitionAttributes.description || !petitionAttributes.description.trim())
     throw new Meteor.Error(422, 'Please fill in a description.');
 
-  var descriptionLength = petitionAttributes.title.length;
-  if (descriptionLength > 10000)
-    throw new Meteor.Error(422, 'Description must not exceed 10000 characters. Currently: ' + descriptionLength );
 };
 
 Meteor.methods({
