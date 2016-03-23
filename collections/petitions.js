@@ -95,13 +95,17 @@ Meteor.methods({
 
     Petitions.update({
       _id: petitionId,
-      upvoters: {$ne: user._id},
-      subscribers: {$ne: user._id}
+      upvoters: {$ne: user._id}
     }, {
       $addToSet: {upvoters: user._id},
-      $addToSet: {subscribers: user._id},
       $inc: {votes: 1},
       $set: {lastSignedAt: new Date().getTime()}
+    });
+    Petitions.update({
+      _id: petitionId,
+      subscribers: {$ne: user._id}
+    }, {
+      $addToSet: {subscribers: user._id}
     });
     if(Meteor.isServer){
       if (petition.votes === petition.minimumVotes && Meteor.isServer) {
