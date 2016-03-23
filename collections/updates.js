@@ -46,25 +46,22 @@ Meteor.methods({
     var updateId = Updates.insert(update);
     if(Meteor.isServer){
       if (_.isEmpty(petition.response)) {
-
         Petitions.update(updateAttrs.petitionId, {$set: {status: "waiting-for-reply"}});
-
-
-        var users = Meteor.users.find({$and: [{'notify.updates': true},
-                                             {_id: {$in: petition.subscribers}}]},
-                                      {fields: {username: 1}});
-
-        var emails = users.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
-
-          Mailer.sendTemplatedEmail("petition_status_update", {
-            bcc: emails
-          }, {
-            petition: petition
-          });
-
-
       }
+
+      var users = Meteor.users.find({$and: [{'notify.updates': true},
+                                           {_id: {$in: petition.subscribers}}]},
+                                    {fields: {username: 1}});
+
+      var emails = users.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
+
+      Mailer.sendTemplatedEmail("petition_status_update", {
+        bcc: emails
+      }, {
+        petition: petition
+      });
     }
+    return updateId;
   },
   'editUpdate': function (updateAttrs) {
 
