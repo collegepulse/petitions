@@ -47,15 +47,16 @@ Meteor.methods({
                                     {fields: {username: 1}});
 
       var emails = users.map(function (user) { return user.username + Meteor.settings.MAIL.default_domain; });
-
-      Mailer.sendTemplatedEmail("petition_status_update", {
-        bcc: emails
-      }, {
-        petition: petition
-      });
+      if(Meteor.isServer){
+        Mailer.sendTemplatedEmail("petition_status_update", {
+          bcc: emails
+        }, {
+          petition: petition
+        });
+      }
 
     }
-    
+
 
     var update = _.extend(_.pick(updateAttrs, 'title', 'description', 'petitionId'), {
       created_at: new Date().getTime(),
