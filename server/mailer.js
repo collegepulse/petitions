@@ -55,8 +55,11 @@ Mailer = {
 
           return [ key, finalValue ];
         }));
+        try{
         template.subject = template.subject.replace(/_/g, " "); //Convert _ to space to accommodate environment + JSON config (e.g. meteor unit file)
-
+}catch(e){
+  //ignore
+}
         try {
             Email.send(template);
         }catch(e) {
