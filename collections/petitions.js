@@ -159,9 +159,10 @@ Meteor.methods({
 
     // pick out the whitelisted keys
     var petition = _.extend(_.pick(petitionAttributes, 'title', 'description', 'response', 'status', 'tag_ids'));
-
     if (_.isEmpty(petition.response)) {
-      delete petition.response;
+      petition.response = null;
+      petition.responded_at = null;
+      petition.status = "waiting-for-reply";
     } else {
       petition.responded_at = new Date().getTime();
     }
